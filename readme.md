@@ -1,12 +1,12 @@
 # juegos
 
-1. Hunter
+1. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Hunter-MSX1-asm-MPAGD">Hunter</a>
 
     Plataforma: MSX1
 
     Language: asm-MPAGD
 
-2. Leo must live
+2. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Leo-must-live-MSX1-basic">Leo must live</a>
 
     Plataforma: MSX1
 
@@ -16,7 +16,7 @@
 
     <a href="https://kikemadrigal.github.io/msx-projects/?disk=leo.dsk&M=MSX2E">Play Leo must live</a>
 
-3. MSX mansion
+3. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Mansion-MSX1-basic">MSX mansion</a>
 
     Plataforma: MSX1
 
@@ -26,7 +26,7 @@
 
     <a href="https://kikemadrigal.github.io/msx-projects/?disk=mansion.dsk&M=MSX2E">Play MSX mansion</a>
 
-4. Watchmen
+4. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Watchmen-MSX1-MSX2-Basic-Fusion-C">Watchmen</a>
 
     Plataforma: MSX2
 
