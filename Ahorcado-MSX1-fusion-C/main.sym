@@ -1,0 +1,85 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180 / ZX-Next / eZ80), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  2710 L
+    .__.ABS.                                                    =  0000 G
+    .__.CPU.                                                    =  0000 L
+    .__.H$L.                                                    =  0000 L
+    _Cls                                                           **** GX
+  0 _Done_Version                                                  0010 R
+    _GetTime                                                       **** GX
+    _Locate                                                        **** GX
+    _PrintChar                                                     **** GX
+    _StrLen                                                        **** GX
+    _WaitKey                                                       **** GX
+    ___sdcc_enter_ix                                               **** GX
+  0 ___str_1                                                       00B9 R
+  0 ___str_10                                                      058D R
+  0 ___str_11                                                      05CC R
+  0 ___str_12                                                      05FD R
+  0 ___str_14                                                      0627 R
+  0 ___str_3                                                       00CD R
+  0 ___str_4                                                       01E9 R
+  0 ___str_5                                                       0259 R
+  0 ___str_6                                                       02A4 R
+  0 ___str_7                                                       0370 R
+  0 ___str_8                                                       0374 R
+  0 ___str_9                                                       0583 R
+    __modsint                                                      **** GX
+  7 __xinit__arrayPalabras                                         0000 R
+  7 __xinit__palabra_seleccionada                                  05DC R
+  2 _arrayPalabras                                                 0000 GR
+  0 _borrar_pantalla                                               05D8 GR
+  0 _chequear_vidas                                                01B9 GR
+  0 _comprobar_ganador                                             0207 GR
+  0 _comprobar_que_la_letra_esta_en_la_palabra                     02B0 GR
+  0 _comprobar_tecla_resuelta                                      00F0 GR
+  0 _convertir_letra_a_mayuscula                                   019E GR
+  0 _imprimirCharacter                                             05DB GR
+  0 _inicializar_variables_juego                                   0030 GR
+  1 _letras_acertadas                                              0011 GR
+  0 _loop_principal                                                0043 GR
+  0 _main                                                          0000 GR
+  0 _menu                                                          05ED GR
+  0 _mostrar_ahorcado_con_las_vidas                                038A GR
+  0 _mostrar_palabra_seleccionada                                  05A7 GR
+  0 _mostrar_palabra_sin_resolver                                  02FD GR
+  1 _numero_letras_palabra_seleccionada                            0000 GR
+  0 _obtener_segundos                                              0124 GR
+  0 _obtener_tamanio_string                                        018E GR
+  0 _obtener_tecla_del_teclado                                     0198 GR
+  2 _palabra_seleccionada                                          05DC GR
+  1 _palabra_sin_resolver                                          0002 GR
+  0 _pausar_hasta_que_se_pulsa_una_tecla                           019B GR
+  0 _posicionar_cursor_en_pantalla                                 0377 GR
+    _printf                                                        **** GX
+    _puts                                                          **** GX
+    _rand                                                          **** GX
+  0 _seleccionar_palabra_del_array                                 013E GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180 / ZX-Next / eZ80), page 2.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    _srand                                                         **** GX
+  0 _terminar_programa                                             05E7 GR
+  1 _vidas                                                         0013 GR
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180 / ZX-Next / eZ80), page 3.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE                                      size  644   flags    0
+   1 _DATA                                      size   15   flags    0
+   2 _INITIALIZED                               size  5DD   flags    0
+   3 _DABS                                      size    0   flags    8
+   4 _HOME                                      size    0   flags    0
+   5 _GSINIT                                    size    0   flags    0
+   6 _GSFINAL                                   size    0   flags    0
+   7 _INITIALIZER                               size  5DD   flags    0
+   8 _CABS                                      size    0   flags    8
+

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<trizbort version="1.7.4.1">
+	<info />
+	<map>
+		<room id="1" name="1. Porche" subtitle="" x="-96" y="-64" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" isStartRoom="yes" description="Llegan unos amigos a casa, parecen que vienen a ver mis MSXs, que hago los dejo entrar o no los dejo entrar? con lo agusto que yo estaba echándo una partidicha..." roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0">
+			<objects>Bolsa [f] [c]</objects>
+		</room>
+		<room id="2" name="2 Recibidor o hall" subtitle="" x="-256" y="-64" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="En el norte tienes la calle para mandarlos a la mierda,  puedes entrar al comedor para tomaros algo o puedes invitarlos a salir." roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0" />
+		<line id="3" name="" description="" startText="in" endText="out">
+			<dock index="0" id="1" port="w" />
+			<dock index="1" id="2" port="e" />
+		</line>
+		<room id="4" name="3 trastero sótano" subtitle="" x="-416" y="64" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="Tus amigos no están aquí pero los MSXs tampoco. :(&#xD;&#xA;Has perdido." roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0">
+			<objects>Piedra [f]</objects>
+		</room>
+		<room id="5" name="4 Guardilla" subtitle="" x="-416" y="-192" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="Aquí no está tus amigos pero has encontrado en el desvan un Canon V-20 y un sony hitbit 55p que habías perdido. :)" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0">
+			<objects at="n">Billete [m]</objects>
+		</room>
+		<room id="6" name="5 Jardin" subtitle="" x="-256" y="64" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="Nos pilla en el jadín el amigo propietario del MSX" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0" />
+		<room id="7" name="6 garaje" subtitle="" x="-576" y="-64" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="Tus amigos no están aquí" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0" />
+		<room id="8" name="7 Comedor" subtitle="" x="-416" y="-64" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="Estamos todos en el comedor y le pedimos que saque el limonchelo para ver si lo chispamos.&#xD;&#xA;Después de varias horas te despiertas y los amigos han desaparecido, donde quieres ir? bajar al trastero, subir a la guardilla o entrar en el garaje?&#xD;&#xA;Otra opción es ir al sureste donde está el jardín." roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0" />
+		<line id="10" name="" description="" startText="up" endText="down">
+			<dock index="0" id="8" port="n" />
+			<dock index="1" id="5" port="s" />
+		</line>
+		<line id="11" name="" description="" startText="up" endText="down">
+			<dock index="0" id="4" port="n" />
+			<dock index="1" id="8" port="s" />
+		</line>
+		<line id="12" name="" description="" startText="in" endText="out">
+			<dock index="0" id="8" port="w" />
+			<dock index="1" id="7" port="e" />
+		</line>
+		<line id="13" name="" description="" startText="in" endText="out">
+			<dock index="0" id="2" port="w" />
+			<dock index="1" id="8" port="e" />
+		</line>
+		<room id="14" name="8 calle" subtitle="" x="-256" y="-192" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" isEndRoom="yes" description="Has cogido a tus amigos en la calle echandose todos los MSX, has ganado" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0" />
+		<line id="15" name="" description="">
+			<dock index="0" id="2" port="s" />
+			<dock index="1" id="6" port="n" />
+		</line>
+		<line id="9" name="" description="">
+			<dock index="0" id="14" port="w" />
+			<dock index="1" id="5" port="e" />
+		</line>
+	</map>
+	<settings>
+		<colors>
+			<canvas>White</canvas>
+			<border>MidnightBlue</border>
+			<line>MidnightBlue</line>
+			<selectedLine>Gold</selectedLine>
+			<hoverLine>DarkOrange</hoverLine>
+			<subTitle>MidnightBlue</subTitle>
+			<smallText>MidnightBlue</smallText>
+			<lineText>MidnightBlue</lineText>
+			<grid>#E7E7E7</grid>
+			<startRoom>GreenYellow</startRoom>
+			<endRoom>Red</endRoom>
+		</colors>
+		<regions>
+			<NoRegion Name="NoRegion" TextColor="Blue">White</NoRegion>
+		</regions>
+		<fonts>
+			<room size="13">Arial</room>
+			<object size="11">Arial</object>
+			<subTitle size="9">Arial</subTitle>
+			<line size="9">Arial</line>
+		</fonts>
+		<grid>
+			<snapTo>yes</snapTo>
+			<visible>yes</visible>
+			<showOrigin>yes</showOrigin>
+			<size>32</size>
+		</grid>
+		<lines>
+			<width>2</width>
+			<arrowSize>12</arrowSize>
+			<textOffset>4</textOffset>
+		</lines>
+		<rooms>
+			<darknessStripeSize>24</darknessStripeSize>
+			<objectListOffset>4</objectListOffset>
+			<connectionStalkLength>32</connectionStalkLength>
+			<preferredDistanceBetweenRooms>64</preferredDistanceBetweenRooms>
+			<defaultRoomName>Cave</defaultRoomName>
+			<defaultRoomShape>0</defaultRoomShape>
+		</rooms>
+		<ui>
+			<handleSize>12</handleSize>
+			<snapToElementSize>16</snapToElementSize>
+		</ui>
+		<margins>
+			<documentSpecific>no</documentSpecific>
+			<horizontal>0</horizontal>
+			<vertical>0</vertical>
+			<wrapDashes>no</wrapDashes>
+		</margins>
+		<keypadNavigation>
+			<creationModifier>control</creationModifier>
+			<unexploredModifier>alt</unexploredModifier>
+		</keypadNavigation>
+	</settings>
+</trizbort>

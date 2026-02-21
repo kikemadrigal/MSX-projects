@@ -1,0 +1,26 @@
+{
+    "files.associations": {
+        "*.asm": "z80",
+        "*.s": "z80",
+        "*.a00": "z80",
+        "*.a10": "z80",
+        "*.a03": "z80",
+        "*.a14": "z80",
+        "*.a09": "z80",
+        "*.a12": "z80",
+        "*.a01": "z80",
+        "*.a06": "z80",
+        "*.a02": "z80",
+        "*.a05": "z80",
+        "*.asc": "msxbasic",
+        "vdp_graph2.h": "c",
+        "msx_fusion.h": "c",
+        "vdp_sprites.h": "c",
+        "pt3replayer.h": "c",
+        "ayfx_player.h": "c",
+        "io.h": "c",
+        "stdlib.h": "c",
+        "stack": "c",
+        "SPRITEC.C": "cpp"
+    }
+}

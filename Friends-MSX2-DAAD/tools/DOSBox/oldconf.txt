@@ -1,0 +1,9 @@
+[autoexec]
+set app=mice
+mount C C:\DOSBox\DAAD
+C:\
+DC.EXE %app%\%app%.sce
+CD %app%
+#..\INTSD.EXE %app%.DDB
+#mount -u C
+#EXIT

@@ -1,0 +1,941 @@
+; Base de datos para DAAD (sintáxis DRC) generada por Triz2DAAD.
+;
+; Sección de definiciones.
+;
+/CTL
+_
+;
+; Definiciones específicas para DAAD Ready 0.2
+;
+; --- Por favor no quites este código, es importante para controlar los distintos objetivos
+#ifdef "SPLIT"
+#define hasSplitMode 1
+#endif
+
+#ifndef "tape"
+#extern "MALUVA"
+#endif
+
+#ifdef "pcw"
+#define nativeraster 1
+#endif
+#ifdef "amiga"
+#define nativeraster 1
+#endif
+#ifdef "pc"
+#define nativeraster 1
+#endif
+#ifdef "st"
+#define nativeraster 1
+#endif
+#ifdef "nativeraster"
+#echo  "La máquina de destino soporta gráficos raster de manera nativa"
+#endif
+
+#ifdef "uno"
+#int "MLV_UNO_INT.BIN"
+#define canBoostSpeed 1
+#endif
+
+#ifdef "next"
+#define canBoostSpeed 1
+#endif
+
+#ifdef "cpc"
+#int "MLV_CPC_INT.BIN"
+#endif
+
+#ifdef "hasSplitMode"
+#echo "La máquina destino usará split mode"
+#endif
+
+#ifdef "canBoostSpeed"
+#echo "La máquina destino tiene modo turbo"
+#endif
+
+#ifdef "tape"
+#define noretryImage 1
+#endif
+
+#ifdef "nativeraster"
+#define noretryImage 1
+#endif
+; --- Por favor no quites este código de arriba, es importante para controlar los distintos objetivos
+
+;
+; Atributos para el sistema.
+;
+#define WEARABLE  23            ; Objeto actual es ropa.
+#define CONTAINER 31            ; Objeto actual es contenedor.
+#define LISTED    55            ; Objetos - listados por LISTOBJ etc
+#define OA_CLIST  54            ; - Listado continuo
+#define OO_CLIST  64
+#define TIMEOUT   87            ; If Timeout last frame
+#define IA_RBUF   85            ; Input - recall buffer
+#define IO_RBUF   32
+#define IA_PINP   84            ; - reprint in stream
+#define IO_PINP   16
+#define IA_CSTR   83            ; - clear stream
+#define IO_CSTR   8
+#define IA_TAKEY  82            ; - timeout on any key
+#define IO_TAKEY  4
+#define IA_TMORE  81            ; - timeout on More...
+#define IO_TMORE  2
+#define IA_TSTAR  80            ; - timeout at start of input
+#define IO_TSTAR  1
+#define GMODE     247           ; Gráficos - disponibles
+#define GA_MDRW   246           ; - Dibujo invisible (drawstring)
+#define GO_MDRW   64
+#define GA_POFF   245           ; - Imágenes OFF (drawstring)
+#define GO_POFF   32
+#define GA_WKEY   244           ; - Espera después de dibujar (drawstring)
+#define GO_WKEY   16
+#define GA_CBOR   243           ; - Cambia BORDER (drawstring)
+#define GO_CBOR   8
+#define MOUSE     240           ; ratón disponible (sólamente !DRAW)
+;
+#define O2      152     ; Offset de los atributos del segundo objeto
+;
+; Banderas del sistema 0 - 63
+;
+#define fDark              0
+#define fObjectsCarried    1
+
+#define fDarkF             28
+#define fGFlags            29     ; This is best tested using HASAT GMODE
+#define fScore             30
+#define fTurns             31     ; 2 bytes
+#define fTurnsHi           32
+
+#define fVerb              33
+#define fNoun              34
+#define fAdject1           35
+#define fAdverb            36
+#define fMaxCarr           37
+#define fPlayer            38
+#define fPrep              43
+#define fNoun2             44
+#define fAdject2           45
+#define fCPronounNoun      46
+#define fCPronounAdject    47
+#define fTimeout           48
+#define fTimeoutFlags      49
+#define fDoallObjNo        50
+#define fRefObject         51
+#define fStrength          52
+#define fObjFlags          53
+#define fRefObjLoc         54
+#define fRefObjWeight      55
+#define fRefObjIsContainer 56
+#define fRefObjIsWearable  57
+#define fRefObjAttr1       58
+#define fRefObjAttr2       59
+#define fInkeyKey1         60
+#define fInkeyKey2         61
+#define fScreenMode        62     ; 2=Text, 4=CGA, 13=EGA, 141=VGA
+#define fCurrentWindow     63     ; Which window is active at the moment
+;
+; Identificadores de objetos.
+;
+#define oBolsa 0
+#define oPiedra 1
+#define oBillete 2
+;
+; Identificadores de localidadades.
+;
+#define l1_casa 1
+#define l2_recibidor_o_hall 2
+#define l3_trastero_sótano 3
+#define l4_guardilla 4
+#define l5_jardin 5
+#define l6_garaje 6
+#define l7_comedor 7
+#define l8_calle 8
+;
+/VOC
+;
+; Sección de vocabulario del juego.
+;
+; Movimiento: verbos y nombres < 14 X
+;
+N       2       noun
+NORTE   2       noun
+S       3       noun
+SUR     3       noun
+E       4       noun
+ESTE    4       noun
+O       5       noun
+OESTE   5       noun
+NE      6       noun
+NORES   6       noun
+NO      7       noun
+NOROE   7       noun
+SE      8       noun
+SURES   8       noun
+SO      9       noun
+SUROE   9       noun
+AR      10      noun
+ARRIBA  10      noun
+SUBIR   10      verb
+SUBE    10      verb
+AB      11      noun
+ABAJO   11      noun
+BAJAR   11      verb
+BAJA    11      verb
+ENTRA   12      verb
+DENTRO  12      noun
+SALIR   13      verb
+SAL     13      verb
+FUERA   13      noun
+;
+; Nombres <20 indica que se pueden usar como verbos
+;         <50 indica nombre propio (no admite lo, la...)
+;
+I       14      noun
+INVEN   14      noun
+TODO    20      noun
+TODOS   20      noun
+TODAS   20      noun
+;
+; Objetos definidos por el usuario en el mapa visual, si los hubiera.
+;
+BOLSA      50      noun
+PIEDRA      51      noun
+BILLETE      52      noun
+;
+; Verbos
+;
+COGER   20      verb
+COGE    20      verb
+COGEL   20      verb
+DEJAR   21      verb
+DEJA    21      verb
+DEJAL   21      verb
+SOLTAR  21      verb
+QUITAR  22      verb
+PONER   23      verb
+PONTE   23      verb
+MIRAR   24      verb
+M       24      verb
+REDES   24      verb
+R       24      verb
+F       25      verb
+FIN     25      verb
+SAVE    26      verb
+LOAD    27      verb
+RAMSA   28      verb
+RAMLO   29      verb
+EX      30      verb
+EXAMI   30      verb
+DECIR   31      verb
+PREGUNT 31      verb
+HABLAR  31      verb
+SALIDAS 32      verb
+AYUDA   33      verb
+METER   34      verb
+METE    34      verb
+METEL   34      verb
+INTRO   34      verb
+SACAR   35      verb
+SACA    35      verb
+SACAL   35      verb
+EXTRA   35      verb
+VACIAR  36      verb
+;
+; Adjetivos
+;
+PEQUE   2       adjective
+GRANDE  3       adjective
+VIEJO   4       adjective
+VIEJA   4       adjective
+NUEVO   5       adjective
+NUEVA   5       adjective
+DURO    6       adjective
+DURA    6       adjective
+BLANDO  7       adjective
+CORTO   8       adjective
+CORTA   8       adjective
+LARGO   9       adjective
+LARGA   9       adjective
+;
+; Adverbios
+;
+RAPID   2       adverb
+RáPID   2       adverb
+DESPA   3       adverb
+LENTA   3       adverb
+CUIDA   5       adverb
+;
+; Preposiciones
+;
+A       2       preposition
+DE      3       preposition
+EN      4       preposition
+POR     5       preposition
+TRAVES  5       preposition
+BAJO    7       preposition
+JUNTO   8       preposition
+MENOS   13      preposition
+;
+; Pronombres
+;
+;
+; Conjunciones (mal llamadas "conjugation" en el DAAD). :-)
+;
+Y       2       conjugation
+ENTONCE 2       conjugation
+LUEGO   2       conjugation
+;
+/STX
+;
+; Mensajes del sistema (en segunda persona).
+;
+/0 "Está demasiado oscuro para ver nada."
+/1 "También puedes ver: "
+/2 "#n¿Qué haces ahora?"
+/3 "#n¿Qué quieres hacer?"
+/4 "#n¿Qué quieres hacer ahora?"
+/5 "#n¿Qué haces?"
+/6 "No he entendido nada.#n"
+/7 "No puedes ir en esa dirección.#n"
+/8 "No puedes hacer eso.#n"
+/9 "Llevas:#n"
+/10 "Llevas puesto:#n"
+/11 "" ;*Libre
+/12 "¿Seguro?"
+/13 "¿Quieres intentarlo de nuevo?"
+/14 "";*Libre
+/15 "Vale.#n"
+/16 "Pulsa una tecla para continuar.#n"
+/17 "" ;*Has jugado
+/18 "" ;*\sturno
+/19 "" ;*s
+/20 "" ;*.[CR]
+/21 "" ;*Has resuelto un
+/22 "" ;*%[CR]
+/23 "No llevas eso puesto.#n"
+/24 "No puedes. Tienes puesto _.#n"
+/25 "Ya tienes _.#n"
+/26 "Aquí no hay nada de eso.#n"
+/27 "No puedes llevar nada más.#n"
+/28 "No tienes eso.#n"
+/29 "Ya llevas puesto _.#n"
+/30 "S" ;Un sólo caracter en mayúsculas. Inicial de Sí
+/31 "N" ;Un sólo caracter en mayúsculas. Inicial de No
+/32 "Hay más..."
+/33 "#n>"
+/34 "";*Libre
+/35 "#nEl tiempo pasa...#n"
+/36 "Has cogido _.#n"
+/37 "Te has puesto _.#n"
+/38 "Te has quitado _.#n"
+/39 "Has dejado _.#n"
+/40 "No puedes ponerte _.#n"
+/41 "No puedes quitarte _.#n"
+/42 "No puedes quitarte _.  No puedes llevar nada más en las manos.#n"
+/43 "@ pesa demasiado para tí.#n"
+/44 "@ está en "
+/45 "@ no está en "
+/46 ", "
+/47 " y "
+/48 ".#n"
+/49 "No tienes _.#n"
+/50 "No llevas puesto _.#n"
+/51 ".#n"
+/52 "No hay nada de eso en "
+/53 "Nada.#n"
+/54 "C" ;Inicial de Cinta
+/55 "D" ;Disco
+/56 "Unidad no preparada. Pulsa una tecla para volver a intentarlo.#n"
+/57 "Error de entrada/salida.#n"
+/58 "El disco o el directorio puede estar lleno.#n"
+/59 "Nombre de fichero no válido.#n"
+/60 "Nombre del fichero:"
+/61 "Pon en marcha la cinta.#n"
+/62 "¿Cinta o disco?"
+/63 "No ves nada extraño en _.#n"
+/64 "En _ ves:#n"
+;
+/MTX
+;
+; Mensajes del juego.
+;
+; Los mensajes 0 a 13 se usan por Triz2DAAD para su rutina de listado de salidas (process 10).
+;
+/0 "Salidas visibles: "
+/1 "ninguna"
+/2 "norte "
+/3 "sur "
+/4 "este "
+/5 "oeste "
+/6 "noreste "
+/7 "noroeste "
+/8 "sureste "
+/9 "suroeste "
+/10 "arriba "
+/11 "abajo "
+/12 "entrar "
+/13 "salir "
+;
+; El mensaje 14 se usa por Triz2DAAD como texto de introducción del juego.
+;
+/14 "Texto introductorio de la aventura (editar en mensaje 14)."
+;
+;
+; Triz2DAAD usa 2 mensajes para la pantalla de ayuda.
+;
+/15 " PANTALLA DE AYUDA"
+/16 "Las aventuras conversacionales son juegos de texto basados en la exploración de localidades y la manipulación de objetos al alcance inmediato del protagonista.#n#nLas acciones se comunican al ordenador mediante frases sencillas del tipo ACCION-OBJETO.#n#nEl movimiento se efectua mediante puntos cardinales: IR NORTE, SUR, OESTE o sus abreviaturas: N, S, E, O. Ocasionalmente órdenes como SUBIR, o ENTRAR también funcionarán.#n#nAcciones comunes con los objetos son COGER objeto, DEJAR, EXAMINAR (o su abreviatura EX). INVENTARIO (o I) lista los objetos llevados. MIRAR o M redescribe la localidad.#n"
+;
+/OTX
+;
+; Texto para los listados de los objetos.
+;
+/0 "una Bolsa  "
+/1 "una Piedra "
+/2 "un Billete [m]"
+;
+/LTX
+;
+; Texto de las localidades.
+;
+/0 "Aventura De Prueba Generada Con Triz2Daad.#n#npor: Anónimo#n#nAventura de prueba del script conversor Triz2DAAD (mapas de trizbort a código fuente DSF del DAAD).#n#n"
+/1 "Llegan unos amigos a casa, parecen que vienen a ver mis MSXs, que hago los dejo entrar o no los dejo entrar? con lo agusto que yo estaba echándo una partidicha..."
+/2 "En el norte tienes la calle para mandarlos a la mierda,  puedes entrar al comedor para tomaros algo o puedes invitarlos a salir."
+/3 "Tus amigos no están aquí pero los MSXs tampoco. :(#nHas perdido."
+/4 "Aquí no está tus amigos pero has encontrado en el desvan un Canon V-20 y un sony hitbit 55p que habías perdido. :)"
+/5 "Nos pilla en el jadín el amigo propietario del MSX"
+/6 "Tus amigos no están aquí"
+/7 "Estamos todos en el comedor y le pedimos que saque el limonchelo para ver si lo chispamos.#nDespués de varias horas te despiertas y los amigos han desaparecido, donde quieres ir? bajar al trastero, subir a la guardilla o entrar en el garaje?#nOtra opción es ir al sureste donde está el jardín."
+/8 "Has cogido a tus amigos en la calle echandose todos los MSX, has ganado"
+;
+/CON
+;
+; Tabla de conexiones entre localidades.
+;
+/0
+/1
+DENTRO 2
+/2
+FUERA 1
+DENTRO 7
+S 5
+/3
+ARRIBA 7
+/4
+ABAJO 7
+E 8
+/5
+N 2
+/6
+FUERA 7
+/7
+ARRIBA 4
+ABAJO 3
+DENTRO 6
+FUERA 2
+/8
+O 4
+;
+/OBJ
+;
+; Tabla de definición de objetos:
+; -Localidad inicial.
+; -Peso.
+; -Atributos de contenedor y ropa.
+; -16 atributos definibles por el usuario.
+; -Nombre y adjetivo.
+;
+/0 1 1 _ _   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  BOLSA _
+/1 3 1 _ _   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  PIEDRA _
+/2 4 1 _ _   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  BILLETE _
+;
+/PRO 0
+
+; PRO 0 es el primer proceso en ejecutarse en DAAD.
+
+; Si estamos en la localidad 0 (inicio del juego)
+; llama al proceso de inicialización (PRO 6).
+
+; DAAD Ready añade además un par de definiciones propias
+
+>
+_       _       AT 0
+                #ifdef "canBoostSpeed"
+                XSPEED  1
+                #endif
+                #ifdef "hasSplitMode"
+                XSPLITSCR 1
+                #endif
+                PROCESS 6
+
+; Establece el flag DarkF en función del flag Dark y de la
+; presencia o no de fuentes de luz (en principio el objeto 0, aunque Triz2DAAD puede cambiar eso).
+
+>
+_       _       WINDOW 0
+                CLEAR fDarkF
+                NOTZERO fDark
+                ABSENT oBolsa
+                SET fDarkF
+
+; Definiciones de Triz2DAAD para asegurar que algunos grupos de DAAD Ready sean mutuamente excluyentes.
+
+#ifdef "hasSplitMode"
+#define noretryImage 0
+#endif
+
+#ifdef "next"
+#define noretryImage 0
+#endif
+
+; Código para ZX Spectrum en cinta. Para DAAD Ready en este modo se da por hecho que la ventana de texto (WINDOW 1) ocupa siempre toda la pantalla.
+
+#ifdef "tape"
+>
+_       _       WINDOW 1
+                CLS
+#endif
+
+; Modo 16 bits. Utiliza PICTURE como condición para decidir donde colocar la ventana de texto (WINDOW 1).
+
+#ifdef "nativeraster"
+>
+_       _       CLS
+                ZERO fDarkF
+                PICTURE @fPlayer
+                DISPLAY @fDarkF
+                WINDOW 1
+                WINAT 14 0
+                CLS
+                SKIP $etiqueta_01
+                
+>                
+_       _       WINDOW 1
+                WINAT 0 0
+                WINSIZE 25 127
+                CLS                
+#endif
+
+; Modos Amstrad CPC, C64 y ZX Uno. Pensados para evitar que la ventana de texto invada el area de la split-screen (siempre en 14,0).
+
+#ifdef "hasSplitMode"
+>
+_       _       CLEAR 20
+                CLS
+                ZERO fDarkF
+                XPICTURE @fPlayer
+
+>
+_       _       WINDOW 1
+                CLS
+#endif
+
+; Modo ZX Next. Igual al modo "noretryImage" con un condacto XNEXTCLS extra.
+
+#ifdef "next"
+>
+_       _       CLEAR 20
+                CLS
+                ZERO fDarkF
+                XPICTURE @fPlayer
+
+>
+_       _       NOTZERO fDarkF
+                WINDOW 1
+                WINAT 0 0
+                WINSIZE 25 127
+                CLS
+                SKIP $etiqueta_01
+
+>
+_       _       GT 20 127
+                XNEXTCLS
+                WINDOW 1
+                WINAT 0 0
+                WINSIZE 25 127
+                CLS
+                SKIP $etiqueta_01
+
+>
+_       _       WINDOW 1
+                WINAT 14 0
+                CLS
+#endif
+
+; Resto de plataformas (incluyendo CPC, C64 y Uno si se elige modo NOSPLIT). Si no está oscuro, carga el fichero gráfico de maluva y lo muestra. Si está oscuro O no hay gráfico la ventana de texto se coloca en 0,0. Si no es ninguno de los dos casos, va a 14,0.
+
+#ifndef "noretryImage"
+>
+_       _       CLEAR 20
+                CLS
+                ZERO fDarkF
+                XPICTURE @fPlayer
+
+>
+_       _       NOTZERO fDarkF
+                WINDOW 1
+                WINAT 0 0
+                WINSIZE 25 127
+                CLS
+                SKIP $etiqueta_01
+
+>
+_       _       GT 20 127
+                WINDOW 1
+                WINAT 0 0
+                WINSIZE 25 127
+                CLS
+                SKIP $etiqueta_01
+
+>
+_       _       WINDOW 1
+                WINAT 14 0
+                CLS
+#endif
+
+$etiqueta_01
+
+; Pasa a la ventana de texto. Si no hay luz, imprime el mensaje de sistema 0
+; "No se ve nada".
+
+>
+_       _       NOTZERO fDarkF
+                SYSMESS 0
+
+; En caso contario (sí hay luz) imprime la descripción correspondiente
+; a la localidad actual.
+
+>
+_       _       ZERO   fDarkF
+                DESC   @fPlayer
+
+; Llama al proceso 3.
+
+>
+_       _       PROCESS 3
+
+; Llama al proceso 1.
+
+> _       _     PROCESS 1
+
+;------------------------------------------------------------------------------
+/PRO 1
+
+; Llamado desde PRO 0.
+
+; Llama a PRO 4, antiguo proceso 2 del PAWS.
+
+>
+_       _       PROCESS 4
+
+; Recibe y analiza el input del jugador.
+
+>
+_       _       PARSE 0
+                PROCESS 2
+                REDO
+
+; Entradas para el contador de turnos.
+
+>
+_       _       EQ fTurns 255
+                EQ fTurnsHi 255
+                CLEAR fTurns
+                CLEAR fTurnsHi
+                SKIP 2
+
+>
+_       _       EQ fTurns 255
+                PLUS fTurnsHi 1
+                CLEAR fTurns
+                SKIP 1
+
+>
+_       _       PLUS fTurns 1
+
+; Llama a PRO 5. Si al volver se ha ejecutado una acción
+; continua el bucle del juego recomenzando el PRO 1.
+
+>
+_       _       PROCESS 5
+                ISDONE
+                REDO
+
+; Si no, trata de mover al jugador. Si lo consigue
+; continua el bucle del juego recomenzando el PRO 0.
+
+>
+_       _       MOVE fPlayer
+                CLS
+                RESTART
+
+; Si no, mira si el verbo de la SL (sentencia lógica) era de movimiento,
+; en cuyo caso imprime el mensaje de sistema 7 "no puedes ir en esa dirección" y
+; el bucle del juego continua recomenzando PRO 1.
+
+>
+_       _       NEWTEXT
+                LT fVerb 14
+                SYSMESS 7
+                REDO
+
+; Y si llega hasta aquí, imprime el mesaje de sistema 8 ("no puedes hacer eso") y
+; el bucle del juego continua recomenzando PRO 1.
+
+>
+_       _       SYSMESS 8
+                REDO
+
+;------------------------------------------------------------------------------
+/PRO 2
+
+; Llamado desde PRO 1.
+
+>
+_       _       HASAT TIMEOUT
+                SYSMESS 35
+                DONE
+
+>
+_       _       SYSMESS 6
+
+;------------------------------------------------------------------------------
+/PRO 3
+
+; PRO 3 es el antiguo "process 1" de PAWS.
+; Se le llama desde PRO 0.
+; Se ejecuta justo después de la descripción de la localidad.
+
+; Listado de salidas (si no está oscuro).
+
+>
+_       _       NEWLINE
+                ZERO fDarkF
+                PROCESS 7
+
+; Listado de objetos (si no está oscuro).
+
+>
+_       _       NEWLINE
+                ZERO fDarkF
+                LISTOBJ
+
+;------------------------------------------------------------------------------
+/PRO 4
+
+; PRO 4 equivale a la antigua "status table" de Quill o al antiguo "process 2" en PAWS.
+; Se le llama desde PRO 1.
+; Se ejecuta justo antes de que el parser pida una nueva órden o sentencia lógica
+
+/PRO 5
+
+; PRO 5 equivale a la antigua "events table" de Quill o a la "tabla de respeuestas" de PAWS.
+; Se le llama desde PRO 1.
+
+; Entrada añadida por Triz2DAAD para pantallas de ayuda.
+
+>
+AYUDA   _       CLS
+                MESSAGE 15
+                MESSAGE 16
+                ANYKEY
+                RESTART
+
+>
+EXAMI   _       WHATO
+                NOTEQ 51 255
+                PRESENT @51
+                HASAT CONTAINER
+                SYSMESS 64
+                LISTAT @51
+                DONE
+
+>
+EXAMI   _       WHATO
+                NOTEQ 51 255
+                PRESENT @51
+                SYSMESS 63
+                DONE
+
+>
+EXAMI   _       NOTDONE
+
+>
+SALID   _       PROCESS 7
+                DONE
+
+; "VACIAR" y "SACAR TODO" bloqueados en MSX2.
+
+#ifndef "MSX2"
+>
+VACIA   _       WHATO
+                NOTEQ 51 255
+                PRESENT @51
+                HASAT CONTAINER
+                COPYFF fNoun fNoun2
+                SYNONYM SACAR TODO
+#endif
+
+>
+VACIA   _       NOTDONE
+
+
+>
+I       _       SYSMESS 9
+                LISTAT CARRIED
+                SYSMESS 10
+                LISTAT WORN
+                DONE
+
+>
+COGER   TODO    DOALL HERE
+>
+COGER   _       AUTOG
+                DONE
+
+>
+DEJAR   TODO    DOALL CARRIED
+>
+DEJAR   _       AUTOD
+                DONE
+
+>
+QUITAR  TODO    DOALL WORN
+>
+QUITAR  _       AUTOR
+                DONE
+
+>
+PONER   TODO    DOALL CARRIED
+>
+PONER   _       AUTOW
+                DONE
+
+>
+R       _       EQ 34 255
+                RESTART
+
+>
+R       _       LET 33 30
+                REDO
+
+>
+FIN     _       QUIT
+                END
+
+>
+FIN     _       DONE
+
+>
+SAVE    _       #ifndef "tape"
+                XSAVE 0
+                #endif
+                #ifdef "tape"
+                SAVE 0
+                #endif
+                RESTART
+
+>
+LOAD    _       #ifndef "tape"
+                XLOAD 0
+                #endif
+                #ifdef "tape"
+                LOAD 0
+                #endif
+                RESTART
+
+>
+RAMSA   _       RAMSAVE
+                RESTART
+
+>
+RAMLO   _       RAMLOAD 255
+                RESTART
+
+>
+MIRAR   _       RESTART
+
+/PRO 6
+
+; Proceso de inicialización.
+; Llamado desde PRO 0.
+
+; -Establece la posición inicial de la ventana de texto (WINDOW 1).
+; -Describe localidad 0 (normalmente pantalla de presentación).
+; -Muestra texto de introducción.
+; -Comienza el bucle de reseteo de banderas.
+
+>
+_       _       WINDOW 1
+                #ifndef "tape"
+                WINAT 14 0
+                #endif
+                #ifdef "tape"
+                WINAT 0 0
+                #endif
+                WINSIZE 25 127
+                CLS
+                DESC 0
+                #ifndef "tape"
+                XPICTURE 0
+                #endif
+                ANYKEY
+                CLS
+                MESSAGE 14
+                ANYKEY
+                SET 255
+
+; Pone a 0 todas las banderas excepto la 29 (fGFlags).
+
+>
+_       _       MINUS 255 1
+                NOTEQ 255 fGFlags
+                CLEAR @255
+
+>
+_       _       NOTZERO 255
+                SKIP -2
+
+; -Pone las localidades de los objetos a su valor original (establecido en /OBJ).
+; -Valores por defecto de las banderas 52, 37, 46, 47 y 53.
+; -Establece la localidad inicial.
+
+>
+_       _       RESET
+                LET fStrength 10
+                LET fMaxCarr  4
+                SET fCPronounNoun
+                SET fCPronounAdject
+                LET fObjFlags 64
+                GOTO 1
+
+/PRO 7
+
+; Listado automático de salidas
+; ¡OJO!, gasta los flags 100 y 101
+
+>
+_       _       MES 0
+                CLEAR 101
+                LET 33 2
+
+>
+_       _       COPYFF 38 100
+                MOVE 100
+                MES @33
+                PLUS 101 1
+
+>
+_       _       PLUS 33 1
+                LT 33 14
+                SKIP -2
+
+>
+_       _       NOTZERO 101
+                DONE
+
+>
+_       _       MESSAGE 1
+
+/END

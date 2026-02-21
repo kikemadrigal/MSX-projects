@@ -1,0 +1,2 @@
+1.Que la velocidad vaya aumentando 0.1 con cada toque
+2.Que se creen 3 bolas en cada toke

@@ -1,0 +1,2341 @@
+{
+"settings":
+	[
+	{"classic_mode":0, "debug_mode":0, "maluva_used":1}
+	],
+"symbols":
+	[
+		{"symbol":"NUM_LOCATIONS", "Value":9},
+		{"symbol":"LAST_LOCATION", "Value":8},
+		{"symbol":"NUM_OBJECTS", "Value":3},
+		{"symbol":"LAST_OBJECT", "Value":2},
+		{"symbol":"_VOC_LUEGO", "Value":2},
+		{"symbol":"_VOC_ENTON", "Value":2},
+		{"symbol":"_VOC_Y", "Value":2},
+		{"symbol":"_VOC_MENOS", "Value":13},
+		{"symbol":"_VOC_JUNTO", "Value":8},
+		{"symbol":"_VOC_BAJO", "Value":7},
+		{"symbol":"_VOC_TRAVE", "Value":5},
+		{"symbol":"_VOC_POR", "Value":5},
+		{"symbol":"_VOC_EN", "Value":4},
+		{"symbol":"_VOC_DE", "Value":3},
+		{"symbol":"_VOC_A", "Value":2},
+		{"symbol":"_VOC_CUIDA", "Value":5},
+		{"symbol":"_VOC_LENTA", "Value":3},
+		{"symbol":"_VOC_DESPA", "Value":3},
+		{"symbol":"_VOC_RÁPID", "Value":2},
+		{"symbol":"_VOC_RAPID", "Value":2},
+		{"symbol":"_VOC_LARGA", "Value":9},
+		{"symbol":"_VOC_LARGO", "Value":9},
+		{"symbol":"_VOC_CORTA", "Value":8},
+		{"symbol":"_VOC_CORTO", "Value":8},
+		{"symbol":"_VOC_BLAND", "Value":7},
+		{"symbol":"_VOC_DURA", "Value":6},
+		{"symbol":"_VOC_DURO", "Value":6},
+		{"symbol":"_VOC_NUEVA", "Value":5},
+		{"symbol":"_VOC_NUEVO", "Value":5},
+		{"symbol":"_VOC_VIEJA", "Value":4},
+		{"symbol":"_VOC_VIEJO", "Value":4},
+		{"symbol":"_VOC_GRAND", "Value":3},
+		{"symbol":"_VOC_PEQUE", "Value":2},
+		{"symbol":"_VOC_VACIA", "Value":36},
+		{"symbol":"_VOC_EXTRA", "Value":35},
+		{"symbol":"_VOC_SACAL", "Value":35},
+		{"symbol":"_VOC_SACA", "Value":35},
+		{"symbol":"_VOC_SACAR", "Value":35},
+		{"symbol":"_VOC_INTRO", "Value":34},
+		{"symbol":"_VOC_METEL", "Value":34},
+		{"symbol":"_VOC_METE", "Value":34},
+		{"symbol":"_VOC_METER", "Value":34},
+		{"symbol":"_VOC_AYUDA", "Value":33},
+		{"symbol":"_VOC_SALID", "Value":32},
+		{"symbol":"_VOC_HABLA", "Value":31},
+		{"symbol":"_VOC_PREGU", "Value":31},
+		{"symbol":"_VOC_DECIR", "Value":31},
+		{"symbol":"_VOC_EXAMI", "Value":30},
+		{"symbol":"_VOC_EX", "Value":30},
+		{"symbol":"_VOC_RAMLO", "Value":29},
+		{"symbol":"_VOC_RAMSA", "Value":28},
+		{"symbol":"_VOC_LOAD", "Value":27},
+		{"symbol":"_VOC_SAVE", "Value":26},
+		{"symbol":"_VOC_FIN", "Value":25},
+		{"symbol":"_VOC_F", "Value":25},
+		{"symbol":"_VOC_R", "Value":24},
+		{"symbol":"_VOC_REDES", "Value":24},
+		{"symbol":"_VOC_M", "Value":24},
+		{"symbol":"_VOC_MIRAR", "Value":24},
+		{"symbol":"_VOC_PONTE", "Value":23},
+		{"symbol":"_VOC_PONER", "Value":23},
+		{"symbol":"_VOC_QUITA", "Value":22},
+		{"symbol":"_VOC_SOLTA", "Value":21},
+		{"symbol":"_VOC_DEJAL", "Value":21},
+		{"symbol":"_VOC_DEJA", "Value":21},
+		{"symbol":"_VOC_DEJAR", "Value":21},
+		{"symbol":"_VOC_COGEL", "Value":20},
+		{"symbol":"_VOC_COGE", "Value":20},
+		{"symbol":"_VOC_COGER", "Value":20},
+		{"symbol":"_VOC_BILLE", "Value":52},
+		{"symbol":"_VOC_PIEDR", "Value":51},
+		{"symbol":"_VOC_BOLSA", "Value":50},
+		{"symbol":"_VOC_TODAS", "Value":20},
+		{"symbol":"_VOC_TODOS", "Value":20},
+		{"symbol":"_VOC_TODO", "Value":20},
+		{"symbol":"_VOC_INVEN", "Value":14},
+		{"symbol":"_VOC_I", "Value":14},
+		{"symbol":"_VOC_FUERA", "Value":13},
+		{"symbol":"_VOC_SAL", "Value":13},
+		{"symbol":"_VOC_SALIR", "Value":13},
+		{"symbol":"_VOC_DENTR", "Value":12},
+		{"symbol":"_VOC_ENTRA", "Value":12},
+		{"symbol":"_VOC_BAJA", "Value":11},
+		{"symbol":"_VOC_BAJAR", "Value":11},
+		{"symbol":"_VOC_ABAJO", "Value":11},
+		{"symbol":"_VOC_AB", "Value":11},
+		{"symbol":"_VOC_SUBE", "Value":10},
+		{"symbol":"_VOC_SUBIR", "Value":10},
+		{"symbol":"_VOC_ARRIB", "Value":10},
+		{"symbol":"_VOC_AR", "Value":10},
+		{"symbol":"_VOC_SUROE", "Value":9},
+		{"symbol":"_VOC_SO", "Value":9},
+		{"symbol":"_VOC_SURES", "Value":8},
+		{"symbol":"_VOC_SE", "Value":8},
+		{"symbol":"_VOC_NOROE", "Value":7},
+		{"symbol":"_VOC_NO", "Value":7},
+		{"symbol":"_VOC_NORES", "Value":6},
+		{"symbol":"_VOC_NE", "Value":6},
+		{"symbol":"_VOC_OESTE", "Value":5},
+		{"symbol":"_VOC_O", "Value":5},
+		{"symbol":"_VOC_ESTE", "Value":4},
+		{"symbol":"_VOC_E", "Value":4},
+		{"symbol":"_VOC_SUR", "Value":3},
+		{"symbol":"_VOC_S", "Value":3},
+		{"symbol":"_VOC_NORTE", "Value":2},
+		{"symbol":"_VOC_N", "Value":2},
+		{"symbol":"L8_CALLE", "Value":8},
+		{"symbol":"L7_COMEDOR", "Value":7},
+		{"symbol":"L6_GARAJE", "Value":6},
+		{"symbol":"L5_JARDIN", "Value":5},
+		{"symbol":"L4_GUARDILLA", "Value":4},
+		{"symbol":"L3_TRASTERO_SÓTANO", "Value":3},
+		{"symbol":"L2_RECIBIDOR_O_HALL", "Value":2},
+		{"symbol":"L1_CASA", "Value":1},
+		{"symbol":"OBILLETE", "Value":2},
+		{"symbol":"OPIEDRA", "Value":1},
+		{"symbol":"OBOLSA", "Value":0},
+		{"symbol":"FCURRENTWINDOW", "Value":63},
+		{"symbol":"FSCREENMODE", "Value":62},
+		{"symbol":"FINKEYKEY2", "Value":61},
+		{"symbol":"FINKEYKEY1", "Value":60},
+		{"symbol":"FREFOBJATTR2", "Value":59},
+		{"symbol":"FREFOBJATTR1", "Value":58},
+		{"symbol":"FREFOBJISWEARABLE", "Value":57},
+		{"symbol":"FREFOBJISCONTAINER", "Value":56},
+		{"symbol":"FREFOBJWEIGHT", "Value":55},
+		{"symbol":"FREFOBJLOC", "Value":54},
+		{"symbol":"FOBJFLAGS", "Value":53},
+		{"symbol":"FSTRENGTH", "Value":52},
+		{"symbol":"FREFOBJECT", "Value":51},
+		{"symbol":"FDOALLOBJNO", "Value":50},
+		{"symbol":"FTIMEOUTFLAGS", "Value":49},
+		{"symbol":"FTIMEOUT", "Value":48},
+		{"symbol":"FCPRONOUNADJECT", "Value":47},
+		{"symbol":"FCPRONOUNNOUN", "Value":46},
+		{"symbol":"FADJECT2", "Value":45},
+		{"symbol":"FNOUN2", "Value":44},
+		{"symbol":"FPREP", "Value":43},
+		{"symbol":"FPLAYER", "Value":38},
+		{"symbol":"FMAXCARR", "Value":37},
+		{"symbol":"FADVERB", "Value":36},
+		{"symbol":"FADJECT1", "Value":35},
+		{"symbol":"FNOUN", "Value":34},
+		{"symbol":"FVERB", "Value":33},
+		{"symbol":"FTURNSHI", "Value":32},
+		{"symbol":"FTURNS", "Value":31},
+		{"symbol":"FSCORE", "Value":30},
+		{"symbol":"FGFLAGS", "Value":29},
+		{"symbol":"FDARKF", "Value":28},
+		{"symbol":"FOBJECTSCARRIED", "Value":1},
+		{"symbol":"FDARK", "Value":0},
+		{"symbol":"O2", "Value":152},
+		{"symbol":"MOUSE", "Value":240},
+		{"symbol":"GO_CBOR", "Value":8},
+		{"symbol":"GA_CBOR", "Value":243},
+		{"symbol":"GO_WKEY", "Value":16},
+		{"symbol":"GA_WKEY", "Value":244},
+		{"symbol":"GO_POFF", "Value":32},
+		{"symbol":"GA_POFF", "Value":245},
+		{"symbol":"GO_MDRW", "Value":64},
+		{"symbol":"GA_MDRW", "Value":246},
+		{"symbol":"GMODE", "Value":247},
+		{"symbol":"IO_TSTAR", "Value":1},
+		{"symbol":"IA_TSTAR", "Value":80},
+		{"symbol":"IO_TMORE", "Value":2},
+		{"symbol":"IA_TMORE", "Value":81},
+		{"symbol":"IO_TAKEY", "Value":4},
+		{"symbol":"IA_TAKEY", "Value":82},
+		{"symbol":"IO_CSTR", "Value":8},
+		{"symbol":"IA_CSTR", "Value":83},
+		{"symbol":"IO_PINP", "Value":16},
+		{"symbol":"IA_PINP", "Value":84},
+		{"symbol":"IO_RBUF", "Value":32},
+		{"symbol":"IA_RBUF", "Value":85},
+		{"symbol":"TIMEOUT", "Value":87},
+		{"symbol":"OO_CLIST", "Value":64},
+		{"symbol":"OA_CLIST", "Value":54},
+		{"symbol":"LISTED", "Value":55},
+		{"symbol":"CONTAINER", "Value":31},
+		{"symbol":"WEARABLE", "Value":23},
+		{"symbol":"DAY", "Value":26},
+		{"symbol":"MONTH", "Value":9},
+		{"symbol":"YEARLOW", "Value":23},
+		{"symbol":"YEARHIGH", "Value":20},
+		{"symbol":"HERE", "Value":255},
+		{"symbol":"WORN", "Value":253},
+		{"symbol":"NON_CREATED", "Value":252},
+		{"symbol":"NOT_CREATED", "Value":252},
+		{"symbol":"CARRIED", "Value":254},
+		{"symbol":"ROWS", "Value":26},
+		{"symbol":"COLS", "Value":42},
+		{"symbol":"BIT8", "Value":1},
+		{"symbol":"8_6", "Value":1},
+		{"symbol":"MODE_8_6", "Value":1},
+		{"symbol":"MSX2", "Value":1}
+	],
+"externs":
+	[
+	],
+"vocabulary":
+	[
+		{"VocWord":"A", "Value":2,"VocType":4 },
+		{"VocWord":"AB", "Value":11,"VocType":2 },
+		{"VocWord":"ABAJO", "Value":11,"VocType":2 },
+		{"VocWord":"AR", "Value":10,"VocType":2 },
+		{"VocWord":"ARRIB", "Value":10,"VocType":2 },
+		{"VocWord":"AYUDA", "Value":33,"VocType":0 },
+		{"VocWord":"BAJA", "Value":11,"VocType":0 },
+		{"VocWord":"BAJAR", "Value":11,"VocType":0 },
+		{"VocWord":"BAJO", "Value":7,"VocType":4 },
+		{"VocWord":"BILLE", "Value":52,"VocType":2 },
+		{"VocWord":"BLAND", "Value":7,"VocType":3 },
+		{"VocWord":"BOLSA", "Value":50,"VocType":2 },
+		{"VocWord":"COGE", "Value":20,"VocType":0 },
+		{"VocWord":"COGEL", "Value":20,"VocType":0 },
+		{"VocWord":"COGER", "Value":20,"VocType":0 },
+		{"VocWord":"CORTA", "Value":8,"VocType":3 },
+		{"VocWord":"CORTO", "Value":8,"VocType":3 },
+		{"VocWord":"CUIDA", "Value":5,"VocType":1 },
+		{"VocWord":"DE", "Value":3,"VocType":4 },
+		{"VocWord":"DECIR", "Value":31,"VocType":0 },
+		{"VocWord":"DEJA", "Value":21,"VocType":0 },
+		{"VocWord":"DEJAL", "Value":21,"VocType":0 },
+		{"VocWord":"DEJAR", "Value":21,"VocType":0 },
+		{"VocWord":"DENTR", "Value":12,"VocType":2 },
+		{"VocWord":"DESPA", "Value":3,"VocType":1 },
+		{"VocWord":"DURA", "Value":6,"VocType":3 },
+		{"VocWord":"DURO", "Value":6,"VocType":3 },
+		{"VocWord":"E", "Value":4,"VocType":2 },
+		{"VocWord":"EN", "Value":4,"VocType":4 },
+		{"VocWord":"ENTON", "Value":2,"VocType":5 },
+		{"VocWord":"ENTRA", "Value":12,"VocType":0 },
+		{"VocWord":"ESTE", "Value":4,"VocType":2 },
+		{"VocWord":"EX", "Value":30,"VocType":0 },
+		{"VocWord":"EXAMI", "Value":30,"VocType":0 },
+		{"VocWord":"EXTRA", "Value":35,"VocType":0 },
+		{"VocWord":"F", "Value":25,"VocType":0 },
+		{"VocWord":"FIN", "Value":25,"VocType":0 },
+		{"VocWord":"FUERA", "Value":13,"VocType":2 },
+		{"VocWord":"GRAND", "Value":3,"VocType":3 },
+		{"VocWord":"HABLA", "Value":31,"VocType":0 },
+		{"VocWord":"I", "Value":14,"VocType":2 },
+		{"VocWord":"INTRO", "Value":34,"VocType":0 },
+		{"VocWord":"INVEN", "Value":14,"VocType":2 },
+		{"VocWord":"JUNTO", "Value":8,"VocType":4 },
+		{"VocWord":"LARGA", "Value":9,"VocType":3 },
+		{"VocWord":"LARGO", "Value":9,"VocType":3 },
+		{"VocWord":"LENTA", "Value":3,"VocType":1 },
+		{"VocWord":"LOAD", "Value":27,"VocType":0 },
+		{"VocWord":"LUEGO", "Value":2,"VocType":5 },
+		{"VocWord":"M", "Value":24,"VocType":0 },
+		{"VocWord":"MENOS", "Value":13,"VocType":4 },
+		{"VocWord":"METE", "Value":34,"VocType":0 },
+		{"VocWord":"METEL", "Value":34,"VocType":0 },
+		{"VocWord":"METER", "Value":34,"VocType":0 },
+		{"VocWord":"MIRAR", "Value":24,"VocType":0 },
+		{"VocWord":"N", "Value":2,"VocType":2 },
+		{"VocWord":"NE", "Value":6,"VocType":2 },
+		{"VocWord":"NO", "Value":7,"VocType":2 },
+		{"VocWord":"NORES", "Value":6,"VocType":2 },
+		{"VocWord":"NOROE", "Value":7,"VocType":2 },
+		{"VocWord":"NORTE", "Value":2,"VocType":2 },
+		{"VocWord":"NUEVA", "Value":5,"VocType":3 },
+		{"VocWord":"NUEVO", "Value":5,"VocType":3 },
+		{"VocWord":"O", "Value":5,"VocType":2 },
+		{"VocWord":"OESTE", "Value":5,"VocType":2 },
+		{"VocWord":"PEQUE", "Value":2,"VocType":3 },
+		{"VocWord":"PIEDR", "Value":51,"VocType":2 },
+		{"VocWord":"PONER", "Value":23,"VocType":0 },
+		{"VocWord":"PONTE", "Value":23,"VocType":0 },
+		{"VocWord":"POR", "Value":5,"VocType":4 },
+		{"VocWord":"PREGU", "Value":31,"VocType":0 },
+		{"VocWord":"QUITA", "Value":22,"VocType":0 },
+		{"VocWord":"R", "Value":24,"VocType":0 },
+		{"VocWord":"RAMLO", "Value":29,"VocType":0 },
+		{"VocWord":"RAMSA", "Value":28,"VocType":0 },
+		{"VocWord":"RAPID", "Value":2,"VocType":1 },
+		{"VocWord":"REDES", "Value":24,"VocType":0 },
+		{"VocWord":"RáPID", "Value":2,"VocType":1 },
+		{"VocWord":"S", "Value":3,"VocType":2 },
+		{"VocWord":"SACA", "Value":35,"VocType":0 },
+		{"VocWord":"SACAL", "Value":35,"VocType":0 },
+		{"VocWord":"SACAR", "Value":35,"VocType":0 },
+		{"VocWord":"SAL", "Value":13,"VocType":0 },
+		{"VocWord":"SALID", "Value":32,"VocType":0 },
+		{"VocWord":"SALIR", "Value":13,"VocType":0 },
+		{"VocWord":"SAVE", "Value":26,"VocType":0 },
+		{"VocWord":"SE", "Value":8,"VocType":2 },
+		{"VocWord":"SO", "Value":9,"VocType":2 },
+		{"VocWord":"SOLTA", "Value":21,"VocType":0 },
+		{"VocWord":"SUBE", "Value":10,"VocType":0 },
+		{"VocWord":"SUBIR", "Value":10,"VocType":0 },
+		{"VocWord":"SUR", "Value":3,"VocType":2 },
+		{"VocWord":"SURES", "Value":8,"VocType":2 },
+		{"VocWord":"SUROE", "Value":9,"VocType":2 },
+		{"VocWord":"TODAS", "Value":20,"VocType":2 },
+		{"VocWord":"TODO", "Value":20,"VocType":2 },
+		{"VocWord":"TODOS", "Value":20,"VocType":2 },
+		{"VocWord":"TRAVE", "Value":5,"VocType":4 },
+		{"VocWord":"VACIA", "Value":36,"VocType":0 },
+		{"VocWord":"VIEJA", "Value":4,"VocType":3 },
+		{"VocWord":"VIEJO", "Value":4,"VocType":3 },
+		{"VocWord":"Y", "Value":2,"VocType":5 }
+	],
+"object_data":
+	[
+	{
+		"Value":0,
+		"Noun":50,
+		"Adjective":255,
+		"Container":0,
+		"Wearable":0,
+		"Flags":0,
+		"Weight":1,
+		"InitialyAt":1
+	},
+	{
+		"Value":1,
+		"Noun":51,
+		"Adjective":255,
+		"Container":0,
+		"Wearable":0,
+		"Flags":0,
+		"Weight":1,
+		"InitialyAt":3
+	},
+	{
+		"Value":2,
+		"Noun":52,
+		"Adjective":255,
+		"Container":0,
+		"Wearable":0,
+		"Flags":0,
+		"Weight":1,
+		"InitialyAt":4
+	}
+	],
+"connections":
+	[
+	{
+		"FromLoc":1,
+		"ToLoc":2,
+		"Direction":12
+	},
+	{
+		"FromLoc":2,
+		"ToLoc":1,
+		"Direction":13
+	},
+	{
+		"FromLoc":2,
+		"ToLoc":7,
+		"Direction":12
+	},
+	{
+		"FromLoc":2,
+		"ToLoc":5,
+		"Direction":3
+	},
+	{
+		"FromLoc":3,
+		"ToLoc":7,
+		"Direction":10
+	},
+	{
+		"FromLoc":4,
+		"ToLoc":7,
+		"Direction":11
+	},
+	{
+		"FromLoc":4,
+		"ToLoc":8,
+		"Direction":4
+	},
+	{
+		"FromLoc":5,
+		"ToLoc":2,
+		"Direction":2
+	},
+	{
+		"FromLoc":6,
+		"ToLoc":7,
+		"Direction":13
+	},
+	{
+		"FromLoc":7,
+		"ToLoc":4,
+		"Direction":10
+	},
+	{
+		"FromLoc":7,
+		"ToLoc":3,
+		"Direction":11
+	},
+	{
+		"FromLoc":7,
+		"ToLoc":6,
+		"Direction":12
+	},
+	{
+		"FromLoc":7,
+		"ToLoc":2,
+		"Direction":13
+	},
+	{
+		"FromLoc":8,
+		"ToLoc":4,
+		"Direction":5
+	}
+	],
+"messages":
+	[
+	{
+		"Value":0,
+		"Text":"Salidas visibles: "
+	},
+	{
+		"Value":1,
+		"Text":"ninguna"
+	},
+	{
+		"Value":2,
+		"Text":"norte "
+	},
+	{
+		"Value":3,
+		"Text":"sur "
+	},
+	{
+		"Value":4,
+		"Text":"este "
+	},
+	{
+		"Value":5,
+		"Text":"oeste "
+	},
+	{
+		"Value":6,
+		"Text":"noreste "
+	},
+	{
+		"Value":7,
+		"Text":"noroeste "
+	},
+	{
+		"Value":8,
+		"Text":"sureste "
+	},
+	{
+		"Value":9,
+		"Text":"suroeste "
+	},
+	{
+		"Value":10,
+		"Text":"arriba "
+	},
+	{
+		"Value":11,
+		"Text":"abajo "
+	},
+	{
+		"Value":12,
+		"Text":"entrar "
+	},
+	{
+		"Value":13,
+		"Text":"salir "
+	},
+	{
+		"Value":14,
+		"Text":"Texto introductorio de la aventura (editar en mensaje 14)."
+	},
+	{
+		"Value":15,
+		"Text":" PANTALLA DE AYUDA"
+	},
+	{
+		"Value":16,
+		"Text":"Las aventuras conversacionales son juegos de texto basados en la exploraci\u0018n de localidades y la manipulaci\u0018n de objetos al alcance inmediato del protagonista.\u000d\u000dLas acciones se comunican al ordenador mediante frases sencillas del tipo ACCION-OBJETO.\u000d\u000dEl movimiento se efectua mediante puntos cardinales: IR NORTE, SUR, OESTE o sus abreviaturas: N, S, E, O. Ocasionalmente \u0018rdenes como SUBIR, o ENTRAR tambi\u0016n funcionar\u0015n.\u000d\u000dAcciones comunes con los objetos son COGER objeto, DEJAR, EXAMINAR (o su abreviatura EX). INVENTARIO (o I) lista los objetos llevados. MIRAR o M redescribe la localidad.\u000d"
+	}
+	],
+"sysmess":
+	[
+	{
+		"Value":0,
+		"Text":"Est\u0015 demasiado oscuro para ver nada."
+	},
+	{
+		"Value":1,
+		"Text":"Tambi\u0016n puedes ver: "
+	},
+	{
+		"Value":2,
+		"Text":"\u000d\u0012Qu\u0016 haces ahora?"
+	},
+	{
+		"Value":3,
+		"Text":"\u000d\u0012Qu\u0016 quieres hacer?"
+	},
+	{
+		"Value":4,
+		"Text":"\u000d\u0012Qu\u0016 quieres hacer ahora?"
+	},
+	{
+		"Value":5,
+		"Text":"\u000d\u0012Qu\u0016 haces?"
+	},
+	{
+		"Value":6,
+		"Text":"No he entendido nada.\u000d"
+	},
+	{
+		"Value":7,
+		"Text":"No puedes ir en esa direcci\u0018n.\u000d"
+	},
+	{
+		"Value":8,
+		"Text":"No puedes hacer eso.\u000d"
+	},
+	{
+		"Value":9,
+		"Text":"Llevas:\u000d"
+	},
+	{
+		"Value":10,
+		"Text":"Llevas puesto:\u000d"
+	},
+	{
+		"Value":11,
+		"Text":""
+	},
+	{
+		"Value":12,
+		"Text":"\u0012Seguro?"
+	},
+	{
+		"Value":13,
+		"Text":"\u0012Quieres intentarlo de nuevo?"
+	},
+	{
+		"Value":14,
+		"Text":""
+	},
+	{
+		"Value":15,
+		"Text":"Vale.\u000d"
+	},
+	{
+		"Value":16,
+		"Text":"Pulsa una tecla para continuar.\u000d"
+	},
+	{
+		"Value":17,
+		"Text":""
+	},
+	{
+		"Value":18,
+		"Text":""
+	},
+	{
+		"Value":19,
+		"Text":""
+	},
+	{
+		"Value":20,
+		"Text":""
+	},
+	{
+		"Value":21,
+		"Text":""
+	},
+	{
+		"Value":22,
+		"Text":""
+	},
+	{
+		"Value":23,
+		"Text":"No llevas eso puesto.\u000d"
+	},
+	{
+		"Value":24,
+		"Text":"No puedes. Tienes puesto _.\u000d"
+	},
+	{
+		"Value":25,
+		"Text":"Ya tienes _.\u000d"
+	},
+	{
+		"Value":26,
+		"Text":"Aqu\u0017 no hay nada de eso.\u000d"
+	},
+	{
+		"Value":27,
+		"Text":"No puedes llevar nada m\u0015s.\u000d"
+	},
+	{
+		"Value":28,
+		"Text":"No tienes eso.\u000d"
+	},
+	{
+		"Value":29,
+		"Text":"Ya llevas puesto _.\u000d"
+	},
+	{
+		"Value":30,
+		"Text":"S"
+	},
+	{
+		"Value":31,
+		"Text":"N"
+	},
+	{
+		"Value":32,
+		"Text":"Hay m\u0015s..."
+	},
+	{
+		"Value":33,
+		"Text":"\u000d>"
+	},
+	{
+		"Value":34,
+		"Text":""
+	},
+	{
+		"Value":35,
+		"Text":"\u000dEl tiempo pasa...\u000d"
+	},
+	{
+		"Value":36,
+		"Text":"Has cogido _.\u000d"
+	},
+	{
+		"Value":37,
+		"Text":"Te has puesto _.\u000d"
+	},
+	{
+		"Value":38,
+		"Text":"Te has quitado _.\u000d"
+	},
+	{
+		"Value":39,
+		"Text":"Has dejado _.\u000d"
+	},
+	{
+		"Value":40,
+		"Text":"No puedes ponerte _.\u000d"
+	},
+	{
+		"Value":41,
+		"Text":"No puedes quitarte _.\u000d"
+	},
+	{
+		"Value":42,
+		"Text":"No puedes quitarte _.  No puedes llevar nada m\u0015s en las manos.\u000d"
+	},
+	{
+		"Value":43,
+		"Text":"@ pesa demasiado para t\u0017.\u000d"
+	},
+	{
+		"Value":44,
+		"Text":"@ est\u0015 en "
+	},
+	{
+		"Value":45,
+		"Text":"@ no est\u0015 en "
+	},
+	{
+		"Value":46,
+		"Text":", "
+	},
+	{
+		"Value":47,
+		"Text":" y "
+	},
+	{
+		"Value":48,
+		"Text":".\u000d"
+	},
+	{
+		"Value":49,
+		"Text":"No tienes _.\u000d"
+	},
+	{
+		"Value":50,
+		"Text":"No llevas puesto _.\u000d"
+	},
+	{
+		"Value":51,
+		"Text":".\u000d"
+	},
+	{
+		"Value":52,
+		"Text":"No hay nada de eso en "
+	},
+	{
+		"Value":53,
+		"Text":"Nada.\u000d"
+	},
+	{
+		"Value":54,
+		"Text":"C"
+	},
+	{
+		"Value":55,
+		"Text":"D"
+	},
+	{
+		"Value":56,
+		"Text":"Unidad no preparada. Pulsa una tecla para volver a intentarlo.\u000d"
+	},
+	{
+		"Value":57,
+		"Text":"Error de entrada/salida.\u000d"
+	},
+	{
+		"Value":58,
+		"Text":"El disco o el directorio puede estar lleno.\u000d"
+	},
+	{
+		"Value":59,
+		"Text":"Nombre de fichero no v\u0015lido.\u000d"
+	},
+	{
+		"Value":60,
+		"Text":"Nombre del fichero:"
+	},
+	{
+		"Value":61,
+		"Text":"Pon en marcha la cinta.\u000d"
+	},
+	{
+		"Value":62,
+		"Text":"\u0012Cinta o disco?"
+	},
+	{
+		"Value":63,
+		"Text":"No ves nada extra\u001Ao en _.\u000d"
+	},
+	{
+		"Value":64,
+		"Text":"En _ ves:\u000d"
+	}
+	],
+"locations":
+	[
+	{
+		"Value":0,
+		"Text":"Aventura De Prueba Generada Con Triz2Daad.\u000d\u000dpor: An\u0018nimo\u000d\u000dAventura de prueba del script conversor Triz2DAAD (mapas de trizbort a c\u0018digo fuente DSF del DAAD).\u000d\u000d"
+	},
+	{
+		"Value":1,
+		"Text":"Llegan unos amigos a casa, parecen que vienen a ver mis MSXs, que hago los dejo entrar o no los dejo entrar? con lo agusto que yo estaba ech\u0015ndo una partidicha..."
+	},
+	{
+		"Value":2,
+		"Text":"En el norte tienes la calle para mandarlos a la mierda,  puedes entrar al comedor para tomaros algo o puedes invitarlos a salir."
+	},
+	{
+		"Value":3,
+		"Text":"Tus amigos no est\u0015n aqu\u0017 pero los MSXs tampoco. :(\u000dHas perdido."
+	},
+	{
+		"Value":4,
+		"Text":"Aqu\u0017 no est\u0015 tus amigos pero has encontrado en el desvan un Canon V-20 y un sony hitbit 55p que hab\u0017as perdido. :)"
+	},
+	{
+		"Value":5,
+		"Text":"Nos pilla en el jad\u0017n el amigo propietario del MSX"
+	},
+	{
+		"Value":6,
+		"Text":"Tus amigos no est\u0015n aqu\u0017"
+	},
+	{
+		"Value":7,
+		"Text":"Estamos todos en el comedor y le pedimos que saque el limonchelo para ver si lo chispamos.\u000dDespu\u0016s de varias horas te despiertas y los amigos han desaparecido, donde quieres ir? bajar al trastero, subir a la guardilla o entrar en el garaje?\u000dOtra opci\u0018n es ir al sureste donde est\u0015 el jard\u0017n."
+	},
+	{
+		"Value":8,
+		"Text":"Has cogido a tus amigos en la calle echandose todos los MSX, has ganado"
+	}
+	],
+"objects":
+	[
+	{
+		"Value":0,
+		"Text":"una Bolsa  "
+	},
+	{
+		"Value":1,
+		"Text":"una Piedra "
+	},
+	{
+		"Value":2,
+		"Text":"un Billete [m]"
+	}
+	],
+"xmessages":
+	[
+	],
+"other_strings":
+	[
+	],
+"processes":
+	[
+	{
+		"Value":0,
+		"entries":
+			[
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":0,
+						"Condact":"AT",
+						"Indirection1":0,
+						"Param1":0,
+						"NumParams":1
+					},
+					{
+						"Opcode":75,
+						"Condact":"PROCESS",
+						"Indirection1":0,
+						"Param1":6,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":78,
+						"Condact":"WINDOW",
+						"Indirection1":0,
+						"Param1":0,
+						"NumParams":1
+					},
+					{
+						"Opcode":48,
+						"Condact":"CLEAR",
+						"Indirection1":0,
+						"Param1":28,
+						"NumParams":1
+					},
+					{
+						"Opcode":12,
+						"Condact":"NOTZERO",
+						"Indirection1":0,
+						"Param1":0,
+						"NumParams":1
+					},
+					{
+						"Opcode":5,
+						"Condact":"ABSENT",
+						"Indirection1":0,
+						"Param1":0,
+						"NumParams":1
+					},
+					{
+						"Opcode":47,
+						"Condact":"SET",
+						"Indirection1":0,
+						"Param1":28,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":48,
+						"Condact":"CLEAR",
+						"Indirection1":0,
+						"Param1":20,
+						"NumParams":1
+					},
+					{
+						"Opcode":29,
+						"Condact":"CLS",
+						"NumParams":0
+					},
+					{
+						"Opcode":11,
+						"Condact":"ZERO",
+						"Indirection1":0,
+						"Param1":28,
+						"NumParams":1
+					},
+					{
+						"Opcode":130,
+						"Condact":"XPICTURE",
+						"Indirection1":1,
+						"Param1":38,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":12,
+						"Condact":"NOTZERO",
+						"Indirection1":0,
+						"Param1":28,
+						"NumParams":1
+					},
+					{
+						"Opcode":78,
+						"Condact":"WINDOW",
+						"Indirection1":0,
+						"Param1":1,
+						"NumParams":1
+					},
+					{
+						"Opcode":82,
+						"Condact":"WINAT",
+						"Indirection1":0,
+						"Param1":0,
+						"Param2":0,
+						"NumParams":2
+					},
+					{
+						"Opcode":107,
+						"Condact":"WINSIZE",
+						"Indirection1":0,
+						"Param1":25,
+						"Param2":127,
+						"NumParams":2
+					},
+					{
+						"Opcode":29,
+						"Condact":"CLS",
+						"NumParams":0
+					},
+					{
+						"Opcode":116,
+						"Condact":"SKIP",
+						"Indirection1":0,
+						"Param1":2,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":14,
+						"Condact":"GT",
+						"Indirection1":0,
+						"Param1":20,
+						"Param2":127,
+						"NumParams":2
+					},
+					{
+						"Opcode":78,
+						"Condact":"WINDOW",
+						"Indirection1":0,
+						"Param1":1,
+						"NumParams":1
+					},
+					{
+						"Opcode":82,
+						"Condact":"WINAT",
+						"Indirection1":0,
+						"Param1":0,
+						"Param2":0,
+						"NumParams":2
+					},
+					{
+						"Opcode":107,
+						"Condact":"WINSIZE",
+						"Indirection1":0,
+						"Param1":25,
+						"Param2":127,
+						"NumParams":2
+					},
+					{
+						"Opcode":29,
+						"Condact":"CLS",
+						"NumParams":0
+					},
+					{
+						"Opcode":116,
+						"Condact":"SKIP",
+						"Indirection1":0,
+						"Param1":1,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":78,
+						"Condact":"WINDOW",
+						"Indirection1":0,
+						"Param1":1,
+						"NumParams":1
+					},
+					{
+						"Opcode":82,
+						"Condact":"WINAT",
+						"Indirection1":0,
+						"Param1":14,
+						"Param2":0,
+						"NumParams":2
+					},
+					{
+						"Opcode":29,
+						"Condact":"CLS",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":12,
+						"Condact":"NOTZERO",
+						"Indirection1":0,
+						"Param1":28,
+						"NumParams":1
+					},
+					{
+						"Opcode":54,
+						"Condact":"SYSMESS",
+						"Indirection1":0,
+						"Param1":0,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":11,
+						"Condact":"ZERO",
+						"Indirection1":0,
+						"Param1":28,
+						"NumParams":1
+					},
+					{
+						"Opcode":19,
+						"Condact":"DESC",
+						"Indirection1":1,
+						"Param1":38,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":75,
+						"Condact":"PROCESS",
+						"Indirection1":0,
+						"Param1":3,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":75,
+						"Condact":"PROCESS",
+						"Indirection1":0,
+						"Param1":1,
+						"NumParams":1
+					}
+					]
+			}
+			]
+	},
+	{
+		"Value":1,
+		"entries":
+			[
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":75,
+						"Condact":"PROCESS",
+						"Indirection1":0,
+						"Param1":4,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":73,
+						"Condact":"PARSE",
+						"Indirection1":0,
+						"Param1":0,
+						"NumParams":1
+					},
+					{
+						"Opcode":75,
+						"Condact":"PROCESS",
+						"Indirection1":0,
+						"Param1":2,
+						"NumParams":1
+					},
+					{
+						"Opcode":108,
+						"Condact":"REDO",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":13,
+						"Condact":"EQ",
+						"Indirection1":0,
+						"Param1":31,
+						"Param2":255,
+						"NumParams":2
+					},
+					{
+						"Opcode":13,
+						"Condact":"EQ",
+						"Indirection1":0,
+						"Param1":32,
+						"Param2":255,
+						"NumParams":2
+					},
+					{
+						"Opcode":48,
+						"Condact":"CLEAR",
+						"Indirection1":0,
+						"Param1":31,
+						"NumParams":1
+					},
+					{
+						"Opcode":48,
+						"Condact":"CLEAR",
+						"Indirection1":0,
+						"Param1":32,
+						"NumParams":1
+					},
+					{
+						"Opcode":116,
+						"Condact":"SKIP",
+						"Indirection1":0,
+						"Param1":2,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":13,
+						"Condact":"EQ",
+						"Indirection1":0,
+						"Param1":31,
+						"Param2":255,
+						"NumParams":2
+					},
+					{
+						"Opcode":49,
+						"Condact":"PLUS",
+						"Indirection1":0,
+						"Param1":32,
+						"Param2":1,
+						"NumParams":2
+					},
+					{
+						"Opcode":48,
+						"Condact":"CLEAR",
+						"Indirection1":0,
+						"Param1":31,
+						"NumParams":1
+					},
+					{
+						"Opcode":116,
+						"Condact":"SKIP",
+						"Indirection1":0,
+						"Param1":1,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":49,
+						"Condact":"PLUS",
+						"Indirection1":0,
+						"Param1":31,
+						"Param2":1,
+						"NumParams":2
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":75,
+						"Condact":"PROCESS",
+						"Indirection1":0,
+						"Param1":5,
+						"NumParams":1
+					},
+					{
+						"Opcode":114,
+						"Condact":"ISDONE",
+						"NumParams":0
+					},
+					{
+						"Opcode":108,
+						"Condact":"REDO",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":106,
+						"Condact":"MOVE",
+						"Indirection1":0,
+						"Param1":38,
+						"NumParams":1
+					},
+					{
+						"Opcode":29,
+						"Condact":"CLS",
+						"NumParams":0
+					},
+					{
+						"Opcode":117,
+						"Condact":"RESTART",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":92,
+						"Condact":"NEWTEXT",
+						"NumParams":0
+					},
+					{
+						"Opcode":15,
+						"Condact":"LT",
+						"Indirection1":0,
+						"Param1":33,
+						"Param2":14,
+						"NumParams":2
+					},
+					{
+						"Opcode":54,
+						"Condact":"SYSMESS",
+						"Indirection1":0,
+						"Param1":7,
+						"NumParams":1
+					},
+					{
+						"Opcode":108,
+						"Condact":"REDO",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":54,
+						"Condact":"SYSMESS",
+						"Indirection1":0,
+						"Param1":8,
+						"NumParams":1
+					},
+					{
+						"Opcode":108,
+						"Condact":"REDO",
+						"NumParams":0
+					}
+					]
+			}
+			]
+	},
+	{
+		"Value":2,
+		"entries":
+			[
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":58,
+						"Condact":"HASAT",
+						"Indirection1":0,
+						"Param1":87,
+						"NumParams":1
+					},
+					{
+						"Opcode":54,
+						"Condact":"SYSMESS",
+						"Indirection1":0,
+						"Param1":35,
+						"NumParams":1
+					},
+					{
+						"Opcode":22,
+						"Condact":"DONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":54,
+						"Condact":"SYSMESS",
+						"Indirection1":0,
+						"Param1":6,
+						"NumParams":1
+					}
+					]
+			}
+			]
+	},
+	{
+		"Value":3,
+		"entries":
+			[
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":52,
+						"Condact":"NEWLINE",
+						"NumParams":0
+					},
+					{
+						"Opcode":11,
+						"Condact":"ZERO",
+						"Indirection1":0,
+						"Param1":28,
+						"NumParams":1
+					},
+					{
+						"Opcode":75,
+						"Condact":"PROCESS",
+						"Indirection1":0,
+						"Param1":7,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":52,
+						"Condact":"NEWLINE",
+						"NumParams":0
+					},
+					{
+						"Opcode":11,
+						"Condact":"ZERO",
+						"Indirection1":0,
+						"Param1":28,
+						"NumParams":1
+					},
+					{
+						"Opcode":60,
+						"Condact":"LISTOBJ",
+						"NumParams":0
+					}
+					]
+			}
+			]
+	},
+	{
+		"Value":4,
+		"entries":
+			[
+			]
+	},
+	{
+		"Value":5,
+		"entries":
+			[
+			{
+				"Entry":"AYUDA _",
+				"Verb":33,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":29,
+						"Condact":"CLS",
+						"NumParams":0
+					},
+					{
+						"Opcode":38,
+						"Condact":"MESSAGE",
+						"Indirection1":0,
+						"Param1":15,
+						"NumParams":1
+					},
+					{
+						"Opcode":38,
+						"Condact":"MESSAGE",
+						"Indirection1":0,
+						"Param1":16,
+						"NumParams":1
+					},
+					{
+						"Opcode":24,
+						"Condact":"ANYKEY",
+						"NumParams":0
+					},
+					{
+						"Opcode":117,
+						"Condact":"RESTART",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"EX _",
+				"Verb":30,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":100,
+						"Condact":"WHATO",
+						"NumParams":0
+					},
+					{
+						"Opcode":79,
+						"Condact":"NOTEQ",
+						"Indirection1":0,
+						"Param1":51,
+						"Param2":255,
+						"NumParams":2
+					},
+					{
+						"Opcode":4,
+						"Condact":"PRESENT",
+						"Indirection1":1,
+						"Param1":51,
+						"NumParams":1
+					},
+					{
+						"Opcode":58,
+						"Condact":"HASAT",
+						"Indirection1":0,
+						"Param1":31,
+						"NumParams":1
+					},
+					{
+						"Opcode":54,
+						"Condact":"SYSMESS",
+						"Indirection1":0,
+						"Param1":64,
+						"NumParams":1
+					},
+					{
+						"Opcode":74,
+						"Condact":"LISTAT",
+						"Indirection1":1,
+						"Param1":51,
+						"NumParams":1
+					},
+					{
+						"Opcode":22,
+						"Condact":"DONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"EX _",
+				"Verb":30,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":100,
+						"Condact":"WHATO",
+						"NumParams":0
+					},
+					{
+						"Opcode":79,
+						"Condact":"NOTEQ",
+						"Indirection1":0,
+						"Param1":51,
+						"Param2":255,
+						"NumParams":2
+					},
+					{
+						"Opcode":4,
+						"Condact":"PRESENT",
+						"Indirection1":1,
+						"Param1":51,
+						"NumParams":1
+					},
+					{
+						"Opcode":54,
+						"Condact":"SYSMESS",
+						"Indirection1":0,
+						"Param1":63,
+						"NumParams":1
+					},
+					{
+						"Opcode":22,
+						"Condact":"DONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"EX _",
+				"Verb":30,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":103,
+						"Condact":"NOTDONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"SALID _",
+				"Verb":32,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":75,
+						"Condact":"PROCESS",
+						"Indirection1":0,
+						"Param1":7,
+						"NumParams":1
+					},
+					{
+						"Opcode":22,
+						"Condact":"DONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"VACIA _",
+				"Verb":36,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":103,
+						"Condact":"NOTDONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"I _",
+				"Verb":14,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":54,
+						"Condact":"SYSMESS",
+						"Indirection1":0,
+						"Param1":9,
+						"NumParams":1
+					},
+					{
+						"Opcode":74,
+						"Condact":"LISTAT",
+						"Indirection1":0,
+						"Param1":254,
+						"NumParams":1
+					},
+					{
+						"Opcode":54,
+						"Condact":"SYSMESS",
+						"Indirection1":0,
+						"Param1":10,
+						"NumParams":1
+					},
+					{
+						"Opcode":74,
+						"Condact":"LISTAT",
+						"Indirection1":0,
+						"Param1":253,
+						"NumParams":1
+					},
+					{
+						"Opcode":22,
+						"Condact":"DONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"COGER TODO",
+				"Verb":20,
+				"Noun":20,
+				"condacts":
+					[
+					{
+						"Opcode":85,
+						"Condact":"DOALL",
+						"Indirection1":0,
+						"Param1":255,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"COGER _",
+				"Verb":20,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":31,
+						"Condact":"AUTOG",
+						"NumParams":0
+					},
+					{
+						"Opcode":22,
+						"Condact":"DONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"DEJAR TODO",
+				"Verb":21,
+				"Noun":20,
+				"condacts":
+					[
+					{
+						"Opcode":85,
+						"Condact":"DOALL",
+						"Indirection1":0,
+						"Param1":254,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"DEJAR _",
+				"Verb":21,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":32,
+						"Condact":"AUTOD",
+						"NumParams":0
+					},
+					{
+						"Opcode":22,
+						"Condact":"DONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"QUITA TODO",
+				"Verb":22,
+				"Noun":20,
+				"condacts":
+					[
+					{
+						"Opcode":85,
+						"Condact":"DOALL",
+						"Indirection1":0,
+						"Param1":253,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"QUITA _",
+				"Verb":22,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":34,
+						"Condact":"AUTOR",
+						"NumParams":0
+					},
+					{
+						"Opcode":22,
+						"Condact":"DONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"PONER TODO",
+				"Verb":23,
+				"Noun":20,
+				"condacts":
+					[
+					{
+						"Opcode":85,
+						"Condact":"DOALL",
+						"Indirection1":0,
+						"Param1":254,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"PONER _",
+				"Verb":23,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":33,
+						"Condact":"AUTOW",
+						"NumParams":0
+					},
+					{
+						"Opcode":22,
+						"Condact":"DONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"MIRAR _",
+				"Verb":24,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":13,
+						"Condact":"EQ",
+						"Indirection1":0,
+						"Param1":34,
+						"Param2":255,
+						"NumParams":2
+					},
+					{
+						"Opcode":117,
+						"Condact":"RESTART",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"MIRAR _",
+				"Verb":24,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":51,
+						"Condact":"LET",
+						"Indirection1":0,
+						"Param1":33,
+						"Param2":30,
+						"NumParams":2
+					},
+					{
+						"Opcode":108,
+						"Condact":"REDO",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"F _",
+				"Verb":25,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":20,
+						"Condact":"QUIT",
+						"NumParams":0
+					},
+					{
+						"Opcode":21,
+						"Condact":"END",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"F _",
+				"Verb":25,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":22,
+						"Condact":"DONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"SAVE _",
+				"Verb":26,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":131,
+						"Condact":"XSAVE",
+						"Indirection1":0,
+						"Param1":0,
+						"NumParams":1
+					},
+					{
+						"Opcode":117,
+						"Condact":"RESTART",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"LOAD _",
+				"Verb":27,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":132,
+						"Condact":"XLOAD",
+						"Indirection1":0,
+						"Param1":0,
+						"NumParams":1
+					},
+					{
+						"Opcode":117,
+						"Condact":"RESTART",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"RAMSA _",
+				"Verb":28,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":62,
+						"Condact":"RAMSAVE",
+						"NumParams":0
+					},
+					{
+						"Opcode":117,
+						"Condact":"RESTART",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"RAMLO _",
+				"Verb":29,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":63,
+						"Condact":"RAMLOAD",
+						"Indirection1":0,
+						"Param1":255,
+						"NumParams":1
+					},
+					{
+						"Opcode":117,
+						"Condact":"RESTART",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"MIRAR _",
+				"Verb":24,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":117,
+						"Condact":"RESTART",
+						"NumParams":0
+					}
+					]
+			}
+			]
+	},
+	{
+		"Value":6,
+		"entries":
+			[
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":78,
+						"Condact":"WINDOW",
+						"Indirection1":0,
+						"Param1":1,
+						"NumParams":1
+					},
+					{
+						"Opcode":82,
+						"Condact":"WINAT",
+						"Indirection1":0,
+						"Param1":14,
+						"Param2":0,
+						"NumParams":2
+					},
+					{
+						"Opcode":107,
+						"Condact":"WINSIZE",
+						"Indirection1":0,
+						"Param1":25,
+						"Param2":127,
+						"NumParams":2
+					},
+					{
+						"Opcode":29,
+						"Condact":"CLS",
+						"NumParams":0
+					},
+					{
+						"Opcode":19,
+						"Condact":"DESC",
+						"Indirection1":0,
+						"Param1":0,
+						"NumParams":1
+					},
+					{
+						"Opcode":130,
+						"Condact":"XPICTURE",
+						"Indirection1":0,
+						"Param1":0,
+						"NumParams":1
+					},
+					{
+						"Opcode":24,
+						"Condact":"ANYKEY",
+						"NumParams":0
+					},
+					{
+						"Opcode":29,
+						"Condact":"CLS",
+						"NumParams":0
+					},
+					{
+						"Opcode":38,
+						"Condact":"MESSAGE",
+						"Indirection1":0,
+						"Param1":14,
+						"NumParams":1
+					},
+					{
+						"Opcode":24,
+						"Condact":"ANYKEY",
+						"NumParams":0
+					},
+					{
+						"Opcode":47,
+						"Condact":"SET",
+						"Indirection1":0,
+						"Param1":255,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":50,
+						"Condact":"MINUS",
+						"Indirection1":0,
+						"Param1":255,
+						"Param2":1,
+						"NumParams":2
+					},
+					{
+						"Opcode":79,
+						"Condact":"NOTEQ",
+						"Indirection1":0,
+						"Param1":255,
+						"Param2":29,
+						"NumParams":2
+					},
+					{
+						"Opcode":48,
+						"Condact":"CLEAR",
+						"Indirection1":1,
+						"Param1":255,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":12,
+						"Condact":"NOTZERO",
+						"Indirection1":0,
+						"Param1":255,
+						"NumParams":1
+					},
+					{
+						"Opcode":116,
+						"Condact":"SKIP",
+						"Indirection1":0,
+						"Param1":254,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":127,
+						"Condact":"RESET",
+						"NumParams":0
+					},
+					{
+						"Opcode":51,
+						"Condact":"LET",
+						"Indirection1":0,
+						"Param1":52,
+						"Param2":10,
+						"NumParams":2
+					},
+					{
+						"Opcode":51,
+						"Condact":"LET",
+						"Indirection1":0,
+						"Param1":37,
+						"Param2":4,
+						"NumParams":2
+					},
+					{
+						"Opcode":47,
+						"Condact":"SET",
+						"Indirection1":0,
+						"Param1":46,
+						"NumParams":1
+					},
+					{
+						"Opcode":47,
+						"Condact":"SET",
+						"Indirection1":0,
+						"Param1":47,
+						"NumParams":1
+					},
+					{
+						"Opcode":51,
+						"Condact":"LET",
+						"Indirection1":0,
+						"Param1":53,
+						"Param2":64,
+						"NumParams":2
+					},
+					{
+						"Opcode":37,
+						"Condact":"GOTO",
+						"Indirection1":0,
+						"Param1":1,
+						"NumParams":1
+					}
+					]
+			}
+			]
+	},
+	{
+		"Value":7,
+		"entries":
+			[
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":77,
+						"Condact":"MES",
+						"Indirection1":0,
+						"Param1":0,
+						"NumParams":1
+					},
+					{
+						"Opcode":48,
+						"Condact":"CLEAR",
+						"Indirection1":0,
+						"Param1":101,
+						"NumParams":1
+					},
+					{
+						"Opcode":51,
+						"Condact":"LET",
+						"Indirection1":0,
+						"Param1":33,
+						"Param2":2,
+						"NumParams":2
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":125,
+						"Condact":"COPYFF",
+						"Indirection1":0,
+						"Param1":38,
+						"Param2":100,
+						"NumParams":2
+					},
+					{
+						"Opcode":106,
+						"Condact":"MOVE",
+						"Indirection1":0,
+						"Param1":100,
+						"NumParams":1
+					},
+					{
+						"Opcode":77,
+						"Condact":"MES",
+						"Indirection1":1,
+						"Param1":33,
+						"NumParams":1
+					},
+					{
+						"Opcode":49,
+						"Condact":"PLUS",
+						"Indirection1":0,
+						"Param1":101,
+						"Param2":1,
+						"NumParams":2
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":49,
+						"Condact":"PLUS",
+						"Indirection1":0,
+						"Param1":33,
+						"Param2":1,
+						"NumParams":2
+					},
+					{
+						"Opcode":15,
+						"Condact":"LT",
+						"Indirection1":0,
+						"Param1":33,
+						"Param2":14,
+						"NumParams":2
+					},
+					{
+						"Opcode":116,
+						"Condact":"SKIP",
+						"Indirection1":0,
+						"Param1":254,
+						"NumParams":1
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":12,
+						"Condact":"NOTZERO",
+						"Indirection1":0,
+						"Param1":101,
+						"NumParams":1
+					},
+					{
+						"Opcode":22,
+						"Condact":"DONE",
+						"NumParams":0
+					}
+					]
+			},
+			{
+				"Entry":"_ _",
+				"Verb":255,
+				"Noun":255,
+				"condacts":
+					[
+					{
+						"Opcode":38,
+						"Condact":"MESSAGE",
+						"Indirection1":0,
+						"Param1":1,
+						"NumParams":1
+					}
+					]
+			}
+			]
+	}
+	]
+}

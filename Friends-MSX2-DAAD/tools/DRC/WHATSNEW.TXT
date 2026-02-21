@@ -1,0 +1,211 @@
+
+
+
+20210430 Release
+================
+- Added target 0x0D (PCDAAD) to DDB header machineID
+- Fixed a bug that was creating COLS symbol with value 53 instead of 40 for PC/VGA256 target
+
+20210419 Release
+================
+- Added suport for vga256 target.
+
+
+
+20210404 Release
+================
+- Fixed a bug with language flag in DDB files which prevented some targets running in English 
+- Added support for BEEP in PC target, despite the original interpreter does not support it, but
+  done to be used with the new PC interpreter (in development).
+
+
+
+20201219 Release
+================
+- Fixed bug with WEIGHT condact semantic
+- Added support for many international characters for German and Portuguese, plus many other general purpose one which may cover most of western languages.
+- Added proper tokens for Portuguese and German.
+- Added #r escape sequence
+- Fixed issue with #else and added support for nested #if(n)defs
+- Added new symbols: YEARHIGH, YEARLOW, DAY and MONTH, which cover the date of compilation and allow including
+  compilation date in the code
+
+
+
+20200525 Release
+================
+- DRC does now support labels for SKIP jumps just like DC did. A label is a $ sign followed by some text (i.e. $loop). You can put a label just before an entry, and the use SKIP <label> (i.e. "SKIP $loop") to jump back to that entry. Labels in between condacts are not allowed. You can add more than one label before an entry, so you can jump there using any of them as reference. Forward jumps are allowed.
+- Some error texts have been improved to send a clearer message.
+- Now if you call a process that does not exist, DRC will detect it in compile time.
+
+
+20200413 Release
+================
+- Fixed bug in entry optimization which was optimizing way too many in some entries with XMES o XMESSAGE
+- Added support for ZX-UNO subtarget for ZX Spectrum. Use "uno" as subtarget.
+- XNEXTSPEED condact is now XSPEED, and it's supported by ZX-Uno target too.
+
+20200305 Release
+================
+
+- Added new fake condact XNEXTCLS, XNEXTRST and XNEXTSPEED, to support Maluva functions for Spectrum NEXT
+- DRF now supports #include in a limited way:
+     + #include should be placed at the start of a line
+     + nested includes not allowed
+- Fixed a bug in DAADMaker that was wrongly identifying PLUS3 header.
+- DAADMaker does now skip PLUS3 headers found in files instead of reporting them as errors. Pleas notice that won't work with AMSDOS headers.
+- XBEEP bugfix and volumen improvement for MSX2 (by @nataliapc)
+- New MSX2 modes added
+- You can now specify a charset file in DAADMaker, which will replace the DAAD original one
+- You can now specify a charset file in MCRF, which will replace the DAAD original one
+- You need now to specify subtarget for ZX targets in DRB
+
+
+20200104 Release
+================
+
+- Fixed bug with parameters which are words (PREP, NOUN2, SYNONYM, etc.) failing to pass semantic check when words were longer than 5 chars or had different case.
+- Now Commodore Plus/4 is a separated target (CP4) as the interpreters have been separated too
+- Improved warning messages shown when there are condacts in an entry after a terminator condact (which is nonsense)
+- XSPLITSCR syntax simplified, see Maluva wiki
+- Added support for XUNDONE Maluva condact
+
+20191220 Release
+================
+
+- DRC now supports XSPLITSCR fake condact for Amstrad CPC. This allows splitting the screen in two parts with two different videomodes from the three Amstrad CPC standard ones.
+- DRF now supports XBEEP for CPC and MSX via Maluva. C64 and ZX natively support BEEP and XBEEP just replaces BEEP for machines not supporting it. Parameters for BEEP are duration (in 1/50s of second) and tone (a value from 48 to 238)
+- DRF now supports XPLAY condact, which accepts an MML string at the MSX or Spectrum +3 style for basic PLAY, but just for one channel. DRC will actually convert that into BEEPs or XBEEPs depending on target.
+- DRF now supports identifiers in list entries, that is, you can use /xxxxxx, where xxxxxx is an indetifier previously defined with #define wherever you used /1 /2 /3 /4... /n before (/OBJ, /OTX, /MTX, /STX, /LTX, and /CON sections)
+- DRF now makes some semantic analysis, such as detecting if some condact which requires a locno, objno, mesno, etc.  parameter is refering to a location, object, message that does actually exist
+- DRF now supports a few parameters. Any parameter after the DSF or JSON file names, are candidates to be options, or a symbol list. If starting by a hyphen '-' they will be considerec a parameter, otherwise, a comma-separated symbol list 
+  New parameter options:
+  -verbose :  verbose output
+  -no-semantic : does not make semantic analysis (so DRF works as in previous versions)
+  -semantic-warnings : when semantic analysys finds something wrong, just raises a warning instead of stopping with an errors
+  -force-normal-messages : no matter the target, all XMESSAGES will be treated as normal messages
+
+  Examples:
+
+  drf test.dsf -verbose symbol1,symbol2
+  drf test.dsf test.json symbol1,symbol2 -force-normal-messages
+- DRC now has a wiki in Github
+- Added support for Maluva Amstrad PCW
+
+Acknowledges: @ishwin cause of her help with XPLAY, Imre Szèll cause of his help with Plus/4 (work in progress)
+
+
+20191105 Release
+================
+
+- DRC now supports new fake condacts XMESSAGE, XMES, XPICTURE, XSAVE and XLOAD. These condacts are related with Maluva Extension, and will make it easier for authors to handle Maluva features.
+  With this extension you can load additional messages from disk, raster images, save/load game to disk, etc, and these condacts will handle that. See Maluva documentation for more info.
+- DRC will now determine which Maluva binary to use automatically based on target. Thus you can just add 
+
+  #extern "MALUVA"
+
+  to your code, and DRC will replace that MALUVA with MLV_MSX.BIN, MLV_CPC.BIN, MLV_C64.BIN, etc. depending on target. In order to make this possiblem, DRF requires now the author to specify absolutely
+  subtarget for ZX target. Options are ESXDOS, PLUS3 and NEXT. If you are not using Maluva, you must specify a subtarget to, choose any subtarget indistinctly.
+ 
+
+20191019 Release
+================
+- Added new -3h parameter to drb, to make DRC generate DDB files with +3DOS header (similar to -CH for C64)
+- DRB now lists total number of locations, messages, objects, ect. when running in verbose mode
+- Added new -p parameter to drb, to force padding in out file
+- DAADMaker now checks if a file being added has a +3DOS header and fails in case
+- Fixed bug with alignment of connections for Atari ST and Amiga targets
+
+
+20190929 Release
+================
+- Smarter detection of alternative tokens file
+- DRF now accepts one more optional parameter, with a list of symbols that would be defined. That way you can add symbol definitions from command line without modifying source
+  code, what may later be used with #ifdef to control code depending on different subtargets.
+- LEEME and README files proofread
+- Expressions are now accepted as condact parameters
+- Fixed bug in COLs symbol for PC VGA/TEXT
+
+
+20190817 Release
+================
+
+- DRC now supports multiple verb/noun entries, like this:
+
+> MAKE DINNER
+> COOK EGGS
+  CARRIED oEggs
+  AT lKitchen
+  MESSAGE "You cook some boiled eggs."
+  DESTROY oEggs
+  CREATE oBoiledEggs
+  DONE
+
+This is the same than: 
+
+> MAKE DINNER
+  CARRIED oEggs
+  AT lKitchen
+  MESSAGE "You cook some boiled eggs."
+  DESTROY oEggs
+  CREATE oBoiledEggs
+  DONE
+
+> COOK EGGS
+  CARRIED oEggs
+  AT lKitchen
+  MESSAGE "You cook some boiled eggs."
+  DESTROY oEggs
+  CREATE oBoiledEggs
+  DONE
+
+
+20190705 Release
+================
+
+- Fixed a bug wich made drf ignore the output file parameter when provided
+
+20190608 Release
+================
+
+- Fixed a bug with EXTERN, that wasn't allowing the extern code to be executed
+- Fixed a bug where numeric vocabulary words were not properly detected when used in NOUN2, PREP, SYNONYM, etc. condacts
+- Any verb can now be used as a direction in /CON section
+
+
+20190602 Release
+================
+- Patched code optimizations so code reused is word aligned for padding machines.
+
+20190601 Release
+================
+
+- DRF is now more verbose on errors
+- Fixed bug in DDB generation for Amiga an Atari ST. Now DRC works fine with those machines.
+- Many fixed in Syntax help on both DRF and DRB
+- EXTERN include was not working, it has been fixed
+- DRB can now be called with -c parameter, which forces classic mode
+- Entries in processes should now be preceded by a > sign, like this
+
+> TAKE MONEY
+  MESSAGE "You are not a thief."
+  DONE
+
+> OPEN DOOR
+  AT lHall  
+  MESSAGE "It's locked."
+  DONE
+
+
+20190518 Release
+================
+
+- DRB is now less verbose but it has a new -v parameter which increases verbosity
+- DRF is also less verbose, but it has not a verbose parameter cause what was removed was actually worthless
+- Now it is possible to add a .TOK file so DRB takes tokens from it instead of using standar ones. For those who needs a few bytes more to fit.
+- DRB supports a new -ch (Commodore header) parameter. That will prepend a two byte C64 header to the DDB file so you don't have to add it manually.
+- Text compression will now absolutely avoid dumping or using any token which won't help the DDB file to decrease in size, saving some bytes.
+- Amstrad CPC target allows using DEBUG fake condact now, as ZEsarUX emulator does allow debugging DAAD games in CPC too.
+- Some typos and errors in the instructions have been fixed
+
+

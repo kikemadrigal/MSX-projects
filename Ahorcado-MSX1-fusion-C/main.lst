@@ -1,0 +1,2481 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.9.0 #11195 (MINGW64)
+                              4 ;--------------------------------------------------------
+                              5 	.module main
+                              6 	.optsdcc -mz80
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _main
+                             12 	.globl _srand
+                             13 	.globl _rand
+                             14 	.globl _puts
+                             15 	.globl _printf
+                             16 	.globl _GetTime
+                             17 	.globl _StrLen
+                             18 	.globl _WaitKey
+                             19 	.globl _Cls
+                             20 	.globl _Locate
+                             21 	.globl _PrintChar
+                             22 	.globl _palabra_seleccionada
+                             23 	.globl _arrayPalabras
+                             24 	.globl _vidas
+                             25 	.globl _letras_acertadas
+                             26 	.globl _palabra_sin_resolver
+                             27 	.globl _numero_letras_palabra_seleccionada
+                             28 	.globl _inicializar_variables_juego
+                             29 	.globl _loop_principal
+                             30 	.globl _comprobar_tecla_resuelta
+                             31 	.globl _obtener_segundos
+                             32 	.globl _seleccionar_palabra_del_array
+                             33 	.globl _obtener_tamanio_string
+                             34 	.globl _obtener_tecla_del_teclado
+                             35 	.globl _pausar_hasta_que_se_pulsa_una_tecla
+                             36 	.globl _convertir_letra_a_mayuscula
+                             37 	.globl _chequear_vidas
+                             38 	.globl _comprobar_ganador
+                             39 	.globl _comprobar_que_la_letra_esta_en_la_palabra
+                             40 	.globl _mostrar_palabra_sin_resolver
+                             41 	.globl _posicionar_cursor_en_pantalla
+                             42 	.globl _mostrar_ahorcado_con_las_vidas
+                             43 	.globl _mostrar_palabra_seleccionada
+                             44 	.globl _borrar_pantalla
+                             45 	.globl _imprimirCharacter
+                             46 	.globl _terminar_programa
+                             47 	.globl _menu
+                             48 ;--------------------------------------------------------
+                             49 ; special function registers
+                             50 ;--------------------------------------------------------
+                             51 ;--------------------------------------------------------
+                             52 ; ram data
+                             53 ;--------------------------------------------------------
+                             54 	.area _DATA
+   0000                      55 _numero_letras_palabra_seleccionada::
+   0000                      56 	.ds 2
+   0002                      57 _palabra_sin_resolver::
+   0002                      58 	.ds 15
+   0011                      59 _letras_acertadas::
+   0011                      60 	.ds 2
+   0013                      61 _vidas::
+   0013                      62 	.ds 2
+                             63 ;--------------------------------------------------------
+                             64 ; ram data
+                             65 ;--------------------------------------------------------
+                             66 	.area _INITIALIZED
+   0000                      67 _arrayPalabras::
+   0000                      68 	.ds 1500
+   05DC                      69 _palabra_seleccionada::
+   05DC                      70 	.ds 1
+                             71 ;--------------------------------------------------------
+                             72 ; absolute external ram data
+                             73 ;--------------------------------------------------------
+                             74 	.area _DABS (ABS)
+                             75 ;--------------------------------------------------------
+                             76 ; global & static initialisations
+                             77 ;--------------------------------------------------------
+                             78 	.area _HOME
+                             79 	.area _GSINIT
+                             80 	.area _GSFINAL
+                             81 	.area _GSINIT
+                             82 ;--------------------------------------------------------
+                             83 ; Home
+                             84 ;--------------------------------------------------------
+                             85 	.area _HOME
+                             86 	.area _HOME
+                             87 ;--------------------------------------------------------
+                             88 ; code
+                             89 ;--------------------------------------------------------
+                             90 	.area _CODE
+                             91 ;main.c:74: int main(void)
+                             92 ;	---------------------------------
+                             93 ; Function main
+                             94 ; ---------------------------------
+   0000                      95 _main::
+                             96 ;main.c:77: menu();
+   0000 CDrEDr05      [17]   97 	call	_menu
+                             98 ;main.c:78: pausar_hasta_que_se_pulsa_una_tecla();
+   0003 CDr9Br01      [17]   99 	call	_pausar_hasta_que_se_pulsa_una_tecla
+                            100 ;main.c:79: inicializar_variables_juego();
+   0006 CDr30r00      [17]  101 	call	_inicializar_variables_juego
+                            102 ;main.c:80: loop_principal();
+   0009 CDr43r00      [17]  103 	call	_loop_principal
+                            104 ;main.c:81: return 0;
+   000C 21 00 00      [10]  105 	ld	hl, #0x0000
+                            106 ;main.c:82: }
+   000F C9            [10]  107 	ret
+   0010                     108 _Done_Version:
+   0010 4D 61 64 65 20 77   109 	.ascii "Made with FUSION-C 1.2 (ebsoft)"
+        69 74 68 20 46 55
+        53 49 4F 4E 2D 43
+        20 31 2E 32 20 28
+        65 62 73 6F 66 74
+        29
+   002F 00                  110 	.db 0x00
+                            111 ;main.c:86: void inicializar_variables_juego(){
+                            112 ;	---------------------------------
+                            113 ; Function inicializar_variables_juego
+                            114 ; ---------------------------------
+   0030                     115 _inicializar_variables_juego::
+                            116 ;main.c:87: numero_letras_palabra_seleccionada=0;
+   0030 21 00 00      [10]  117 	ld	hl, #0x0000
+   0033 22r00r00      [16]  118 	ld	(_numero_letras_palabra_seleccionada), hl
+                            119 ;main.c:88: letras_acertadas=0;
+   0036 2E 00         [ 7]  120 	ld	l, #0x00
+   0038 22r11r00      [16]  121 	ld	(_letras_acertadas), hl
+                            122 ;main.c:89: vidas=7;
+   003B 2E 07         [ 7]  123 	ld	l, #0x07
+   003D 22r13r00      [16]  124 	ld	(_vidas), hl
+                            125 ;main.c:90: seleccionar_palabra_del_array();
+                            126 ;main.c:91: }
+   0040 C3r3Er01      [10]  127 	jp  _seleccionar_palabra_del_array
+                            128 ;main.c:97: void loop_principal(){
+                            129 ;	---------------------------------
+                            130 ; Function loop_principal
+                            131 ; ---------------------------------
+   0043                     132 _loop_principal::
+   0043 CDr00r00      [17]  133 	call	___sdcc_enter_ix
+   0046 3B            [ 6]  134 	dec	sp
+                            135 ;main.c:101: char tecla_covertida_en_mayuscula='@';
+   0047 06 40         [ 7]  136 	ld	b, #0x40
+                            137 ;main.c:102: char tecla_ultima_vez=' ';
+   0049 DD 36 FF 20   [19]  138 	ld	-1 (ix), #0x20
+                            139 ;main.c:107: while(vidas>0){
+   004D                     140 00107$:
+   004D AF            [ 4]  141 	xor	a, a
+   004E FD 21r13r00   [14]  142 	ld	iy, #_vidas
+   0052 FD BE 00      [19]  143 	cp	a, 0 (iy)
+   0055 FD 9E 01      [19]  144 	sbc	a, 1 (iy)
+   0058 E2r5Dr00      [10]  145 	jp	PO, 00137$
+   005B EE 80         [ 7]  146 	xor	a, #0x80
+   005D                     147 00137$:
+   005D F2rB5r00      [10]  148 	jp	P, 00110$
+                            149 ;main.c:109: borrar_pantalla();
+   0060 C5            [11]  150 	push	bc
+   0061 CDrD8r05      [17]  151 	call	_borrar_pantalla
+   0064 CDr8Ar03      [17]  152 	call	_mostrar_ahorcado_con_las_vidas
+   0067 CDrFDr02      [17]  153 	call	_mostrar_palabra_sin_resolver
+   006A C1            [10]  154 	pop	bc
+                            155 ;main.c:116: if(tecla_covertida_en_mayuscula!='@'){
+   006B 78            [ 4]  156 	ld	a, b
+   006C D6 40         [ 7]  157 	sub	a, #0x40
+   006E 28 0D         [12]  158 	jr	Z,00102$
+                            159 ;main.c:117: printf("\n\rTecla pulsada: %c",tecla_covertida_en_mayuscula);
+   0070 48            [ 4]  160 	ld	c, b
+   0071 06 00         [ 7]  161 	ld	b, #0x00
+   0073 C5            [11]  162 	push	bc
+   0074 21rB9r00      [10]  163 	ld	hl, #___str_1
+   0077 E5            [11]  164 	push	hl
+   0078 CDr00r00      [17]  165 	call	_printf
+   007B F1            [10]  166 	pop	af
+   007C F1            [10]  167 	pop	af
+   007D                     168 00102$:
+                            169 ;main.c:122: printf("\n\rEsperando que pulse una letra...\n");
+   007D 21rCDr00      [10]  170 	ld	hl, #___str_3
+   0080 E5            [11]  171 	push	hl
+   0081 CDr00r00      [17]  172 	call	_puts
+   0084 F1            [10]  173 	pop	af
+                            174 ;main.c:124: letra_obtenida_del_teclado=obtener_tecla_del_teclado();
+   0085 CDr98r01      [17]  175 	call	_obtener_tecla_del_teclado
+   0088 7D            [ 4]  176 	ld	a, l
+                            177 ;main.c:126: tecla_covertida_en_mayuscula=convertir_letra_a_mayuscula(letra_obtenida_del_teclado);
+   0089 F5            [11]  178 	push	af
+   008A 33            [ 6]  179 	inc	sp
+   008B CDr9Er01      [17]  180 	call	_convertir_letra_a_mayuscula
+   008E 33            [ 6]  181 	inc	sp
+   008F 45            [ 4]  182 	ld	b, l
+                            183 ;main.c:128: if(tecla_covertida_en_mayuscula!=tecla_ultima_vez){
+   0090 78            [ 4]  184 	ld	a, b
+   0091 DD 96 FF      [19]  185 	sub	a, -1 (ix)
+   0094 28 1A         [12]  186 	jr	Z,00106$
+                            187 ;main.c:130: if (comprobar_tecla_resuelta(tecla_covertida_en_mayuscula)==0){
+   0096 C5            [11]  188 	push	bc
+   0097 C5            [11]  189 	push	bc
+   0098 33            [ 6]  190 	inc	sp
+   0099 CDrF0r00      [17]  191 	call	_comprobar_tecla_resuelta
+   009C 33            [ 6]  192 	inc	sp
+   009D 7D            [ 4]  193 	ld	a, l
+   009E C1            [10]  194 	pop	bc
+   009F B7            [ 4]  195 	or	a, a
+   00A0 20 0E         [12]  196 	jr	NZ,00106$
+                            197 ;main.c:132: comprobar_que_la_letra_esta_en_la_palabra(tecla_covertida_en_mayuscula);  
+   00A2 C5            [11]  198 	push	bc
+   00A3 C5            [11]  199 	push	bc
+   00A4 33            [ 6]  200 	inc	sp
+   00A5 CDrB0r02      [17]  201 	call	_comprobar_que_la_letra_esta_en_la_palabra
+   00A8 33            [ 6]  202 	inc	sp
+   00A9 CDrB9r01      [17]  203 	call	_chequear_vidas
+   00AC CDr07r02      [17]  204 	call	_comprobar_ganador
+   00AF C1            [10]  205 	pop	bc
+   00B0                     206 00106$:
+                            207 ;main.c:140: tecla_ultima_vez=tecla_covertida_en_mayuscula;
+   00B0 DD 70 FF      [19]  208 	ld	-1 (ix), b
+   00B3 18 98         [12]  209 	jr	00107$
+   00B5                     210 00110$:
+                            211 ;main.c:142: }
+   00B5 33            [ 6]  212 	inc	sp
+   00B6 DD E1         [14]  213 	pop	ix
+   00B8 C9            [10]  214 	ret
+   00B9                     215 ___str_1:
+   00B9 0A                  216 	.db 0x0a
+   00BA 0D                  217 	.db 0x0d
+   00BB 54 65 63 6C 61 20   218 	.ascii "Tecla pulsada: %c"
+        70 75 6C 73 61 64
+        61 3A 20 25 63
+   00CC 00                  219 	.db 0x00
+   00CD                     220 ___str_3:
+   00CD 0A                  221 	.db 0x0a
+   00CE 0D                  222 	.db 0x0d
+   00CF 45 73 70 65 72 61   223 	.ascii "Esperando que pulse una letra..."
+        6E 64 6F 20 71 75
+        65 20 70 75 6C 73
+        65 20 75 6E 61 20
+        6C 65 74 72 61 2E
+        2E 2E
+   00EF 00                  224 	.db 0x00
+                            225 ;main.c:145: char comprobar_tecla_resuelta(char tecla_covertida_en_mayuscula){
+                            226 ;	---------------------------------
+                            227 ; Function comprobar_tecla_resuelta
+                            228 ; ---------------------------------
+   00F0                     229 _comprobar_tecla_resuelta::
+   00F0 CDr00r00      [17]  230 	call	___sdcc_enter_ix
+                            231 ;main.c:146: char encontrada=0;
+   00F3 0E 00         [ 7]  232 	ld	c, #0x00
+                            233 ;main.c:153: for (int i=0;i<obtener_tamanio_string(palabra_sin_resolver);i++)
+   00F5 11 00 00      [10]  234 	ld	de, #0x0000
+   00F8                     235 00105$:
+   00F8 C5            [11]  236 	push	bc
+   00F9 D5            [11]  237 	push	de
+   00FA 21r02r00      [10]  238 	ld	hl, #_palabra_sin_resolver
+   00FD E5            [11]  239 	push	hl
+   00FE CDr8Er01      [17]  240 	call	_obtener_tamanio_string
+   0101 F1            [10]  241 	pop	af
+   0102 D1            [10]  242 	pop	de
+   0103 C1            [10]  243 	pop	bc
+   0104 7B            [ 4]  244 	ld	a, e
+   0105 95            [ 4]  245 	sub	a, l
+   0106 7A            [ 4]  246 	ld	a, d
+   0107 9C            [ 4]  247 	sbc	a, h
+   0108 E2r0Dr01      [10]  248 	jp	PO, 00125$
+   010B EE 80         [ 7]  249 	xor	a, #0x80
+   010D                     250 00125$:
+   010D F2r20r01      [10]  251 	jp	P, 00103$
+                            252 ;main.c:156: if(palabra_sin_resolver[i]==tecla_covertida_en_mayuscula){
+   0110 21r02r00      [10]  253 	ld	hl, #_palabra_sin_resolver
+   0113 19            [11]  254 	add	hl, de
+   0114 46            [ 7]  255 	ld	b, (hl)
+   0115 DD 7E 04      [19]  256 	ld	a, 4 (ix)
+   0118 90            [ 4]  257 	sub	a, b
+   0119 20 02         [12]  258 	jr	NZ,00106$
+                            259 ;main.c:157: encontrada=1;
+   011B 0E 01         [ 7]  260 	ld	c, #0x01
+   011D                     261 00106$:
+                            262 ;main.c:153: for (int i=0;i<obtener_tamanio_string(palabra_sin_resolver);i++)
+   011D 13            [ 6]  263 	inc	de
+   011E 18 D8         [12]  264 	jr	00105$
+   0120                     265 00103$:
+                            266 ;main.c:160: return encontrada;
+   0120 69            [ 4]  267 	ld	l, c
+                            268 ;main.c:161: }
+   0121 DD E1         [14]  269 	pop	ix
+   0123 C9            [10]  270 	ret
+                            271 ;main.c:166: int obtener_segundos(){
+                            272 ;	---------------------------------
+                            273 ; Function obtener_segundos
+                            274 ; ---------------------------------
+   0124                     275 _obtener_segundos::
+   0124 F5            [11]  276 	push	af
+   0125 F5            [11]  277 	push	af
+   0126 F5            [11]  278 	push	af
+                            279 ;main.c:170: GetTime(&time);
+   0127 21 00 00      [10]  280 	ld	hl, #0
+   012A 39            [11]  281 	add	hl, sp
+   012B E5            [11]  282 	push	hl
+   012C E5            [11]  283 	push	hl
+   012D CDr00r00      [17]  284 	call	_GetTime
+   0130 F1            [10]  285 	pop	af
+   0131 E1            [10]  286 	pop	hl
+                            287 ;main.c:171: sec= time.sec;
+   0132 11 04 00      [10]  288 	ld	de, #0x0004
+   0135 19            [11]  289 	add	hl, de
+   0136 4E            [ 7]  290 	ld	c, (hl)
+   0137 23            [ 6]  291 	inc	hl
+   0138 66            [ 7]  292 	ld	h, (hl)
+                            293 ;main.c:177: return sec;
+   0139 69            [ 4]  294 	ld	l, c
+                            295 ;main.c:178: }
+   013A F1            [10]  296 	pop	af
+   013B F1            [10]  297 	pop	af
+   013C F1            [10]  298 	pop	af
+   013D C9            [10]  299 	ret
+                            300 ;main.c:196: void seleccionar_palabra_del_array(){
+                            301 ;	---------------------------------
+                            302 ; Function seleccionar_palabra_del_array
+                            303 ; ---------------------------------
+   013E                     304 _seleccionar_palabra_del_array::
+                            305 ;main.c:199: srand(obtener_segundos());
+   013E CDr24r01      [17]  306 	call	_obtener_segundos
+   0141 E5            [11]  307 	push	hl
+   0142 CDr00r00      [17]  308 	call	_srand
+   0145 F1            [10]  309 	pop	af
+                            310 ;main.c:203: strcpy(palabra_seleccionada,arrayPalabras[rand()%NUM_PALABRAS_A_DESCIFRAR]);
+   0146 CDr00r00      [17]  311 	call	_rand
+   0149 01 1E 00      [10]  312 	ld	bc, #0x001e
+   014C C5            [11]  313 	push	bc
+   014D E5            [11]  314 	push	hl
+   014E CDr00r00      [17]  315 	call	__modsint
+   0151 F1            [10]  316 	pop	af
+   0152 F1            [10]  317 	pop	af
+   0153 4D            [ 4]  318 	ld	c, l
+   0154 44            [ 4]  319 	ld	b, h
+   0155 29            [11]  320 	add	hl, hl
+   0156 09            [11]  321 	add	hl, bc
+   0157 29            [11]  322 	add	hl, hl
+   0158 29            [11]  323 	add	hl, hl
+   0159 29            [11]  324 	add	hl, hl
+   015A 09            [11]  325 	add	hl, bc
+   015B 29            [11]  326 	add	hl, hl
+   015C 11r00r00      [10]  327 	ld	de, #_arrayPalabras
+   015F 19            [11]  328 	add	hl, de
+   0160 11rDCr05      [10]  329 	ld	de, #_palabra_seleccionada
+   0163 AF            [ 4]  330 	xor	a, a
+   0164                     331 00118$:
+   0164 BE            [ 7]  332 	cp	a, (hl)
+   0165 ED A0         [16]  333 	ldi
+   0167 20 FB         [12]  334 	jr	NZ, 00118$
+                            335 ;main.c:204: numero_letras_palabra_seleccionada=obtener_tamanio_string(palabra_seleccionada);
+   0169 21rDCr05      [10]  336 	ld	hl, #_palabra_seleccionada
+   016C E5            [11]  337 	push	hl
+   016D CDr8Er01      [17]  338 	call	_obtener_tamanio_string
+   0170 F1            [10]  339 	pop	af
+   0171 22r00r00      [16]  340 	ld	(_numero_letras_palabra_seleccionada), hl
+                            341 ;main.c:207: for(i=0;i<numero_letras_palabra_seleccionada;i++){
+   0174 01 00 00      [10]  342 	ld	bc, #0x0000
+   0177                     343 00103$:
+   0177 21r00r00      [10]  344 	ld	hl, #_numero_letras_palabra_seleccionada
+   017A 79            [ 4]  345 	ld	a, c
+   017B 96            [ 7]  346 	sub	a, (hl)
+   017C 78            [ 4]  347 	ld	a, b
+   017D 23            [ 6]  348 	inc	hl
+   017E 9E            [ 7]  349 	sbc	a, (hl)
+   017F E2r84r01      [10]  350 	jp	PO, 00119$
+   0182 EE 80         [ 7]  351 	xor	a, #0x80
+   0184                     352 00119$:
+   0184 F0            [11]  353 	ret	P
+                            354 ;main.c:208: palabra_sin_resolver[i]=' ';    
+   0185 21r02r00      [10]  355 	ld	hl, #_palabra_sin_resolver
+   0188 09            [11]  356 	add	hl, bc
+   0189 36 20         [10]  357 	ld	(hl), #0x20
+                            358 ;main.c:207: for(i=0;i<numero_letras_palabra_seleccionada;i++){
+   018B 03            [ 6]  359 	inc	bc
+                            360 ;main.c:210: }
+   018C 18 E9         [12]  361 	jr	00103$
+                            362 ;main.c:215: int obtener_tamanio_string(char string[]){
+                            363 ;	---------------------------------
+                            364 ; Function obtener_tamanio_string
+                            365 ; ---------------------------------
+   018E                     366 _obtener_tamanio_string::
+                            367 ;main.c:217: return StrLen(string);
+   018E C1            [10]  368 	pop	bc
+   018F E1            [10]  369 	pop	hl
+   0190 E5            [11]  370 	push	hl
+   0191 C5            [11]  371 	push	bc
+   0192 E5            [11]  372 	push	hl
+   0193 CDr00r00      [17]  373 	call	_StrLen
+   0196 F1            [10]  374 	pop	af
+                            375 ;main.c:222: }
+   0197 C9            [10]  376 	ret
+                            377 ;main.c:232: char obtener_tecla_del_teclado(){
+                            378 ;	---------------------------------
+                            379 ; Function obtener_tecla_del_teclado
+                            380 ; ---------------------------------
+   0198                     381 _obtener_tecla_del_teclado::
+                            382 ;main.c:234: return WaitKey();
+                            383 ;main.c:239: }
+   0198 C3r00r00      [10]  384 	jp  _WaitKey
+                            385 ;main.c:240: void pausar_hasta_que_se_pulsa_una_tecla(){
+                            386 ;	---------------------------------
+                            387 ; Function pausar_hasta_que_se_pulsa_una_tecla
+                            388 ; ---------------------------------
+   019B                     389 _pausar_hasta_que_se_pulsa_una_tecla::
+                            390 ;main.c:242: WaitKey();
+                            391 ;main.c:247: }
+   019B C3r00r00      [10]  392 	jp  _WaitKey
+                            393 ;main.c:264: char convertir_letra_a_mayuscula(char tecla){
+                            394 ;	---------------------------------
+                            395 ; Function convertir_letra_a_mayuscula
+                            396 ; ---------------------------------
+   019E                     397 _convertir_letra_a_mayuscula::
+                            398 ;main.c:269: if(tecla>96){
+   019E 3E 60         [ 7]  399 	ld	a, #0x60
+   01A0 FD 21 02 00   [14]  400 	ld	iy, #2
+   01A4 FD 39         [15]  401 	add	iy, sp
+   01A6 FD 96 00      [19]  402 	sub	a, 0 (iy)
+   01A9 30 07         [12]  403 	jr	NC,00102$
+                            404 ;main.c:270: tecla_obtenida=tecla-32;
+   01AB FD 7E 00      [19]  405 	ld	a, 0 (iy)
+   01AE C6 E0         [ 7]  406 	add	a, #0xe0
+   01B0 18 05         [12]  407 	jr	00103$
+   01B2                     408 00102$:
+                            409 ;main.c:272: tecla_obtenida=tecla;
+   01B2 21 02 00      [10]  410 	ld	hl, #2+0
+   01B5 39            [11]  411 	add	hl, sp
+   01B6 7E            [ 7]  412 	ld	a, (hl)
+   01B7                     413 00103$:
+                            414 ;main.c:274: return tecla_obtenida;
+   01B7 6F            [ 4]  415 	ld	l, a
+                            416 ;main.c:275: }
+   01B8 C9            [10]  417 	ret
+                            418 ;main.c:277: void chequear_vidas(){
+                            419 ;	---------------------------------
+                            420 ; Function chequear_vidas
+                            421 ; ---------------------------------
+   01B9                     422 _chequear_vidas::
+                            423 ;main.c:278: if(vidas==0){
+   01B9 FD 21r13r00   [14]  424 	ld	iy, #_vidas
+   01BD FD 7E 01      [19]  425 	ld	a, 1 (iy)
+   01C0 FD B6 00      [19]  426 	or	a, 0 (iy)
+   01C3 C0            [11]  427 	ret	NZ
+                            428 ;main.c:279: borrar_pantalla();
+   01C4 CDrD8r05      [17]  429 	call	_borrar_pantalla
+                            430 ;main.c:280: printf("\r\nHas perdido. Otra partida? ");
+   01C7 21rE9r01      [10]  431 	ld	hl, #___str_4
+   01CA E5            [11]  432 	push	hl
+   01CB CDr00r00      [17]  433 	call	_printf
+   01CE F1            [10]  434 	pop	af
+                            435 ;main.c:281: mostrar_ahorcado_con_las_vidas();
+   01CF CDr8Ar03      [17]  436 	call	_mostrar_ahorcado_con_las_vidas
+                            437 ;main.c:282: char otra_partida=obtener_tecla_del_teclado();
+   01D2 CDr98r01      [17]  438 	call	_obtener_tecla_del_teclado
+   01D5 7D            [ 4]  439 	ld	a, l
+                            440 ;main.c:283: if(otra_partida=='s'){
+   01D6 FE 73         [ 7]  441 	cp	a, #0x73
+   01D8 20 06         [12]  442 	jr	NZ,00104$
+                            443 ;main.c:284: borrar_pantalla();
+   01DA CDrD8r05      [17]  444 	call	_borrar_pantalla
+                            445 ;main.c:285: inicializar_variables_juego();
+   01DD C3r30r00      [10]  446 	jp  _inicializar_variables_juego
+   01E0                     447 00104$:
+                            448 ;main.c:286: }else if(otra_partida=='n'){
+   01E0 D6 6E         [ 7]  449 	sub	a, #0x6e
+   01E2 C0            [11]  450 	ret	NZ
+                            451 ;main.c:287: borrar_pantalla();
+   01E3 CDrD8r05      [17]  452 	call	_borrar_pantalla
+                            453 ;main.c:288: terminar_programa();
+                            454 ;main.c:291: }
+   01E6 C3rE7r05      [10]  455 	jp  _terminar_programa
+   01E9                     456 ___str_4:
+   01E9 0D                  457 	.db 0x0d
+   01EA 0A                  458 	.db 0x0a
+   01EB 48 61 73 20 70 65   459 	.ascii "Has perdido. Otra partida? "
+        72 64 69 64 6F 2E
+        20 4F 74 72 61 20
+        70 61 72 74 69 64
+        61 3F 20
+   0206 00                  460 	.db 0x00
+                            461 ;main.c:295: void comprobar_ganador(){
+                            462 ;	---------------------------------
+                            463 ; Function comprobar_ganador
+                            464 ; ---------------------------------
+   0207                     465 _comprobar_ganador::
+                            466 ;main.c:296: if (obtener_tamanio_string(palabra_seleccionada)-letras_acertadas==0){
+   0207 21rDCr05      [10]  467 	ld	hl, #_palabra_seleccionada
+   020A E5            [11]  468 	push	hl
+   020B CDr8Er01      [17]  469 	call	_obtener_tamanio_string
+   020E F1            [10]  470 	pop	af
+   020F 4D            [ 4]  471 	ld	c, l
+   0210 44            [ 4]  472 	ld	b, h
+   0211 21r11r00      [10]  473 	ld	hl, #_letras_acertadas
+   0214 79            [ 4]  474 	ld	a, c
+   0215 96            [ 7]  475 	sub	a, (hl)
+   0216 4F            [ 4]  476 	ld	c, a
+   0217 78            [ 4]  477 	ld	a, b
+   0218 23            [ 6]  478 	inc	hl
+   0219 9E            [ 7]  479 	sbc	a, (hl)
+   021A B1            [ 4]  480 	or	a, c
+   021B C0            [11]  481 	ret	NZ
+                            482 ;main.c:297: borrar_pantalla();
+   021C CDrD8r05      [17]  483 	call	_borrar_pantalla
+                            484 ;main.c:298: posicionar_cursor_en_pantalla(10,8);
+   021F 21 08 00      [10]  485 	ld	hl, #0x0008
+   0222 E5            [11]  486 	push	hl
+   0223 2E 0A         [ 7]  487 	ld	l, #0x0a
+   0225 E5            [11]  488 	push	hl
+   0226 CDr77r03      [17]  489 	call	_posicionar_cursor_en_pantalla
+   0229 F1            [10]  490 	pop	af
+                            491 ;main.c:299: printf("\r\nFelicidades!!!! \n\rhas ganado!!\n\rLa palabra era \n\r%s. \n\rOtra partida? s/n",palabra_seleccionada);
+   022A 21rDCr05      [10]  492 	ld	hl, #_palabra_seleccionada
+   022D E3            [19]  493 	ex	(sp),hl
+   022E 21r59r02      [10]  494 	ld	hl, #___str_5
+   0231 E5            [11]  495 	push	hl
+   0232 CDr00r00      [17]  496 	call	_printf
+   0235 F1            [10]  497 	pop	af
+   0236 F1            [10]  498 	pop	af
+                            499 ;main.c:300: mostrar_ahorcado_con_las_vidas();
+   0237 CDr8Ar03      [17]  500 	call	_mostrar_ahorcado_con_las_vidas
+                            501 ;main.c:301: char otra_partida=obtener_tecla_del_teclado();
+   023A CDr98r01      [17]  502 	call	_obtener_tecla_del_teclado
+   023D 7D            [ 4]  503 	ld	a, l
+                            504 ;main.c:302: if(otra_partida=='s'){
+   023E FE 73         [ 7]  505 	cp	a, #0x73
+   0240 20 06         [12]  506 	jr	NZ,00104$
+                            507 ;main.c:303: borrar_pantalla();
+   0242 CDrD8r05      [17]  508 	call	_borrar_pantalla
+                            509 ;main.c:304: inicializar_variables_juego();
+   0245 C3r30r00      [10]  510 	jp  _inicializar_variables_juego
+   0248                     511 00104$:
+                            512 ;main.c:305: }else if(otra_partida=='n'){
+   0248 D6 6E         [ 7]  513 	sub	a, #0x6e
+   024A C0            [11]  514 	ret	NZ
+                            515 ;main.c:306: borrar_pantalla();
+   024B CDrD8r05      [17]  516 	call	_borrar_pantalla
+                            517 ;main.c:307: printf("\r\n\n\n\nAdios.");
+   024E 21rA4r02      [10]  518 	ld	hl, #___str_6
+   0251 E5            [11]  519 	push	hl
+   0252 CDr00r00      [17]  520 	call	_printf
+   0255 F1            [10]  521 	pop	af
+                            522 ;main.c:308: terminar_programa();
+                            523 ;main.c:311: }
+   0256 C3rE7r05      [10]  524 	jp  _terminar_programa
+   0259                     525 ___str_5:
+   0259 0D                  526 	.db 0x0d
+   025A 0A                  527 	.db 0x0a
+   025B 46 65 6C 69 63 69   528 	.ascii "Felicidades!!!! "
+        64 61 64 65 73 21
+        21 21 21 20
+   026B 0A                  529 	.db 0x0a
+   026C 0D                  530 	.db 0x0d
+   026D 68 61 73 20 67 61   531 	.ascii "has ganado!!"
+        6E 61 64 6F 21 21
+   0279 0A                  532 	.db 0x0a
+   027A 0D                  533 	.db 0x0d
+   027B 4C 61 20 70 61 6C   534 	.ascii "La palabra era "
+        61 62 72 61 20 65
+        72 61 20
+   028A 0A                  535 	.db 0x0a
+   028B 0D                  536 	.db 0x0d
+   028C 25 73 2E 20         537 	.ascii "%s. "
+   0290 0A                  538 	.db 0x0a
+   0291 0D                  539 	.db 0x0d
+   0292 4F 74 72 61 20 70   540 	.ascii "Otra partida? s/n"
+        61 72 74 69 64 61
+        3F 20 73 2F 6E
+   02A3 00                  541 	.db 0x00
+   02A4                     542 ___str_6:
+   02A4 0D                  543 	.db 0x0d
+   02A5 0A                  544 	.db 0x0a
+   02A6 0A                  545 	.db 0x0a
+   02A7 0A                  546 	.db 0x0a
+   02A8 0A                  547 	.db 0x0a
+   02A9 41 64 69 6F 73 2E   548 	.ascii "Adios."
+   02AF 00                  549 	.db 0x00
+                            550 ;main.c:321: void comprobar_que_la_letra_esta_en_la_palabra(char letra){
+                            551 ;	---------------------------------
+                            552 ; Function comprobar_que_la_letra_esta_en_la_palabra
+                            553 ; ---------------------------------
+   02B0                     554 _comprobar_que_la_letra_esta_en_la_palabra::
+   02B0 CDr00r00      [17]  555 	call	___sdcc_enter_ix
+                            556 ;main.c:322: char encontrada=0;
+   02B3 0E 00         [ 7]  557 	ld	c, #0x00
+                            558 ;main.c:324: for (int i=0;i<obtener_tamanio_string(palabra_seleccionada);i++)
+   02B5 11 00 00      [10]  559 	ld	de, #0x0000
+   02B8                     560 00107$:
+   02B8 C5            [11]  561 	push	bc
+   02B9 D5            [11]  562 	push	de
+   02BA 21rDCr05      [10]  563 	ld	hl, #_palabra_seleccionada
+   02BD E5            [11]  564 	push	hl
+   02BE CDr8Er01      [17]  565 	call	_obtener_tamanio_string
+   02C1 F1            [10]  566 	pop	af
+   02C2 D1            [10]  567 	pop	de
+   02C3 C1            [10]  568 	pop	bc
+   02C4 7B            [ 4]  569 	ld	a, e
+   02C5 95            [ 4]  570 	sub	a, l
+   02C6 7A            [ 4]  571 	ld	a, d
+   02C7 9C            [ 4]  572 	sbc	a, h
+   02C8 E2rCDr02      [10]  573 	jp	PO, 00132$
+   02CB EE 80         [ 7]  574 	xor	a, #0x80
+   02CD                     575 00132$:
+   02CD F2rEFr02      [10]  576 	jp	P, 00103$
+                            577 ;main.c:327: if(palabra_seleccionada[i]==letra){
+   02D0 21rDCr05      [10]  578 	ld	hl, #_palabra_seleccionada
+   02D3 19            [11]  579 	add	hl, de
+   02D4 46            [ 7]  580 	ld	b, (hl)
+   02D5 DD 7E 04      [19]  581 	ld	a, 4 (ix)
+   02D8 90            [ 4]  582 	sub	a, b
+   02D9 20 11         [12]  583 	jr	NZ,00108$
+                            584 ;main.c:328: letras_acertadas++;
+   02DB 2Ar11r00      [16]  585 	ld	hl, (_letras_acertadas)
+   02DE 23            [ 6]  586 	inc	hl
+   02DF 22r11r00      [16]  587 	ld	(_letras_acertadas), hl
+                            588 ;main.c:329: palabra_sin_resolver[i]=letra;
+   02E2 21r02r00      [10]  589 	ld	hl, #_palabra_sin_resolver
+   02E5 19            [11]  590 	add	hl, de
+   02E6 DD 7E 04      [19]  591 	ld	a, 4 (ix)
+   02E9 77            [ 7]  592 	ld	(hl), a
+                            593 ;main.c:330: encontrada=1;
+   02EA 0E 01         [ 7]  594 	ld	c, #0x01
+   02EC                     595 00108$:
+                            596 ;main.c:324: for (int i=0;i<obtener_tamanio_string(palabra_seleccionada);i++)
+   02EC 13            [ 6]  597 	inc	de
+   02ED 18 C9         [12]  598 	jr	00107$
+   02EF                     599 00103$:
+                            600 ;main.c:333: if(encontrada==0){
+   02EF 79            [ 4]  601 	ld	a, c
+   02F0 B7            [ 4]  602 	or	a, a
+   02F1 20 07         [12]  603 	jr	NZ,00109$
+                            604 ;main.c:334: vidas -=1;
+   02F3 2Ar13r00      [16]  605 	ld	hl, (_vidas)
+   02F6 2B            [ 6]  606 	dec	hl
+   02F7 22r13r00      [16]  607 	ld	(_vidas), hl
+   02FA                     608 00109$:
+                            609 ;main.c:336: }
+   02FA DD E1         [14]  610 	pop	ix
+   02FC C9            [10]  611 	ret
+                            612 ;main.c:343: void mostrar_palabra_sin_resolver(){
+                            613 ;	---------------------------------
+                            614 ; Function mostrar_palabra_sin_resolver
+                            615 ; ---------------------------------
+   02FD                     616 _mostrar_palabra_sin_resolver::
+   02FD CDr00r00      [17]  617 	call	___sdcc_enter_ix
+   0300 F5            [11]  618 	push	af
+                            619 ;main.c:345: for (int i=0;i<numero_letras_palabra_seleccionada;i++){
+   0301 01r02r00      [10]  620 	ld	bc, #_palabra_sin_resolver+0
+   0304 11 02 00      [10]  621 	ld	de, #0x0002
+   0307 21 00 00      [10]  622 	ld	hl, #0x0000
+   030A E3            [19]  623 	ex	(sp), hl
+   030B                     624 00103$:
+   030B 21r00r00      [10]  625 	ld	hl, #_numero_letras_palabra_seleccionada
+   030E DD 7E FE      [19]  626 	ld	a, -2 (ix)
+   0311 96            [ 7]  627 	sub	a, (hl)
+   0312 DD 7E FF      [19]  628 	ld	a, -1 (ix)
+   0315 23            [ 6]  629 	inc	hl
+   0316 9E            [ 7]  630 	sbc	a, (hl)
+   0317 E2r1Cr03      [10]  631 	jp	PO, 00118$
+   031A EE 80         [ 7]  632 	xor	a, #0x80
+   031C                     633 00118$:
+   031C F2r60r03      [10]  634 	jp	P, 00101$
+                            635 ;main.c:346: posicionar_cursor_en_pantalla(posicionX,12);
+   031F C5            [11]  636 	push	bc
+   0320 D5            [11]  637 	push	de
+   0321 21 0C 00      [10]  638 	ld	hl, #0x000c
+   0324 E5            [11]  639 	push	hl
+   0325 D5            [11]  640 	push	de
+   0326 CDr77r03      [17]  641 	call	_posicionar_cursor_en_pantalla
+   0329 F1            [10]  642 	pop	af
+   032A F1            [10]  643 	pop	af
+   032B D1            [10]  644 	pop	de
+   032C C1            [10]  645 	pop	bc
+                            646 ;main.c:347: printf("%c ", palabra_sin_resolver[i]);
+   032D E1            [10]  647 	pop	hl
+   032E E5            [11]  648 	push	hl
+   032F 09            [11]  649 	add	hl, bc
+   0330 6E            [ 7]  650 	ld	l, (hl)
+   0331 26 00         [ 7]  651 	ld	h, #0x00
+   0333 C5            [11]  652 	push	bc
+   0334 D5            [11]  653 	push	de
+   0335 E5            [11]  654 	push	hl
+   0336 21r70r03      [10]  655 	ld	hl, #___str_7
+   0339 E5            [11]  656 	push	hl
+   033A CDr00r00      [17]  657 	call	_printf
+   033D F1            [10]  658 	pop	af
+   033E F1            [10]  659 	pop	af
+   033F D1            [10]  660 	pop	de
+   0340 D5            [11]  661 	push	de
+   0341 21 0D 00      [10]  662 	ld	hl, #0x000d
+   0344 E5            [11]  663 	push	hl
+   0345 D5            [11]  664 	push	de
+   0346 CDr77r03      [17]  665 	call	_posicionar_cursor_en_pantalla
+   0349 F1            [10]  666 	pop	af
+   034A 21r74r03      [10]  667 	ld	hl, #___str_8
+   034D E3            [19]  668 	ex	(sp),hl
+   034E CDr00r00      [17]  669 	call	_printf
+   0351 F1            [10]  670 	pop	af
+   0352 D1            [10]  671 	pop	de
+   0353 C1            [10]  672 	pop	bc
+                            673 ;main.c:350: posicionX+=2;
+   0354 13            [ 6]  674 	inc	de
+   0355 13            [ 6]  675 	inc	de
+                            676 ;main.c:345: for (int i=0;i<numero_letras_palabra_seleccionada;i++){
+   0356 DD 34 FE      [23]  677 	inc	-2 (ix)
+   0359 20 B0         [12]  678 	jr	NZ,00103$
+   035B DD 34 FF      [23]  679 	inc	-1 (ix)
+   035E 18 AB         [12]  680 	jr	00103$
+   0360                     681 00101$:
+                            682 ;main.c:352: posicionar_cursor_en_pantalla(0,0);
+   0360 21 00 00      [10]  683 	ld	hl, #0x0000
+   0363 E5            [11]  684 	push	hl
+   0364 2E 00         [ 7]  685 	ld	l, #0x00
+   0366 E5            [11]  686 	push	hl
+   0367 CDr77r03      [17]  687 	call	_posicionar_cursor_en_pantalla
+   036A F1            [10]  688 	pop	af
+   036B F1            [10]  689 	pop	af
+                            690 ;main.c:353: }
+   036C F1            [10]  691 	pop	af
+   036D DD E1         [14]  692 	pop	ix
+   036F C9            [10]  693 	ret
+   0370                     694 ___str_7:
+   0370 25 63 20            695 	.ascii "%c "
+   0373 00                  696 	.db 0x00
+   0374                     697 ___str_8:
+   0374 5F 20               698 	.ascii "_ "
+   0376 00                  699 	.db 0x00
+                            700 ;main.c:363: void posicionar_cursor_en_pantalla(int x, int y){
+                            701 ;	---------------------------------
+                            702 ; Function posicionar_cursor_en_pantalla
+                            703 ; ---------------------------------
+   0377                     704 _posicionar_cursor_en_pantalla::
+                            705 ;main.c:365: Locate(x,y);
+   0377 21 04 00      [10]  706 	ld	hl, #4+0
+   037A 39            [11]  707 	add	hl, sp
+   037B 46            [ 7]  708 	ld	b, (hl)
+   037C 21 02 00      [10]  709 	ld	hl, #2+0
+   037F 39            [11]  710 	add	hl, sp
+   0380 7E            [ 7]  711 	ld	a, (hl)
+   0381 C5            [11]  712 	push	bc
+   0382 33            [ 6]  713 	inc	sp
+   0383 F5            [11]  714 	push	af
+   0384 33            [ 6]  715 	inc	sp
+   0385 CDr00r00      [17]  716 	call	_Locate
+   0388 F1            [10]  717 	pop	af
+                            718 ;main.c:380: }
+   0389 C9            [10]  719 	ret
+                            720 ;main.c:397: void mostrar_ahorcado_con_las_vidas(){
+                            721 ;	---------------------------------
+                            722 ; Function mostrar_ahorcado_con_las_vidas
+                            723 ; ---------------------------------
+   038A                     724 _mostrar_ahorcado_con_las_vidas::
+                            725 ;main.c:402: posicionar_cursor_en_pantalla(23,5);
+   038A 21 05 00      [10]  726 	ld	hl, #0x0005
+   038D E5            [11]  727 	push	hl
+   038E 2E 17         [ 7]  728 	ld	l, #0x17
+   0390 E5            [11]  729 	push	hl
+   0391 CDr77r03      [17]  730 	call	_posicionar_cursor_en_pantalla
+   0394 F1            [10]  731 	pop	af
+   0395 F1            [10]  732 	pop	af
+                            733 ;main.c:403: printf("Vidas: %i",vidas);
+   0396 2Ar13r00      [16]  734 	ld	hl, (_vidas)
+   0399 E5            [11]  735 	push	hl
+   039A 21r83r05      [10]  736 	ld	hl, #___str_9
+   039D E5            [11]  737 	push	hl
+   039E CDr00r00      [17]  738 	call	_printf
+   03A1 F1            [10]  739 	pop	af
+   03A2 F1            [10]  740 	pop	af
+                            741 ;main.c:406: posicionar_cursor_en_pantalla(12,16);
+   03A3 21 10 00      [10]  742 	ld	hl, #0x0010
+   03A6 E5            [11]  743 	push	hl
+   03A7 2E 0C         [ 7]  744 	ld	l, #0x0c
+   03A9 E5            [11]  745 	push	hl
+   03AA CDr77r03      [17]  746 	call	_posicionar_cursor_en_pantalla
+   03AD F1            [10]  747 	pop	af
+                            748 ;main.c:407: printf("Acertadas: %i, quedan: %i",letras_acertadas, obtener_tamanio_string(palabra_seleccionada)-letras_acertadas);
+   03AE 21rDCr05      [10]  749 	ld	hl, #_palabra_seleccionada
+   03B1 E3            [19]  750 	ex	(sp),hl
+   03B2 CDr8Er01      [17]  751 	call	_obtener_tamanio_string
+   03B5 F1            [10]  752 	pop	af
+   03B6 4D            [ 4]  753 	ld	c, l
+   03B7 44            [ 4]  754 	ld	b, h
+   03B8 21r11r00      [10]  755 	ld	hl, #_letras_acertadas
+   03BB 79            [ 4]  756 	ld	a, c
+   03BC 96            [ 7]  757 	sub	a, (hl)
+   03BD 4F            [ 4]  758 	ld	c, a
+   03BE 78            [ 4]  759 	ld	a, b
+   03BF 23            [ 6]  760 	inc	hl
+   03C0 9E            [ 7]  761 	sbc	a, (hl)
+   03C1 47            [ 4]  762 	ld	b, a
+   03C2 C5            [11]  763 	push	bc
+   03C3 2Ar11r00      [16]  764 	ld	hl, (_letras_acertadas)
+   03C6 E5            [11]  765 	push	hl
+   03C7 21r8Dr05      [10]  766 	ld	hl, #___str_10
+   03CA E5            [11]  767 	push	hl
+   03CB CDr00r00      [17]  768 	call	_printf
+   03CE F1            [10]  769 	pop	af
+   03CF F1            [10]  770 	pop	af
+   03D0 F1            [10]  771 	pop	af
+                            772 ;main.c:410: posicionar_cursor_en_pantalla(27,15);
+   03D1 21 0F 00      [10]  773 	ld	hl, #0x000f
+   03D4 E5            [11]  774 	push	hl
+   03D5 2E 1B         [ 7]  775 	ld	l, #0x1b
+   03D7 E5            [11]  776 	push	hl
+   03D8 CDr77r03      [17]  777 	call	_posicionar_cursor_en_pantalla
+   03DB F1            [10]  778 	pop	af
+                            779 ;main.c:411: imprimirCharacter(223);
+   03DC 26 DF         [ 7]  780 	ld	h,#0xdf
+   03DE E3            [19]  781 	ex	(sp),hl
+   03DF 33            [ 6]  782 	inc	sp
+   03E0 CDrDBr05      [17]  783 	call	_imprimirCharacter
+   03E3 33            [ 6]  784 	inc	sp
+                            785 ;main.c:412: posicionar_cursor_en_pantalla(28,15);
+   03E4 21 0F 00      [10]  786 	ld	hl, #0x000f
+   03E7 E5            [11]  787 	push	hl
+   03E8 2E 1C         [ 7]  788 	ld	l, #0x1c
+   03EA E5            [11]  789 	push	hl
+   03EB CDr77r03      [17]  790 	call	_posicionar_cursor_en_pantalla
+   03EE F1            [10]  791 	pop	af
+                            792 ;main.c:413: imprimirCharacter(223);
+   03EF 26 DF         [ 7]  793 	ld	h,#0xdf
+   03F1 E3            [19]  794 	ex	(sp),hl
+   03F2 33            [ 6]  795 	inc	sp
+   03F3 CDrDBr05      [17]  796 	call	_imprimirCharacter
+   03F6 33            [ 6]  797 	inc	sp
+                            798 ;main.c:414: posicionar_cursor_en_pantalla(29,15);
+   03F7 21 0F 00      [10]  799 	ld	hl, #0x000f
+   03FA E5            [11]  800 	push	hl
+   03FB 2E 1D         [ 7]  801 	ld	l, #0x1d
+   03FD E5            [11]  802 	push	hl
+   03FE CDr77r03      [17]  803 	call	_posicionar_cursor_en_pantalla
+   0401 F1            [10]  804 	pop	af
+                            805 ;main.c:415: imprimirCharacter(223);
+   0402 26 DF         [ 7]  806 	ld	h,#0xdf
+   0404 E3            [19]  807 	ex	(sp),hl
+   0405 33            [ 6]  808 	inc	sp
+   0406 CDrDBr05      [17]  809 	call	_imprimirCharacter
+   0409 33            [ 6]  810 	inc	sp
+                            811 ;main.c:416: posicionar_cursor_en_pantalla(30,15);
+   040A 21 0F 00      [10]  812 	ld	hl, #0x000f
+   040D E5            [11]  813 	push	hl
+   040E 2E 1E         [ 7]  814 	ld	l, #0x1e
+   0410 E5            [11]  815 	push	hl
+   0411 CDr77r03      [17]  816 	call	_posicionar_cursor_en_pantalla
+   0414 F1            [10]  817 	pop	af
+                            818 ;main.c:417: imprimirCharacter(223);
+   0415 26 DF         [ 7]  819 	ld	h,#0xdf
+   0417 E3            [19]  820 	ex	(sp),hl
+   0418 33            [ 6]  821 	inc	sp
+   0419 CDrDBr05      [17]  822 	call	_imprimirCharacter
+   041C 33            [ 6]  823 	inc	sp
+                            824 ;main.c:418: posicionar_cursor_en_pantalla(31,15);
+   041D 21 0F 00      [10]  825 	ld	hl, #0x000f
+   0420 E5            [11]  826 	push	hl
+   0421 2E 1F         [ 7]  827 	ld	l, #0x1f
+   0423 E5            [11]  828 	push	hl
+   0424 CDr77r03      [17]  829 	call	_posicionar_cursor_en_pantalla
+   0427 F1            [10]  830 	pop	af
+                            831 ;main.c:419: imprimirCharacter(223);
+   0428 26 DF         [ 7]  832 	ld	h,#0xdf
+   042A E3            [19]  833 	ex	(sp),hl
+   042B 33            [ 6]  834 	inc	sp
+   042C CDrDBr05      [17]  835 	call	_imprimirCharacter
+   042F 33            [ 6]  836 	inc	sp
+                            837 ;main.c:423: for (posicionPoste; posicionPoste>7;posicionPoste--){
+   0430 01 0E 00      [10]  838 	ld	bc, #0x000e
+   0433                     839 00116$:
+   0433 3E 07         [ 7]  840 	ld	a, #0x07
+   0435 B9            [ 4]  841 	cp	a, c
+   0436 3E 00         [ 7]  842 	ld	a, #0x00
+   0438 98            [ 4]  843 	sbc	a, b
+   0439 E2r3Er04      [10]  844 	jp	PO, 00175$
+   043C EE 80         [ 7]  845 	xor	a, #0x80
+   043E                     846 00175$:
+   043E F2r57r04      [10]  847 	jp	P, 00126$
+                            848 ;main.c:424: posicionar_cursor_en_pantalla(29,posicionPoste);
+   0441 C5            [11]  849 	push	bc
+   0442 C5            [11]  850 	push	bc
+   0443 21 1D 00      [10]  851 	ld	hl, #0x001d
+   0446 E5            [11]  852 	push	hl
+   0447 CDr77r03      [17]  853 	call	_posicionar_cursor_en_pantalla
+   044A F1            [10]  854 	pop	af
+   044B 26 DD         [ 7]  855 	ld	h,#0xdd
+   044D E3            [19]  856 	ex	(sp),hl
+   044E 33            [ 6]  857 	inc	sp
+   044F CDrDBr05      [17]  858 	call	_imprimirCharacter
+   0452 33            [ 6]  859 	inc	sp
+   0453 C1            [10]  860 	pop	bc
+                            861 ;main.c:423: for (posicionPoste; posicionPoste>7;posicionPoste--){
+   0454 0B            [ 6]  862 	dec	bc
+   0455 18 DC         [12]  863 	jr	00116$
+                            864 ;main.c:428: for (posicionPosteArriba;posicionPosteArriba>23;posicionPosteArriba--){
+   0457                     865 00126$:
+   0457 01 1D 00      [10]  866 	ld	bc, #0x001d
+   045A                     867 00119$:
+   045A 3E 17         [ 7]  868 	ld	a, #0x17
+   045C B9            [ 4]  869 	cp	a, c
+   045D 3E 00         [ 7]  870 	ld	a, #0x00
+   045F 98            [ 4]  871 	sbc	a, b
+   0460 E2r65r04      [10]  872 	jp	PO, 00176$
+   0463 EE 80         [ 7]  873 	xor	a, #0x80
+   0465                     874 00176$:
+   0465 F2r7Er04      [10]  875 	jp	P, 00102$
+                            876 ;main.c:429: posicionar_cursor_en_pantalla(posicionPosteArriba,7);
+   0468 C5            [11]  877 	push	bc
+   0469 21 07 00      [10]  878 	ld	hl, #0x0007
+   046C E5            [11]  879 	push	hl
+   046D C5            [11]  880 	push	bc
+   046E CDr77r03      [17]  881 	call	_posicionar_cursor_en_pantalla
+   0471 F1            [10]  882 	pop	af
+   0472 26 DD         [ 7]  883 	ld	h,#0xdd
+   0474 E3            [19]  884 	ex	(sp),hl
+   0475 33            [ 6]  885 	inc	sp
+   0476 CDrDBr05      [17]  886 	call	_imprimirCharacter
+   0479 33            [ 6]  887 	inc	sp
+   047A C1            [10]  888 	pop	bc
+                            889 ;main.c:428: for (posicionPosteArriba;posicionPosteArriba>23;posicionPosteArriba--){
+   047B 0B            [ 6]  890 	dec	bc
+   047C 18 DC         [12]  891 	jr	00119$
+   047E                     892 00102$:
+                            893 ;main.c:433: posicionar_cursor_en_pantalla(25,7);
+   047E 21 07 00      [10]  894 	ld	hl, #0x0007
+   0481 E5            [11]  895 	push	hl
+   0482 2E 19         [ 7]  896 	ld	l, #0x19
+   0484 E5            [11]  897 	push	hl
+   0485 CDr77r03      [17]  898 	call	_posicionar_cursor_en_pantalla
+   0488 F1            [10]  899 	pop	af
+                            900 ;main.c:434: imprimirCharacter(221);
+   0489 26 DD         [ 7]  901 	ld	h,#0xdd
+   048B E3            [19]  902 	ex	(sp),hl
+   048C 33            [ 6]  903 	inc	sp
+   048D CDrDBr05      [17]  904 	call	_imprimirCharacter
+   0490 33            [ 6]  905 	inc	sp
+                            906 ;main.c:435: posicionar_cursor_en_pantalla(25,8);
+   0491 21 08 00      [10]  907 	ld	hl, #0x0008
+   0494 E5            [11]  908 	push	hl
+   0495 2E 19         [ 7]  909 	ld	l, #0x19
+   0497 E5            [11]  910 	push	hl
+   0498 CDr77r03      [17]  911 	call	_posicionar_cursor_en_pantalla
+   049B F1            [10]  912 	pop	af
+                            913 ;main.c:436: imprimirCharacter(221);
+   049C 26 DD         [ 7]  914 	ld	h,#0xdd
+   049E E3            [19]  915 	ex	(sp),hl
+   049F 33            [ 6]  916 	inc	sp
+   04A0 CDrDBr05      [17]  917 	call	_imprimirCharacter
+   04A3 33            [ 6]  918 	inc	sp
+                            919 ;main.c:437: if(vidas<6){
+   04A4 FD 21r13r00   [14]  920 	ld	iy, #_vidas
+   04A8 FD 7E 00      [19]  921 	ld	a, 0 (iy)
+   04AB D6 06         [ 7]  922 	sub	a, #0x06
+   04AD FD 7E 01      [19]  923 	ld	a, 1 (iy)
+   04B0 17            [ 4]  924 	rla
+   04B1 3F            [ 4]  925 	ccf
+   04B2 1F            [ 4]  926 	rra
+   04B3 DE 80         [ 7]  927 	sbc	a, #0x80
+   04B5 D0            [11]  928 	ret	NC
+                            929 ;main.c:439: posicionar_cursor_en_pantalla(25,9);
+   04B6 21 09 00      [10]  930 	ld	hl, #0x0009
+   04B9 E5            [11]  931 	push	hl
+   04BA 2E 19         [ 7]  932 	ld	l, #0x19
+   04BC E5            [11]  933 	push	hl
+   04BD CDr77r03      [17]  934 	call	_posicionar_cursor_en_pantalla
+   04C0 F1            [10]  935 	pop	af
+                            936 ;main.c:440: imprimirCharacter(0x99);
+   04C1 26 99         [ 7]  937 	ld	h,#0x99
+   04C3 E3            [19]  938 	ex	(sp),hl
+   04C4 33            [ 6]  939 	inc	sp
+   04C5 CDrDBr05      [17]  940 	call	_imprimirCharacter
+   04C8 33            [ 6]  941 	inc	sp
+                            942 ;main.c:441: if(vidas<5){
+   04C9 FD 21r13r00   [14]  943 	ld	iy, #_vidas
+   04CD FD 7E 00      [19]  944 	ld	a, 0 (iy)
+   04D0 D6 05         [ 7]  945 	sub	a, #0x05
+   04D2 FD 7E 01      [19]  946 	ld	a, 1 (iy)
+   04D5 17            [ 4]  947 	rla
+   04D6 3F            [ 4]  948 	ccf
+   04D7 1F            [ 4]  949 	rra
+   04D8 DE 80         [ 7]  950 	sbc	a, #0x80
+   04DA D0            [11]  951 	ret	NC
+                            952 ;main.c:443: posicionar_cursor_en_pantalla(25,10);
+   04DB 21 0A 00      [10]  953 	ld	hl, #0x000a
+   04DE E5            [11]  954 	push	hl
+   04DF 2E 19         [ 7]  955 	ld	l, #0x19
+   04E1 E5            [11]  956 	push	hl
+   04E2 CDr77r03      [17]  957 	call	_posicionar_cursor_en_pantalla
+   04E5 F1            [10]  958 	pop	af
+                            959 ;main.c:444: imprimirCharacter(0xdb);
+   04E6 26 DB         [ 7]  960 	ld	h,#0xdb
+   04E8 E3            [19]  961 	ex	(sp),hl
+   04E9 33            [ 6]  962 	inc	sp
+   04EA CDrDBr05      [17]  963 	call	_imprimirCharacter
+   04ED 33            [ 6]  964 	inc	sp
+                            965 ;main.c:445: if(vidas<4){
+   04EE FD 21r13r00   [14]  966 	ld	iy, #_vidas
+   04F2 FD 7E 00      [19]  967 	ld	a, 0 (iy)
+   04F5 D6 04         [ 7]  968 	sub	a, #0x04
+   04F7 FD 7E 01      [19]  969 	ld	a, 1 (iy)
+   04FA 17            [ 4]  970 	rla
+   04FB 3F            [ 4]  971 	ccf
+   04FC 1F            [ 4]  972 	rra
+   04FD DE 80         [ 7]  973 	sbc	a, #0x80
+   04FF D0            [11]  974 	ret	NC
+                            975 ;main.c:447: posicionar_cursor_en_pantalla(24,10);
+   0500 21 0A 00      [10]  976 	ld	hl, #0x000a
+   0503 E5            [11]  977 	push	hl
+   0504 2E 18         [ 7]  978 	ld	l, #0x18
+   0506 E5            [11]  979 	push	hl
+   0507 CDr77r03      [17]  980 	call	_posicionar_cursor_en_pantalla
+   050A F1            [10]  981 	pop	af
+                            982 ;main.c:448: imprimirCharacter(0xa9);
+   050B 26 A9         [ 7]  983 	ld	h,#0xa9
+   050D E3            [19]  984 	ex	(sp),hl
+   050E 33            [ 6]  985 	inc	sp
+   050F CDrDBr05      [17]  986 	call	_imprimirCharacter
+   0512 33            [ 6]  987 	inc	sp
+                            988 ;main.c:449: if(vidas<3){
+   0513 FD 21r13r00   [14]  989 	ld	iy, #_vidas
+   0517 FD 7E 00      [19]  990 	ld	a, 0 (iy)
+   051A D6 03         [ 7]  991 	sub	a, #0x03
+   051C FD 7E 01      [19]  992 	ld	a, 1 (iy)
+   051F 17            [ 4]  993 	rla
+   0520 3F            [ 4]  994 	ccf
+   0521 1F            [ 4]  995 	rra
+   0522 DE 80         [ 7]  996 	sbc	a, #0x80
+   0524 D0            [11]  997 	ret	NC
+                            998 ;main.c:451: posicionar_cursor_en_pantalla(26,10);
+   0525 21 0A 00      [10]  999 	ld	hl, #0x000a
+   0528 E5            [11] 1000 	push	hl
+   0529 2E 1A         [ 7] 1001 	ld	l, #0x1a
+   052B E5            [11] 1002 	push	hl
+   052C CDr77r03      [17] 1003 	call	_posicionar_cursor_en_pantalla
+   052F F1            [10] 1004 	pop	af
+                           1005 ;main.c:452: imprimirCharacter(0xaa);
+   0530 26 AA         [ 7] 1006 	ld	h,#0xaa
+   0532 E3            [19] 1007 	ex	(sp),hl
+   0533 33            [ 6] 1008 	inc	sp
+   0534 CDrDBr05      [17] 1009 	call	_imprimirCharacter
+   0537 33            [ 6] 1010 	inc	sp
+                           1011 ;main.c:453: if(vidas<2){
+   0538 FD 21r13r00   [14] 1012 	ld	iy, #_vidas
+   053C FD 7E 00      [19] 1013 	ld	a, 0 (iy)
+   053F D6 02         [ 7] 1014 	sub	a, #0x02
+   0541 FD 7E 01      [19] 1015 	ld	a, 1 (iy)
+   0544 17            [ 4] 1016 	rla
+   0545 3F            [ 4] 1017 	ccf
+   0546 1F            [ 4] 1018 	rra
+   0547 DE 80         [ 7] 1019 	sbc	a, #0x80
+   0549 D0            [11] 1020 	ret	NC
+                           1021 ;main.c:455: posicionar_cursor_en_pantalla(25,11);
+   054A 21 0B 00      [10] 1022 	ld	hl, #0x000b
+   054D E5            [11] 1023 	push	hl
+   054E 2E 19         [ 7] 1024 	ld	l, #0x19
+   0550 E5            [11] 1025 	push	hl
+   0551 CDr77r03      [17] 1026 	call	_posicionar_cursor_en_pantalla
+   0554 F1            [10] 1027 	pop	af
+                           1028 ;main.c:456: imprimirCharacter(0xc6);
+   0555 26 C6         [ 7] 1029 	ld	h,#0xc6
+   0557 E3            [19] 1030 	ex	(sp),hl
+   0558 33            [ 6] 1031 	inc	sp
+   0559 CDrDBr05      [17] 1032 	call	_imprimirCharacter
+   055C 33            [ 6] 1033 	inc	sp
+                           1034 ;main.c:458: if(vidas<1){
+   055D FD 21r13r00   [14] 1035 	ld	iy, #_vidas
+   0561 FD 7E 00      [19] 1036 	ld	a, 0 (iy)
+   0564 D6 01         [ 7] 1037 	sub	a, #0x01
+   0566 FD 7E 01      [19] 1038 	ld	a, 1 (iy)
+   0569 17            [ 4] 1039 	rla
+   056A 3F            [ 4] 1040 	ccf
+   056B 1F            [ 4] 1041 	rra
+   056C DE 80         [ 7] 1042 	sbc	a, #0x80
+   056E D0            [11] 1043 	ret	NC
+                           1044 ;main.c:459: posicionar_cursor_en_pantalla(26,11);
+   056F 21 0B 00      [10] 1045 	ld	hl, #0x000b
+   0572 E5            [11] 1046 	push	hl
+   0573 2E 1A         [ 7] 1047 	ld	l, #0x1a
+   0575 E5            [11] 1048 	push	hl
+   0576 CDr77r03      [17] 1049 	call	_posicionar_cursor_en_pantalla
+   0579 F1            [10] 1050 	pop	af
+                           1051 ;main.c:460: imprimirCharacter(0xc6);
+   057A 26 C6         [ 7] 1052 	ld	h,#0xc6
+   057C E3            [19] 1053 	ex	(sp),hl
+   057D 33            [ 6] 1054 	inc	sp
+   057E CDrDBr05      [17] 1055 	call	_imprimirCharacter
+   0581 33            [ 6] 1056 	inc	sp
+                           1057 ;main.c:469: }
+   0582 C9            [10] 1058 	ret
+   0583                    1059 ___str_9:
+   0583 56 69 64 61 73 3A  1060 	.ascii "Vidas: %i"
+        20 25 69
+   058C 00                 1061 	.db 0x00
+   058D                    1062 ___str_10:
+   058D 41 63 65 72 74 61  1063 	.ascii "Acertadas: %i, quedan: %i"
+        64 61 73 3A 20 25
+        69 2C 20 71 75 65
+        64 61 6E 3A 20 25
+        69
+   05A6 00                 1064 	.db 0x00
+                           1065 ;main.c:473: void mostrar_palabra_seleccionada(){
+                           1066 ;	---------------------------------
+                           1067 ; Function mostrar_palabra_seleccionada
+                           1068 ; ---------------------------------
+   05A7                    1069 _mostrar_palabra_seleccionada::
+                           1070 ;main.c:474: posicionar_cursor_en_pantalla(10,20);
+   05A7 21 14 00      [10] 1071 	ld	hl, #0x0014
+   05AA E5            [11] 1072 	push	hl
+   05AB 2E 0A         [ 7] 1073 	ld	l, #0x0a
+   05AD E5            [11] 1074 	push	hl
+   05AE CDr77r03      [17] 1075 	call	_posicionar_cursor_en_pantalla
+   05B1 F1            [10] 1076 	pop	af
+                           1077 ;main.c:475: printf("Palabra: %s",palabra_seleccionada);
+   05B2 21rDCr05      [10] 1078 	ld	hl, #_palabra_seleccionada
+   05B5 E3            [19] 1079 	ex	(sp),hl
+   05B6 21rCCr05      [10] 1080 	ld	hl, #___str_11
+   05B9 E5            [11] 1081 	push	hl
+   05BA CDr00r00      [17] 1082 	call	_printf
+   05BD F1            [10] 1083 	pop	af
+   05BE F1            [10] 1084 	pop	af
+                           1085 ;main.c:476: posicionar_cursor_en_pantalla(0,0);
+   05BF 21 00 00      [10] 1086 	ld	hl, #0x0000
+   05C2 E5            [11] 1087 	push	hl
+   05C3 2E 00         [ 7] 1088 	ld	l, #0x00
+   05C5 E5            [11] 1089 	push	hl
+   05C6 CDr77r03      [17] 1090 	call	_posicionar_cursor_en_pantalla
+   05C9 F1            [10] 1091 	pop	af
+   05CA F1            [10] 1092 	pop	af
+                           1093 ;main.c:477: }
+   05CB C9            [10] 1094 	ret
+   05CC                    1095 ___str_11:
+   05CC 50 61 6C 61 62 72  1096 	.ascii "Palabra: %s"
+        61 3A 20 25 73
+   05D7 00                 1097 	.db 0x00
+                           1098 ;main.c:485: void borrar_pantalla(){
+                           1099 ;	---------------------------------
+                           1100 ; Function borrar_pantalla
+                           1101 ; ---------------------------------
+   05D8                    1102 _borrar_pantalla::
+                           1103 ;main.c:487: Cls();
+                           1104 ;main.c:497: }
+   05D8 C3r00r00      [10] 1105 	jp  _Cls
+                           1106 ;main.c:498: void imprimirCharacter(char caracter){
+                           1107 ;	---------------------------------
+                           1108 ; Function imprimirCharacter
+                           1109 ; ---------------------------------
+   05DB                    1110 _imprimirCharacter::
+                           1111 ;main.c:501: PrintChar(caracter);
+   05DB 21 02 00      [10] 1112 	ld	hl, #2+0
+   05DE 39            [11] 1113 	add	hl, sp
+   05DF 7E            [ 7] 1114 	ld	a, (hl)
+   05E0 F5            [11] 1115 	push	af
+   05E1 33            [ 6] 1116 	inc	sp
+   05E2 CDr00r00      [17] 1117 	call	_PrintChar
+   05E5 33            [ 6] 1118 	inc	sp
+                           1119 ;main.c:507: }
+   05E6 C9            [10] 1120 	ret
+                           1121 ;main.c:511: void terminar_programa(){
+                           1122 ;	---------------------------------
+                           1123 ; Function terminar_programa
+                           1124 ; ---------------------------------
+   05E7                    1125 _terminar_programa::
+                           1126 ;main.c:516: __endasm; 
+   05E7 0E 00         [ 7] 1127 	ld	c,#0x0
+   05E9 CD 05 00      [17] 1128 	call	#0x0005
+                           1129 ;main.c:521: }
+   05EC C9            [10] 1130 	ret
+                           1131 ;main.c:523: void menu(){
+                           1132 ;	---------------------------------
+                           1133 ; Function menu
+                           1134 ; ---------------------------------
+   05ED                    1135 _menu::
+                           1136 ;main.c:524: printf("Bienvenido a ahorcado hecho en C para MSX");
+   05ED 21rFDr05      [10] 1137 	ld	hl, #___str_12
+   05F0 E5            [11] 1138 	push	hl
+   05F1 CDr00r00      [17] 1139 	call	_printf
+                           1140 ;main.c:525: printf("\nPulse una tecla para jugar.\n");
+   05F4 21r27r06      [10] 1141 	ld	hl, #___str_14
+   05F7 E3            [19] 1142 	ex	(sp),hl
+   05F8 CDr00r00      [17] 1143 	call	_puts
+   05FB F1            [10] 1144 	pop	af
+                           1145 ;main.c:556: }
+   05FC C9            [10] 1146 	ret
+   05FD                    1147 ___str_12:
+   05FD 42 69 65 6E 76 65  1148 	.ascii "Bienvenido a ahorcado hecho en C para MSX"
+        6E 69 64 6F 20 61
+        20 61 68 6F 72 63
+        61 64 6F 20 68 65
+        63 68 6F 20 65 6E
+        20 43 20 70 61 72
+        61 20 4D 53 58
+   0626 00                 1149 	.db 0x00
+   0627                    1150 ___str_14:
+   0627 0A                 1151 	.db 0x0a
+   0628 50 75 6C 73 65 20  1152 	.ascii "Pulse una tecla para jugar."
+        75 6E 61 20 74 65
+        63 6C 61 20 70 61
+        72 61 20 6A 75 67
+        61 72 2E
+   0643 00                 1153 	.db 0x00
+                           1154 	.area _CODE
+                           1155 	.area _INITIALIZER
+   0000                    1156 __xinit__arrayPalabras:
+   0000 54 4F 52 50 45 44  1157 	.ascii "TORPEDO"
+        4F
+   0007 00                 1158 	.db 0x00
+   0008 00                 1159 	.db 0x00
+   0009 00                 1160 	.db 0x00
+   000A 00                 1161 	.db 0x00
+   000B 00                 1162 	.db 0x00
+   000C 00                 1163 	.db 0x00
+   000D 00                 1164 	.db 0x00
+   000E 00                 1165 	.db 0x00
+   000F 00                 1166 	.db 0x00
+   0010 00                 1167 	.db 0x00
+   0011 00                 1168 	.db 0x00
+   0012 00                 1169 	.db 0x00
+   0013 00                 1170 	.db 0x00
+   0014 00                 1171 	.db 0x00
+   0015 00                 1172 	.db 0x00
+   0016 00                 1173 	.db 0x00
+   0017 00                 1174 	.db 0x00
+   0018 00                 1175 	.db 0x00
+   0019 00                 1176 	.db 0x00
+   001A 00                 1177 	.db 0x00
+   001B 00                 1178 	.db 0x00
+   001C 00                 1179 	.db 0x00
+   001D 00                 1180 	.db 0x00
+   001E 00                 1181 	.db 0x00
+   001F 00                 1182 	.db 0x00
+   0020 00                 1183 	.db 0x00
+   0021 00                 1184 	.db 0x00
+   0022 00                 1185 	.db 0x00
+   0023 00                 1186 	.db 0x00
+   0024 00                 1187 	.db 0x00
+   0025 00                 1188 	.db 0x00
+   0026 00                 1189 	.db 0x00
+   0027 00                 1190 	.db 0x00
+   0028 00                 1191 	.db 0x00
+   0029 00                 1192 	.db 0x00
+   002A 00                 1193 	.db 0x00
+   002B 00                 1194 	.db 0x00
+   002C 00                 1195 	.db 0x00
+   002D 00                 1196 	.db 0x00
+   002E 00                 1197 	.db 0x00
+   002F 00                 1198 	.db 0x00
+   0030 00                 1199 	.db 0x00
+   0031 00                 1200 	.db 0x00
+   0032 47 4F 4F 47 4C 45  1201 	.ascii "GOOGLE"
+   0038 00                 1202 	.db 0x00
+   0039 00                 1203 	.db 0x00
+   003A 00                 1204 	.db 0x00
+   003B 00                 1205 	.db 0x00
+   003C 00                 1206 	.db 0x00
+   003D 00                 1207 	.db 0x00
+   003E 00                 1208 	.db 0x00
+   003F 00                 1209 	.db 0x00
+   0040 00                 1210 	.db 0x00
+   0041 00                 1211 	.db 0x00
+   0042 00                 1212 	.db 0x00
+   0043 00                 1213 	.db 0x00
+   0044 00                 1214 	.db 0x00
+   0045 00                 1215 	.db 0x00
+   0046 00                 1216 	.db 0x00
+   0047 00                 1217 	.db 0x00
+   0048 00                 1218 	.db 0x00
+   0049 00                 1219 	.db 0x00
+   004A 00                 1220 	.db 0x00
+   004B 00                 1221 	.db 0x00
+   004C 00                 1222 	.db 0x00
+   004D 00                 1223 	.db 0x00
+   004E 00                 1224 	.db 0x00
+   004F 00                 1225 	.db 0x00
+   0050 00                 1226 	.db 0x00
+   0051 00                 1227 	.db 0x00
+   0052 00                 1228 	.db 0x00
+   0053 00                 1229 	.db 0x00
+   0054 00                 1230 	.db 0x00
+   0055 00                 1231 	.db 0x00
+   0056 00                 1232 	.db 0x00
+   0057 00                 1233 	.db 0x00
+   0058 00                 1234 	.db 0x00
+   0059 00                 1235 	.db 0x00
+   005A 00                 1236 	.db 0x00
+   005B 00                 1237 	.db 0x00
+   005C 00                 1238 	.db 0x00
+   005D 00                 1239 	.db 0x00
+   005E 00                 1240 	.db 0x00
+   005F 00                 1241 	.db 0x00
+   0060 00                 1242 	.db 0x00
+   0061 00                 1243 	.db 0x00
+   0062 00                 1244 	.db 0x00
+   0063 00                 1245 	.db 0x00
+   0064 53 41 4E 47 55 49  1246 	.ascii "SANGUIJUELA"
+        4A 55 45 4C 41
+   006F 00                 1247 	.db 0x00
+   0070 00                 1248 	.db 0x00
+   0071 00                 1249 	.db 0x00
+   0072 00                 1250 	.db 0x00
+   0073 00                 1251 	.db 0x00
+   0074 00                 1252 	.db 0x00
+   0075 00                 1253 	.db 0x00
+   0076 00                 1254 	.db 0x00
+   0077 00                 1255 	.db 0x00
+   0078 00                 1256 	.db 0x00
+   0079 00                 1257 	.db 0x00
+   007A 00                 1258 	.db 0x00
+   007B 00                 1259 	.db 0x00
+   007C 00                 1260 	.db 0x00
+   007D 00                 1261 	.db 0x00
+   007E 00                 1262 	.db 0x00
+   007F 00                 1263 	.db 0x00
+   0080 00                 1264 	.db 0x00
+   0081 00                 1265 	.db 0x00
+   0082 00                 1266 	.db 0x00
+   0083 00                 1267 	.db 0x00
+   0084 00                 1268 	.db 0x00
+   0085 00                 1269 	.db 0x00
+   0086 00                 1270 	.db 0x00
+   0087 00                 1271 	.db 0x00
+   0088 00                 1272 	.db 0x00
+   0089 00                 1273 	.db 0x00
+   008A 00                 1274 	.db 0x00
+   008B 00                 1275 	.db 0x00
+   008C 00                 1276 	.db 0x00
+   008D 00                 1277 	.db 0x00
+   008E 00                 1278 	.db 0x00
+   008F 00                 1279 	.db 0x00
+   0090 00                 1280 	.db 0x00
+   0091 00                 1281 	.db 0x00
+   0092 00                 1282 	.db 0x00
+   0093 00                 1283 	.db 0x00
+   0094 00                 1284 	.db 0x00
+   0095 00                 1285 	.db 0x00
+   0096 4F 4E 4F 4D 41 54  1286 	.ascii "ONOMATOPELLA"
+        4F 50 45 4C 4C 41
+   00A2 00                 1287 	.db 0x00
+   00A3 00                 1288 	.db 0x00
+   00A4 00                 1289 	.db 0x00
+   00A5 00                 1290 	.db 0x00
+   00A6 00                 1291 	.db 0x00
+   00A7 00                 1292 	.db 0x00
+   00A8 00                 1293 	.db 0x00
+   00A9 00                 1294 	.db 0x00
+   00AA 00                 1295 	.db 0x00
+   00AB 00                 1296 	.db 0x00
+   00AC 00                 1297 	.db 0x00
+   00AD 00                 1298 	.db 0x00
+   00AE 00                 1299 	.db 0x00
+   00AF 00                 1300 	.db 0x00
+   00B0 00                 1301 	.db 0x00
+   00B1 00                 1302 	.db 0x00
+   00B2 00                 1303 	.db 0x00
+   00B3 00                 1304 	.db 0x00
+   00B4 00                 1305 	.db 0x00
+   00B5 00                 1306 	.db 0x00
+   00B6 00                 1307 	.db 0x00
+   00B7 00                 1308 	.db 0x00
+   00B8 00                 1309 	.db 0x00
+   00B9 00                 1310 	.db 0x00
+   00BA 00                 1311 	.db 0x00
+   00BB 00                 1312 	.db 0x00
+   00BC 00                 1313 	.db 0x00
+   00BD 00                 1314 	.db 0x00
+   00BE 00                 1315 	.db 0x00
+   00BF 00                 1316 	.db 0x00
+   00C0 00                 1317 	.db 0x00
+   00C1 00                 1318 	.db 0x00
+   00C2 00                 1319 	.db 0x00
+   00C3 00                 1320 	.db 0x00
+   00C4 00                 1321 	.db 0x00
+   00C5 00                 1322 	.db 0x00
+   00C6 00                 1323 	.db 0x00
+   00C7 00                 1324 	.db 0x00
+   00C8 50 4F 45 54 49 53  1325 	.ascii "POETISA"
+        41
+   00CF 00                 1326 	.db 0x00
+   00D0 00                 1327 	.db 0x00
+   00D1 00                 1328 	.db 0x00
+   00D2 00                 1329 	.db 0x00
+   00D3 00                 1330 	.db 0x00
+   00D4 00                 1331 	.db 0x00
+   00D5 00                 1332 	.db 0x00
+   00D6 00                 1333 	.db 0x00
+   00D7 00                 1334 	.db 0x00
+   00D8 00                 1335 	.db 0x00
+   00D9 00                 1336 	.db 0x00
+   00DA 00                 1337 	.db 0x00
+   00DB 00                 1338 	.db 0x00
+   00DC 00                 1339 	.db 0x00
+   00DD 00                 1340 	.db 0x00
+   00DE 00                 1341 	.db 0x00
+   00DF 00                 1342 	.db 0x00
+   00E0 00                 1343 	.db 0x00
+   00E1 00                 1344 	.db 0x00
+   00E2 00                 1345 	.db 0x00
+   00E3 00                 1346 	.db 0x00
+   00E4 00                 1347 	.db 0x00
+   00E5 00                 1348 	.db 0x00
+   00E6 00                 1349 	.db 0x00
+   00E7 00                 1350 	.db 0x00
+   00E8 00                 1351 	.db 0x00
+   00E9 00                 1352 	.db 0x00
+   00EA 00                 1353 	.db 0x00
+   00EB 00                 1354 	.db 0x00
+   00EC 00                 1355 	.db 0x00
+   00ED 00                 1356 	.db 0x00
+   00EE 00                 1357 	.db 0x00
+   00EF 00                 1358 	.db 0x00
+   00F0 00                 1359 	.db 0x00
+   00F1 00                 1360 	.db 0x00
+   00F2 00                 1361 	.db 0x00
+   00F3 00                 1362 	.db 0x00
+   00F4 00                 1363 	.db 0x00
+   00F5 00                 1364 	.db 0x00
+   00F6 00                 1365 	.db 0x00
+   00F7 00                 1366 	.db 0x00
+   00F8 00                 1367 	.db 0x00
+   00F9 00                 1368 	.db 0x00
+   00FA 4F 4D 4F 50 4C 41  1369 	.ascii "OMOPLATO"
+        54 4F
+   0102 00                 1370 	.db 0x00
+   0103 00                 1371 	.db 0x00
+   0104 00                 1372 	.db 0x00
+   0105 00                 1373 	.db 0x00
+   0106 00                 1374 	.db 0x00
+   0107 00                 1375 	.db 0x00
+   0108 00                 1376 	.db 0x00
+   0109 00                 1377 	.db 0x00
+   010A 00                 1378 	.db 0x00
+   010B 00                 1379 	.db 0x00
+   010C 00                 1380 	.db 0x00
+   010D 00                 1381 	.db 0x00
+   010E 00                 1382 	.db 0x00
+   010F 00                 1383 	.db 0x00
+   0110 00                 1384 	.db 0x00
+   0111 00                 1385 	.db 0x00
+   0112 00                 1386 	.db 0x00
+   0113 00                 1387 	.db 0x00
+   0114 00                 1388 	.db 0x00
+   0115 00                 1389 	.db 0x00
+   0116 00                 1390 	.db 0x00
+   0117 00                 1391 	.db 0x00
+   0118 00                 1392 	.db 0x00
+   0119 00                 1393 	.db 0x00
+   011A 00                 1394 	.db 0x00
+   011B 00                 1395 	.db 0x00
+   011C 00                 1396 	.db 0x00
+   011D 00                 1397 	.db 0x00
+   011E 00                 1398 	.db 0x00
+   011F 00                 1399 	.db 0x00
+   0120 00                 1400 	.db 0x00
+   0121 00                 1401 	.db 0x00
+   0122 00                 1402 	.db 0x00
+   0123 00                 1403 	.db 0x00
+   0124 00                 1404 	.db 0x00
+   0125 00                 1405 	.db 0x00
+   0126 00                 1406 	.db 0x00
+   0127 00                 1407 	.db 0x00
+   0128 00                 1408 	.db 0x00
+   0129 00                 1409 	.db 0x00
+   012A 00                 1410 	.db 0x00
+   012B 00                 1411 	.db 0x00
+   012C 43 49 4E 54 55 52  1412 	.ascii "CINTURON"
+        4F 4E
+   0134 00                 1413 	.db 0x00
+   0135 00                 1414 	.db 0x00
+   0136 00                 1415 	.db 0x00
+   0137 00                 1416 	.db 0x00
+   0138 00                 1417 	.db 0x00
+   0139 00                 1418 	.db 0x00
+   013A 00                 1419 	.db 0x00
+   013B 00                 1420 	.db 0x00
+   013C 00                 1421 	.db 0x00
+   013D 00                 1422 	.db 0x00
+   013E 00                 1423 	.db 0x00
+   013F 00                 1424 	.db 0x00
+   0140 00                 1425 	.db 0x00
+   0141 00                 1426 	.db 0x00
+   0142 00                 1427 	.db 0x00
+   0143 00                 1428 	.db 0x00
+   0144 00                 1429 	.db 0x00
+   0145 00                 1430 	.db 0x00
+   0146 00                 1431 	.db 0x00
+   0147 00                 1432 	.db 0x00
+   0148 00                 1433 	.db 0x00
+   0149 00                 1434 	.db 0x00
+   014A 00                 1435 	.db 0x00
+   014B 00                 1436 	.db 0x00
+   014C 00                 1437 	.db 0x00
+   014D 00                 1438 	.db 0x00
+   014E 00                 1439 	.db 0x00
+   014F 00                 1440 	.db 0x00
+   0150 00                 1441 	.db 0x00
+   0151 00                 1442 	.db 0x00
+   0152 00                 1443 	.db 0x00
+   0153 00                 1444 	.db 0x00
+   0154 00                 1445 	.db 0x00
+   0155 00                 1446 	.db 0x00
+   0156 00                 1447 	.db 0x00
+   0157 00                 1448 	.db 0x00
+   0158 00                 1449 	.db 0x00
+   0159 00                 1450 	.db 0x00
+   015A 00                 1451 	.db 0x00
+   015B 00                 1452 	.db 0x00
+   015C 00                 1453 	.db 0x00
+   015D 00                 1454 	.db 0x00
+   015E 42 4F 43 41 44 49  1455 	.ascii "BOCADILLO"
+        4C 4C 4F
+   0167 00                 1456 	.db 0x00
+   0168 00                 1457 	.db 0x00
+   0169 00                 1458 	.db 0x00
+   016A 00                 1459 	.db 0x00
+   016B 00                 1460 	.db 0x00
+   016C 00                 1461 	.db 0x00
+   016D 00                 1462 	.db 0x00
+   016E 00                 1463 	.db 0x00
+   016F 00                 1464 	.db 0x00
+   0170 00                 1465 	.db 0x00
+   0171 00                 1466 	.db 0x00
+   0172 00                 1467 	.db 0x00
+   0173 00                 1468 	.db 0x00
+   0174 00                 1469 	.db 0x00
+   0175 00                 1470 	.db 0x00
+   0176 00                 1471 	.db 0x00
+   0177 00                 1472 	.db 0x00
+   0178 00                 1473 	.db 0x00
+   0179 00                 1474 	.db 0x00
+   017A 00                 1475 	.db 0x00
+   017B 00                 1476 	.db 0x00
+   017C 00                 1477 	.db 0x00
+   017D 00                 1478 	.db 0x00
+   017E 00                 1479 	.db 0x00
+   017F 00                 1480 	.db 0x00
+   0180 00                 1481 	.db 0x00
+   0181 00                 1482 	.db 0x00
+   0182 00                 1483 	.db 0x00
+   0183 00                 1484 	.db 0x00
+   0184 00                 1485 	.db 0x00
+   0185 00                 1486 	.db 0x00
+   0186 00                 1487 	.db 0x00
+   0187 00                 1488 	.db 0x00
+   0188 00                 1489 	.db 0x00
+   0189 00                 1490 	.db 0x00
+   018A 00                 1491 	.db 0x00
+   018B 00                 1492 	.db 0x00
+   018C 00                 1493 	.db 0x00
+   018D 00                 1494 	.db 0x00
+   018E 00                 1495 	.db 0x00
+   018F 00                 1496 	.db 0x00
+   0190 4A 41 52 41 42 45  1497 	.ascii "JARABE"
+   0196 00                 1498 	.db 0x00
+   0197 00                 1499 	.db 0x00
+   0198 00                 1500 	.db 0x00
+   0199 00                 1501 	.db 0x00
+   019A 00                 1502 	.db 0x00
+   019B 00                 1503 	.db 0x00
+   019C 00                 1504 	.db 0x00
+   019D 00                 1505 	.db 0x00
+   019E 00                 1506 	.db 0x00
+   019F 00                 1507 	.db 0x00
+   01A0 00                 1508 	.db 0x00
+   01A1 00                 1509 	.db 0x00
+   01A2 00                 1510 	.db 0x00
+   01A3 00                 1511 	.db 0x00
+   01A4 00                 1512 	.db 0x00
+   01A5 00                 1513 	.db 0x00
+   01A6 00                 1514 	.db 0x00
+   01A7 00                 1515 	.db 0x00
+   01A8 00                 1516 	.db 0x00
+   01A9 00                 1517 	.db 0x00
+   01AA 00                 1518 	.db 0x00
+   01AB 00                 1519 	.db 0x00
+   01AC 00                 1520 	.db 0x00
+   01AD 00                 1521 	.db 0x00
+   01AE 00                 1522 	.db 0x00
+   01AF 00                 1523 	.db 0x00
+   01B0 00                 1524 	.db 0x00
+   01B1 00                 1525 	.db 0x00
+   01B2 00                 1526 	.db 0x00
+   01B3 00                 1527 	.db 0x00
+   01B4 00                 1528 	.db 0x00
+   01B5 00                 1529 	.db 0x00
+   01B6 00                 1530 	.db 0x00
+   01B7 00                 1531 	.db 0x00
+   01B8 00                 1532 	.db 0x00
+   01B9 00                 1533 	.db 0x00
+   01BA 00                 1534 	.db 0x00
+   01BB 00                 1535 	.db 0x00
+   01BC 00                 1536 	.db 0x00
+   01BD 00                 1537 	.db 0x00
+   01BE 00                 1538 	.db 0x00
+   01BF 00                 1539 	.db 0x00
+   01C0 00                 1540 	.db 0x00
+   01C1 00                 1541 	.db 0x00
+   01C2 43 4F 43 48 45     1542 	.ascii "COCHE"
+   01C7 00                 1543 	.db 0x00
+   01C8 00                 1544 	.db 0x00
+   01C9 00                 1545 	.db 0x00
+   01CA 00                 1546 	.db 0x00
+   01CB 00                 1547 	.db 0x00
+   01CC 00                 1548 	.db 0x00
+   01CD 00                 1549 	.db 0x00
+   01CE 00                 1550 	.db 0x00
+   01CF 00                 1551 	.db 0x00
+   01D0 00                 1552 	.db 0x00
+   01D1 00                 1553 	.db 0x00
+   01D2 00                 1554 	.db 0x00
+   01D3 00                 1555 	.db 0x00
+   01D4 00                 1556 	.db 0x00
+   01D5 00                 1557 	.db 0x00
+   01D6 00                 1558 	.db 0x00
+   01D7 00                 1559 	.db 0x00
+   01D8 00                 1560 	.db 0x00
+   01D9 00                 1561 	.db 0x00
+   01DA 00                 1562 	.db 0x00
+   01DB 00                 1563 	.db 0x00
+   01DC 00                 1564 	.db 0x00
+   01DD 00                 1565 	.db 0x00
+   01DE 00                 1566 	.db 0x00
+   01DF 00                 1567 	.db 0x00
+   01E0 00                 1568 	.db 0x00
+   01E1 00                 1569 	.db 0x00
+   01E2 00                 1570 	.db 0x00
+   01E3 00                 1571 	.db 0x00
+   01E4 00                 1572 	.db 0x00
+   01E5 00                 1573 	.db 0x00
+   01E6 00                 1574 	.db 0x00
+   01E7 00                 1575 	.db 0x00
+   01E8 00                 1576 	.db 0x00
+   01E9 00                 1577 	.db 0x00
+   01EA 00                 1578 	.db 0x00
+   01EB 00                 1579 	.db 0x00
+   01EC 00                 1580 	.db 0x00
+   01ED 00                 1581 	.db 0x00
+   01EE 00                 1582 	.db 0x00
+   01EF 00                 1583 	.db 0x00
+   01F0 00                 1584 	.db 0x00
+   01F1 00                 1585 	.db 0x00
+   01F2 00                 1586 	.db 0x00
+   01F3 00                 1587 	.db 0x00
+   01F4 43 45 4E 54 52 49  1588 	.ascii "CENTRIFUGADO"
+        46 55 47 41 44 4F
+   0200 00                 1589 	.db 0x00
+   0201 00                 1590 	.db 0x00
+   0202 00                 1591 	.db 0x00
+   0203 00                 1592 	.db 0x00
+   0204 00                 1593 	.db 0x00
+   0205 00                 1594 	.db 0x00
+   0206 00                 1595 	.db 0x00
+   0207 00                 1596 	.db 0x00
+   0208 00                 1597 	.db 0x00
+   0209 00                 1598 	.db 0x00
+   020A 00                 1599 	.db 0x00
+   020B 00                 1600 	.db 0x00
+   020C 00                 1601 	.db 0x00
+   020D 00                 1602 	.db 0x00
+   020E 00                 1603 	.db 0x00
+   020F 00                 1604 	.db 0x00
+   0210 00                 1605 	.db 0x00
+   0211 00                 1606 	.db 0x00
+   0212 00                 1607 	.db 0x00
+   0213 00                 1608 	.db 0x00
+   0214 00                 1609 	.db 0x00
+   0215 00                 1610 	.db 0x00
+   0216 00                 1611 	.db 0x00
+   0217 00                 1612 	.db 0x00
+   0218 00                 1613 	.db 0x00
+   0219 00                 1614 	.db 0x00
+   021A 00                 1615 	.db 0x00
+   021B 00                 1616 	.db 0x00
+   021C 00                 1617 	.db 0x00
+   021D 00                 1618 	.db 0x00
+   021E 00                 1619 	.db 0x00
+   021F 00                 1620 	.db 0x00
+   0220 00                 1621 	.db 0x00
+   0221 00                 1622 	.db 0x00
+   0222 00                 1623 	.db 0x00
+   0223 00                 1624 	.db 0x00
+   0224 00                 1625 	.db 0x00
+   0225 00                 1626 	.db 0x00
+   0226 53 55 42 4D 41 52  1627 	.ascii "SUBMARINO"
+        49 4E 4F
+   022F 00                 1628 	.db 0x00
+   0230 00                 1629 	.db 0x00
+   0231 00                 1630 	.db 0x00
+   0232 00                 1631 	.db 0x00
+   0233 00                 1632 	.db 0x00
+   0234 00                 1633 	.db 0x00
+   0235 00                 1634 	.db 0x00
+   0236 00                 1635 	.db 0x00
+   0237 00                 1636 	.db 0x00
+   0238 00                 1637 	.db 0x00
+   0239 00                 1638 	.db 0x00
+   023A 00                 1639 	.db 0x00
+   023B 00                 1640 	.db 0x00
+   023C 00                 1641 	.db 0x00
+   023D 00                 1642 	.db 0x00
+   023E 00                 1643 	.db 0x00
+   023F 00                 1644 	.db 0x00
+   0240 00                 1645 	.db 0x00
+   0241 00                 1646 	.db 0x00
+   0242 00                 1647 	.db 0x00
+   0243 00                 1648 	.db 0x00
+   0244 00                 1649 	.db 0x00
+   0245 00                 1650 	.db 0x00
+   0246 00                 1651 	.db 0x00
+   0247 00                 1652 	.db 0x00
+   0248 00                 1653 	.db 0x00
+   0249 00                 1654 	.db 0x00
+   024A 00                 1655 	.db 0x00
+   024B 00                 1656 	.db 0x00
+   024C 00                 1657 	.db 0x00
+   024D 00                 1658 	.db 0x00
+   024E 00                 1659 	.db 0x00
+   024F 00                 1660 	.db 0x00
+   0250 00                 1661 	.db 0x00
+   0251 00                 1662 	.db 0x00
+   0252 00                 1663 	.db 0x00
+   0253 00                 1664 	.db 0x00
+   0254 00                 1665 	.db 0x00
+   0255 00                 1666 	.db 0x00
+   0256 00                 1667 	.db 0x00
+   0257 00                 1668 	.db 0x00
+   0258 44 49 41 4C 4F 47  1669 	.ascii "DIALOGUE"
+        55 45
+   0260 00                 1670 	.db 0x00
+   0261 00                 1671 	.db 0x00
+   0262 00                 1672 	.db 0x00
+   0263 00                 1673 	.db 0x00
+   0264 00                 1674 	.db 0x00
+   0265 00                 1675 	.db 0x00
+   0266 00                 1676 	.db 0x00
+   0267 00                 1677 	.db 0x00
+   0268 00                 1678 	.db 0x00
+   0269 00                 1679 	.db 0x00
+   026A 00                 1680 	.db 0x00
+   026B 00                 1681 	.db 0x00
+   026C 00                 1682 	.db 0x00
+   026D 00                 1683 	.db 0x00
+   026E 00                 1684 	.db 0x00
+   026F 00                 1685 	.db 0x00
+   0270 00                 1686 	.db 0x00
+   0271 00                 1687 	.db 0x00
+   0272 00                 1688 	.db 0x00
+   0273 00                 1689 	.db 0x00
+   0274 00                 1690 	.db 0x00
+   0275 00                 1691 	.db 0x00
+   0276 00                 1692 	.db 0x00
+   0277 00                 1693 	.db 0x00
+   0278 00                 1694 	.db 0x00
+   0279 00                 1695 	.db 0x00
+   027A 00                 1696 	.db 0x00
+   027B 00                 1697 	.db 0x00
+   027C 00                 1698 	.db 0x00
+   027D 00                 1699 	.db 0x00
+   027E 00                 1700 	.db 0x00
+   027F 00                 1701 	.db 0x00
+   0280 00                 1702 	.db 0x00
+   0281 00                 1703 	.db 0x00
+   0282 00                 1704 	.db 0x00
+   0283 00                 1705 	.db 0x00
+   0284 00                 1706 	.db 0x00
+   0285 00                 1707 	.db 0x00
+   0286 00                 1708 	.db 0x00
+   0287 00                 1709 	.db 0x00
+   0288 00                 1710 	.db 0x00
+   0289 00                 1711 	.db 0x00
+   028A 45 4C 45 43 54 52  1712 	.ascii "ELECTROENCEFALOGRAFISTA "
+        4F 45 4E 43 45 46
+        41 4C 4F 47 52 41
+        46 49 53 54 41 20
+   02A2 00                 1713 	.db 0x00
+   02A3 00                 1714 	.db 0x00
+   02A4 00                 1715 	.db 0x00
+   02A5 00                 1716 	.db 0x00
+   02A6 00                 1717 	.db 0x00
+   02A7 00                 1718 	.db 0x00
+   02A8 00                 1719 	.db 0x00
+   02A9 00                 1720 	.db 0x00
+   02AA 00                 1721 	.db 0x00
+   02AB 00                 1722 	.db 0x00
+   02AC 00                 1723 	.db 0x00
+   02AD 00                 1724 	.db 0x00
+   02AE 00                 1725 	.db 0x00
+   02AF 00                 1726 	.db 0x00
+   02B0 00                 1727 	.db 0x00
+   02B1 00                 1728 	.db 0x00
+   02B2 00                 1729 	.db 0x00
+   02B3 00                 1730 	.db 0x00
+   02B4 00                 1731 	.db 0x00
+   02B5 00                 1732 	.db 0x00
+   02B6 00                 1733 	.db 0x00
+   02B7 00                 1734 	.db 0x00
+   02B8 00                 1735 	.db 0x00
+   02B9 00                 1736 	.db 0x00
+   02BA 00                 1737 	.db 0x00
+   02BB 00                 1738 	.db 0x00
+   02BC 41 44 55 4C 54 45  1739 	.ascii "ADULTERIO"
+        52 49 4F
+   02C5 00                 1740 	.db 0x00
+   02C6 00                 1741 	.db 0x00
+   02C7 00                 1742 	.db 0x00
+   02C8 00                 1743 	.db 0x00
+   02C9 00                 1744 	.db 0x00
+   02CA 00                 1745 	.db 0x00
+   02CB 00                 1746 	.db 0x00
+   02CC 00                 1747 	.db 0x00
+   02CD 00                 1748 	.db 0x00
+   02CE 00                 1749 	.db 0x00
+   02CF 00                 1750 	.db 0x00
+   02D0 00                 1751 	.db 0x00
+   02D1 00                 1752 	.db 0x00
+   02D2 00                 1753 	.db 0x00
+   02D3 00                 1754 	.db 0x00
+   02D4 00                 1755 	.db 0x00
+   02D5 00                 1756 	.db 0x00
+   02D6 00                 1757 	.db 0x00
+   02D7 00                 1758 	.db 0x00
+   02D8 00                 1759 	.db 0x00
+   02D9 00                 1760 	.db 0x00
+   02DA 00                 1761 	.db 0x00
+   02DB 00                 1762 	.db 0x00
+   02DC 00                 1763 	.db 0x00
+   02DD 00                 1764 	.db 0x00
+   02DE 00                 1765 	.db 0x00
+   02DF 00                 1766 	.db 0x00
+   02E0 00                 1767 	.db 0x00
+   02E1 00                 1768 	.db 0x00
+   02E2 00                 1769 	.db 0x00
+   02E3 00                 1770 	.db 0x00
+   02E4 00                 1771 	.db 0x00
+   02E5 00                 1772 	.db 0x00
+   02E6 00                 1773 	.db 0x00
+   02E7 00                 1774 	.db 0x00
+   02E8 00                 1775 	.db 0x00
+   02E9 00                 1776 	.db 0x00
+   02EA 00                 1777 	.db 0x00
+   02EB 00                 1778 	.db 0x00
+   02EC 00                 1779 	.db 0x00
+   02ED 00                 1780 	.db 0x00
+   02EE 4E 45 55 4D 41 54  1781 	.ascii "NEUMATICO "
+        49 43 4F 20
+   02F8 00                 1782 	.db 0x00
+   02F9 00                 1783 	.db 0x00
+   02FA 00                 1784 	.db 0x00
+   02FB 00                 1785 	.db 0x00
+   02FC 00                 1786 	.db 0x00
+   02FD 00                 1787 	.db 0x00
+   02FE 00                 1788 	.db 0x00
+   02FF 00                 1789 	.db 0x00
+   0300 00                 1790 	.db 0x00
+   0301 00                 1791 	.db 0x00
+   0302 00                 1792 	.db 0x00
+   0303 00                 1793 	.db 0x00
+   0304 00                 1794 	.db 0x00
+   0305 00                 1795 	.db 0x00
+   0306 00                 1796 	.db 0x00
+   0307 00                 1797 	.db 0x00
+   0308 00                 1798 	.db 0x00
+   0309 00                 1799 	.db 0x00
+   030A 00                 1800 	.db 0x00
+   030B 00                 1801 	.db 0x00
+   030C 00                 1802 	.db 0x00
+   030D 00                 1803 	.db 0x00
+   030E 00                 1804 	.db 0x00
+   030F 00                 1805 	.db 0x00
+   0310 00                 1806 	.db 0x00
+   0311 00                 1807 	.db 0x00
+   0312 00                 1808 	.db 0x00
+   0313 00                 1809 	.db 0x00
+   0314 00                 1810 	.db 0x00
+   0315 00                 1811 	.db 0x00
+   0316 00                 1812 	.db 0x00
+   0317 00                 1813 	.db 0x00
+   0318 00                 1814 	.db 0x00
+   0319 00                 1815 	.db 0x00
+   031A 00                 1816 	.db 0x00
+   031B 00                 1817 	.db 0x00
+   031C 00                 1818 	.db 0x00
+   031D 00                 1819 	.db 0x00
+   031E 00                 1820 	.db 0x00
+   031F 00                 1821 	.db 0x00
+   0320 41 55 44 49 54 4F  1822 	.ascii "AUDITORES"
+        52 45 53
+   0329 00                 1823 	.db 0x00
+   032A 00                 1824 	.db 0x00
+   032B 00                 1825 	.db 0x00
+   032C 00                 1826 	.db 0x00
+   032D 00                 1827 	.db 0x00
+   032E 00                 1828 	.db 0x00
+   032F 00                 1829 	.db 0x00
+   0330 00                 1830 	.db 0x00
+   0331 00                 1831 	.db 0x00
+   0332 00                 1832 	.db 0x00
+   0333 00                 1833 	.db 0x00
+   0334 00                 1834 	.db 0x00
+   0335 00                 1835 	.db 0x00
+   0336 00                 1836 	.db 0x00
+   0337 00                 1837 	.db 0x00
+   0338 00                 1838 	.db 0x00
+   0339 00                 1839 	.db 0x00
+   033A 00                 1840 	.db 0x00
+   033B 00                 1841 	.db 0x00
+   033C 00                 1842 	.db 0x00
+   033D 00                 1843 	.db 0x00
+   033E 00                 1844 	.db 0x00
+   033F 00                 1845 	.db 0x00
+   0340 00                 1846 	.db 0x00
+   0341 00                 1847 	.db 0x00
+   0342 00                 1848 	.db 0x00
+   0343 00                 1849 	.db 0x00
+   0344 00                 1850 	.db 0x00
+   0345 00                 1851 	.db 0x00
+   0346 00                 1852 	.db 0x00
+   0347 00                 1853 	.db 0x00
+   0348 00                 1854 	.db 0x00
+   0349 00                 1855 	.db 0x00
+   034A 00                 1856 	.db 0x00
+   034B 00                 1857 	.db 0x00
+   034C 00                 1858 	.db 0x00
+   034D 00                 1859 	.db 0x00
+   034E 00                 1860 	.db 0x00
+   034F 00                 1861 	.db 0x00
+   0350 00                 1862 	.db 0x00
+   0351 00                 1863 	.db 0x00
+   0352 50 49 4A 4F        1864 	.ascii "PIJO"
+   0356 00                 1865 	.db 0x00
+   0357 00                 1866 	.db 0x00
+   0358 00                 1867 	.db 0x00
+   0359 00                 1868 	.db 0x00
+   035A 00                 1869 	.db 0x00
+   035B 00                 1870 	.db 0x00
+   035C 00                 1871 	.db 0x00
+   035D 00                 1872 	.db 0x00
+   035E 00                 1873 	.db 0x00
+   035F 00                 1874 	.db 0x00
+   0360 00                 1875 	.db 0x00
+   0361 00                 1876 	.db 0x00
+   0362 00                 1877 	.db 0x00
+   0363 00                 1878 	.db 0x00
+   0364 00                 1879 	.db 0x00
+   0365 00                 1880 	.db 0x00
+   0366 00                 1881 	.db 0x00
+   0367 00                 1882 	.db 0x00
+   0368 00                 1883 	.db 0x00
+   0369 00                 1884 	.db 0x00
+   036A 00                 1885 	.db 0x00
+   036B 00                 1886 	.db 0x00
+   036C 00                 1887 	.db 0x00
+   036D 00                 1888 	.db 0x00
+   036E 00                 1889 	.db 0x00
+   036F 00                 1890 	.db 0x00
+   0370 00                 1891 	.db 0x00
+   0371 00                 1892 	.db 0x00
+   0372 00                 1893 	.db 0x00
+   0373 00                 1894 	.db 0x00
+   0374 00                 1895 	.db 0x00
+   0375 00                 1896 	.db 0x00
+   0376 00                 1897 	.db 0x00
+   0377 00                 1898 	.db 0x00
+   0378 00                 1899 	.db 0x00
+   0379 00                 1900 	.db 0x00
+   037A 00                 1901 	.db 0x00
+   037B 00                 1902 	.db 0x00
+   037C 00                 1903 	.db 0x00
+   037D 00                 1904 	.db 0x00
+   037E 00                 1905 	.db 0x00
+   037F 00                 1906 	.db 0x00
+   0380 00                 1907 	.db 0x00
+   0381 00                 1908 	.db 0x00
+   0382 00                 1909 	.db 0x00
+   0383 00                 1910 	.db 0x00
+   0384 43 4C 41 52 4F     1911 	.ascii "CLARO"
+   0389 00                 1912 	.db 0x00
+   038A 00                 1913 	.db 0x00
+   038B 00                 1914 	.db 0x00
+   038C 00                 1915 	.db 0x00
+   038D 00                 1916 	.db 0x00
+   038E 00                 1917 	.db 0x00
+   038F 00                 1918 	.db 0x00
+   0390 00                 1919 	.db 0x00
+   0391 00                 1920 	.db 0x00
+   0392 00                 1921 	.db 0x00
+   0393 00                 1922 	.db 0x00
+   0394 00                 1923 	.db 0x00
+   0395 00                 1924 	.db 0x00
+   0396 00                 1925 	.db 0x00
+   0397 00                 1926 	.db 0x00
+   0398 00                 1927 	.db 0x00
+   0399 00                 1928 	.db 0x00
+   039A 00                 1929 	.db 0x00
+   039B 00                 1930 	.db 0x00
+   039C 00                 1931 	.db 0x00
+   039D 00                 1932 	.db 0x00
+   039E 00                 1933 	.db 0x00
+   039F 00                 1934 	.db 0x00
+   03A0 00                 1935 	.db 0x00
+   03A1 00                 1936 	.db 0x00
+   03A2 00                 1937 	.db 0x00
+   03A3 00                 1938 	.db 0x00
+   03A4 00                 1939 	.db 0x00
+   03A5 00                 1940 	.db 0x00
+   03A6 00                 1941 	.db 0x00
+   03A7 00                 1942 	.db 0x00
+   03A8 00                 1943 	.db 0x00
+   03A9 00                 1944 	.db 0x00
+   03AA 00                 1945 	.db 0x00
+   03AB 00                 1946 	.db 0x00
+   03AC 00                 1947 	.db 0x00
+   03AD 00                 1948 	.db 0x00
+   03AE 00                 1949 	.db 0x00
+   03AF 00                 1950 	.db 0x00
+   03B0 00                 1951 	.db 0x00
+   03B1 00                 1952 	.db 0x00
+   03B2 00                 1953 	.db 0x00
+   03B3 00                 1954 	.db 0x00
+   03B4 00                 1955 	.db 0x00
+   03B5 00                 1956 	.db 0x00
+   03B6 4D 53 58           1957 	.ascii "MSX"
+   03B9 00                 1958 	.db 0x00
+   03BA 00                 1959 	.db 0x00
+   03BB 00                 1960 	.db 0x00
+   03BC 00                 1961 	.db 0x00
+   03BD 00                 1962 	.db 0x00
+   03BE 00                 1963 	.db 0x00
+   03BF 00                 1964 	.db 0x00
+   03C0 00                 1965 	.db 0x00
+   03C1 00                 1966 	.db 0x00
+   03C2 00                 1967 	.db 0x00
+   03C3 00                 1968 	.db 0x00
+   03C4 00                 1969 	.db 0x00
+   03C5 00                 1970 	.db 0x00
+   03C6 00                 1971 	.db 0x00
+   03C7 00                 1972 	.db 0x00
+   03C8 00                 1973 	.db 0x00
+   03C9 00                 1974 	.db 0x00
+   03CA 00                 1975 	.db 0x00
+   03CB 00                 1976 	.db 0x00
+   03CC 00                 1977 	.db 0x00
+   03CD 00                 1978 	.db 0x00
+   03CE 00                 1979 	.db 0x00
+   03CF 00                 1980 	.db 0x00
+   03D0 00                 1981 	.db 0x00
+   03D1 00                 1982 	.db 0x00
+   03D2 00                 1983 	.db 0x00
+   03D3 00                 1984 	.db 0x00
+   03D4 00                 1985 	.db 0x00
+   03D5 00                 1986 	.db 0x00
+   03D6 00                 1987 	.db 0x00
+   03D7 00                 1988 	.db 0x00
+   03D8 00                 1989 	.db 0x00
+   03D9 00                 1990 	.db 0x00
+   03DA 00                 1991 	.db 0x00
+   03DB 00                 1992 	.db 0x00
+   03DC 00                 1993 	.db 0x00
+   03DD 00                 1994 	.db 0x00
+   03DE 00                 1995 	.db 0x00
+   03DF 00                 1996 	.db 0x00
+   03E0 00                 1997 	.db 0x00
+   03E1 00                 1998 	.db 0x00
+   03E2 00                 1999 	.db 0x00
+   03E3 00                 2000 	.db 0x00
+   03E4 00                 2001 	.db 0x00
+   03E5 00                 2002 	.db 0x00
+   03E6 00                 2003 	.db 0x00
+   03E7 00                 2004 	.db 0x00
+   03E8 44 45 53 4F 58 49  2005 	.ascii "DESOXIRRIBONUCLEICO"
+        52 52 49 42 4F 4E
+        55 43 4C 45 49 43
+        4F
+   03FB 00                 2006 	.db 0x00
+   03FC 00                 2007 	.db 0x00
+   03FD 00                 2008 	.db 0x00
+   03FE 00                 2009 	.db 0x00
+   03FF 00                 2010 	.db 0x00
+   0400 00                 2011 	.db 0x00
+   0401 00                 2012 	.db 0x00
+   0402 00                 2013 	.db 0x00
+   0403 00                 2014 	.db 0x00
+   0404 00                 2015 	.db 0x00
+   0405 00                 2016 	.db 0x00
+   0406 00                 2017 	.db 0x00
+   0407 00                 2018 	.db 0x00
+   0408 00                 2019 	.db 0x00
+   0409 00                 2020 	.db 0x00
+   040A 00                 2021 	.db 0x00
+   040B 00                 2022 	.db 0x00
+   040C 00                 2023 	.db 0x00
+   040D 00                 2024 	.db 0x00
+   040E 00                 2025 	.db 0x00
+   040F 00                 2026 	.db 0x00
+   0410 00                 2027 	.db 0x00
+   0411 00                 2028 	.db 0x00
+   0412 00                 2029 	.db 0x00
+   0413 00                 2030 	.db 0x00
+   0414 00                 2031 	.db 0x00
+   0415 00                 2032 	.db 0x00
+   0416 00                 2033 	.db 0x00
+   0417 00                 2034 	.db 0x00
+   0418 00                 2035 	.db 0x00
+   0419 00                 2036 	.db 0x00
+   041A 43 41 4C 45 49 44  2037 	.ascii "CALEIDOSCOPIO"
+        4F 53 43 4F 50 49
+        4F
+   0427 00                 2038 	.db 0x00
+   0428 00                 2039 	.db 0x00
+   0429 00                 2040 	.db 0x00
+   042A 00                 2041 	.db 0x00
+   042B 00                 2042 	.db 0x00
+   042C 00                 2043 	.db 0x00
+   042D 00                 2044 	.db 0x00
+   042E 00                 2045 	.db 0x00
+   042F 00                 2046 	.db 0x00
+   0430 00                 2047 	.db 0x00
+   0431 00                 2048 	.db 0x00
+   0432 00                 2049 	.db 0x00
+   0433 00                 2050 	.db 0x00
+   0434 00                 2051 	.db 0x00
+   0435 00                 2052 	.db 0x00
+   0436 00                 2053 	.db 0x00
+   0437 00                 2054 	.db 0x00
+   0438 00                 2055 	.db 0x00
+   0439 00                 2056 	.db 0x00
+   043A 00                 2057 	.db 0x00
+   043B 00                 2058 	.db 0x00
+   043C 00                 2059 	.db 0x00
+   043D 00                 2060 	.db 0x00
+   043E 00                 2061 	.db 0x00
+   043F 00                 2062 	.db 0x00
+   0440 00                 2063 	.db 0x00
+   0441 00                 2064 	.db 0x00
+   0442 00                 2065 	.db 0x00
+   0443 00                 2066 	.db 0x00
+   0444 00                 2067 	.db 0x00
+   0445 00                 2068 	.db 0x00
+   0446 00                 2069 	.db 0x00
+   0447 00                 2070 	.db 0x00
+   0448 00                 2071 	.db 0x00
+   0449 00                 2072 	.db 0x00
+   044A 00                 2073 	.db 0x00
+   044B 00                 2074 	.db 0x00
+   044C 53 4F 4E 52 49 53  2075 	.ascii "SONRISA"
+        41
+   0453 00                 2076 	.db 0x00
+   0454 00                 2077 	.db 0x00
+   0455 00                 2078 	.db 0x00
+   0456 00                 2079 	.db 0x00
+   0457 00                 2080 	.db 0x00
+   0458 00                 2081 	.db 0x00
+   0459 00                 2082 	.db 0x00
+   045A 00                 2083 	.db 0x00
+   045B 00                 2084 	.db 0x00
+   045C 00                 2085 	.db 0x00
+   045D 00                 2086 	.db 0x00
+   045E 00                 2087 	.db 0x00
+   045F 00                 2088 	.db 0x00
+   0460 00                 2089 	.db 0x00
+   0461 00                 2090 	.db 0x00
+   0462 00                 2091 	.db 0x00
+   0463 00                 2092 	.db 0x00
+   0464 00                 2093 	.db 0x00
+   0465 00                 2094 	.db 0x00
+   0466 00                 2095 	.db 0x00
+   0467 00                 2096 	.db 0x00
+   0468 00                 2097 	.db 0x00
+   0469 00                 2098 	.db 0x00
+   046A 00                 2099 	.db 0x00
+   046B 00                 2100 	.db 0x00
+   046C 00                 2101 	.db 0x00
+   046D 00                 2102 	.db 0x00
+   046E 00                 2103 	.db 0x00
+   046F 00                 2104 	.db 0x00
+   0470 00                 2105 	.db 0x00
+   0471 00                 2106 	.db 0x00
+   0472 00                 2107 	.db 0x00
+   0473 00                 2108 	.db 0x00
+   0474 00                 2109 	.db 0x00
+   0475 00                 2110 	.db 0x00
+   0476 00                 2111 	.db 0x00
+   0477 00                 2112 	.db 0x00
+   0478 00                 2113 	.db 0x00
+   0479 00                 2114 	.db 0x00
+   047A 00                 2115 	.db 0x00
+   047B 00                 2116 	.db 0x00
+   047C 00                 2117 	.db 0x00
+   047D 00                 2118 	.db 0x00
+   047E 45 58 54 52 41 54  2119 	.ascii "EXTRATERRESTRE"
+        45 52 52 45 53 54
+        52 45
+   048C 00                 2120 	.db 0x00
+   048D 00                 2121 	.db 0x00
+   048E 00                 2122 	.db 0x00
+   048F 00                 2123 	.db 0x00
+   0490 00                 2124 	.db 0x00
+   0491 00                 2125 	.db 0x00
+   0492 00                 2126 	.db 0x00
+   0493 00                 2127 	.db 0x00
+   0494 00                 2128 	.db 0x00
+   0495 00                 2129 	.db 0x00
+   0496 00                 2130 	.db 0x00
+   0497 00                 2131 	.db 0x00
+   0498 00                 2132 	.db 0x00
+   0499 00                 2133 	.db 0x00
+   049A 00                 2134 	.db 0x00
+   049B 00                 2135 	.db 0x00
+   049C 00                 2136 	.db 0x00
+   049D 00                 2137 	.db 0x00
+   049E 00                 2138 	.db 0x00
+   049F 00                 2139 	.db 0x00
+   04A0 00                 2140 	.db 0x00
+   04A1 00                 2141 	.db 0x00
+   04A2 00                 2142 	.db 0x00
+   04A3 00                 2143 	.db 0x00
+   04A4 00                 2144 	.db 0x00
+   04A5 00                 2145 	.db 0x00
+   04A6 00                 2146 	.db 0x00
+   04A7 00                 2147 	.db 0x00
+   04A8 00                 2148 	.db 0x00
+   04A9 00                 2149 	.db 0x00
+   04AA 00                 2150 	.db 0x00
+   04AB 00                 2151 	.db 0x00
+   04AC 00                 2152 	.db 0x00
+   04AD 00                 2153 	.db 0x00
+   04AE 00                 2154 	.db 0x00
+   04AF 00                 2155 	.db 0x00
+   04B0 47 41 4C 41 58 49  2156 	.ascii "GALAXIA"
+        41
+   04B7 00                 2157 	.db 0x00
+   04B8 00                 2158 	.db 0x00
+   04B9 00                 2159 	.db 0x00
+   04BA 00                 2160 	.db 0x00
+   04BB 00                 2161 	.db 0x00
+   04BC 00                 2162 	.db 0x00
+   04BD 00                 2163 	.db 0x00
+   04BE 00                 2164 	.db 0x00
+   04BF 00                 2165 	.db 0x00
+   04C0 00                 2166 	.db 0x00
+   04C1 00                 2167 	.db 0x00
+   04C2 00                 2168 	.db 0x00
+   04C3 00                 2169 	.db 0x00
+   04C4 00                 2170 	.db 0x00
+   04C5 00                 2171 	.db 0x00
+   04C6 00                 2172 	.db 0x00
+   04C7 00                 2173 	.db 0x00
+   04C8 00                 2174 	.db 0x00
+   04C9 00                 2175 	.db 0x00
+   04CA 00                 2176 	.db 0x00
+   04CB 00                 2177 	.db 0x00
+   04CC 00                 2178 	.db 0x00
+   04CD 00                 2179 	.db 0x00
+   04CE 00                 2180 	.db 0x00
+   04CF 00                 2181 	.db 0x00
+   04D0 00                 2182 	.db 0x00
+   04D1 00                 2183 	.db 0x00
+   04D2 00                 2184 	.db 0x00
+   04D3 00                 2185 	.db 0x00
+   04D4 00                 2186 	.db 0x00
+   04D5 00                 2187 	.db 0x00
+   04D6 00                 2188 	.db 0x00
+   04D7 00                 2189 	.db 0x00
+   04D8 00                 2190 	.db 0x00
+   04D9 00                 2191 	.db 0x00
+   04DA 00                 2192 	.db 0x00
+   04DB 00                 2193 	.db 0x00
+   04DC 00                 2194 	.db 0x00
+   04DD 00                 2195 	.db 0x00
+   04DE 00                 2196 	.db 0x00
+   04DF 00                 2197 	.db 0x00
+   04E0 00                 2198 	.db 0x00
+   04E1 00                 2199 	.db 0x00
+   04E2 55 4D 42 52 45 4C  2200 	.ascii "UMBRELLA"
+        4C 41
+   04EA 00                 2201 	.db 0x00
+   04EB 00                 2202 	.db 0x00
+   04EC 00                 2203 	.db 0x00
+   04ED 00                 2204 	.db 0x00
+   04EE 00                 2205 	.db 0x00
+   04EF 00                 2206 	.db 0x00
+   04F0 00                 2207 	.db 0x00
+   04F1 00                 2208 	.db 0x00
+   04F2 00                 2209 	.db 0x00
+   04F3 00                 2210 	.db 0x00
+   04F4 00                 2211 	.db 0x00
+   04F5 00                 2212 	.db 0x00
+   04F6 00                 2213 	.db 0x00
+   04F7 00                 2214 	.db 0x00
+   04F8 00                 2215 	.db 0x00
+   04F9 00                 2216 	.db 0x00
+   04FA 00                 2217 	.db 0x00
+   04FB 00                 2218 	.db 0x00
+   04FC 00                 2219 	.db 0x00
+   04FD 00                 2220 	.db 0x00
+   04FE 00                 2221 	.db 0x00
+   04FF 00                 2222 	.db 0x00
+   0500 00                 2223 	.db 0x00
+   0501 00                 2224 	.db 0x00
+   0502 00                 2225 	.db 0x00
+   0503 00                 2226 	.db 0x00
+   0504 00                 2227 	.db 0x00
+   0505 00                 2228 	.db 0x00
+   0506 00                 2229 	.db 0x00
+   0507 00                 2230 	.db 0x00
+   0508 00                 2231 	.db 0x00
+   0509 00                 2232 	.db 0x00
+   050A 00                 2233 	.db 0x00
+   050B 00                 2234 	.db 0x00
+   050C 00                 2235 	.db 0x00
+   050D 00                 2236 	.db 0x00
+   050E 00                 2237 	.db 0x00
+   050F 00                 2238 	.db 0x00
+   0510 00                 2239 	.db 0x00
+   0511 00                 2240 	.db 0x00
+   0512 00                 2241 	.db 0x00
+   0513 00                 2242 	.db 0x00
+   0514 4D 4F 55 4E 54 41  2243 	.ascii "MOUNTAIN"
+        49 4E
+   051C 00                 2244 	.db 0x00
+   051D 00                 2245 	.db 0x00
+   051E 00                 2246 	.db 0x00
+   051F 00                 2247 	.db 0x00
+   0520 00                 2248 	.db 0x00
+   0521 00                 2249 	.db 0x00
+   0522 00                 2250 	.db 0x00
+   0523 00                 2251 	.db 0x00
+   0524 00                 2252 	.db 0x00
+   0525 00                 2253 	.db 0x00
+   0526 00                 2254 	.db 0x00
+   0527 00                 2255 	.db 0x00
+   0528 00                 2256 	.db 0x00
+   0529 00                 2257 	.db 0x00
+   052A 00                 2258 	.db 0x00
+   052B 00                 2259 	.db 0x00
+   052C 00                 2260 	.db 0x00
+   052D 00                 2261 	.db 0x00
+   052E 00                 2262 	.db 0x00
+   052F 00                 2263 	.db 0x00
+   0530 00                 2264 	.db 0x00
+   0531 00                 2265 	.db 0x00
+   0532 00                 2266 	.db 0x00
+   0533 00                 2267 	.db 0x00
+   0534 00                 2268 	.db 0x00
+   0535 00                 2269 	.db 0x00
+   0536 00                 2270 	.db 0x00
+   0537 00                 2271 	.db 0x00
+   0538 00                 2272 	.db 0x00
+   0539 00                 2273 	.db 0x00
+   053A 00                 2274 	.db 0x00
+   053B 00                 2275 	.db 0x00
+   053C 00                 2276 	.db 0x00
+   053D 00                 2277 	.db 0x00
+   053E 00                 2278 	.db 0x00
+   053F 00                 2279 	.db 0x00
+   0540 00                 2280 	.db 0x00
+   0541 00                 2281 	.db 0x00
+   0542 00                 2282 	.db 0x00
+   0543 00                 2283 	.db 0x00
+   0544 00                 2284 	.db 0x00
+   0545 00                 2285 	.db 0x00
+   0546 53 54 45 50 44 41  2286 	.ascii "STEPDAUGHTER"
+        55 47 48 54 45 52
+   0552 00                 2287 	.db 0x00
+   0553 00                 2288 	.db 0x00
+   0554 00                 2289 	.db 0x00
+   0555 00                 2290 	.db 0x00
+   0556 00                 2291 	.db 0x00
+   0557 00                 2292 	.db 0x00
+   0558 00                 2293 	.db 0x00
+   0559 00                 2294 	.db 0x00
+   055A 00                 2295 	.db 0x00
+   055B 00                 2296 	.db 0x00
+   055C 00                 2297 	.db 0x00
+   055D 00                 2298 	.db 0x00
+   055E 00                 2299 	.db 0x00
+   055F 00                 2300 	.db 0x00
+   0560 00                 2301 	.db 0x00
+   0561 00                 2302 	.db 0x00
+   0562 00                 2303 	.db 0x00
+   0563 00                 2304 	.db 0x00
+   0564 00                 2305 	.db 0x00
+   0565 00                 2306 	.db 0x00
+   0566 00                 2307 	.db 0x00
+   0567 00                 2308 	.db 0x00
+   0568 00                 2309 	.db 0x00
+   0569 00                 2310 	.db 0x00
+   056A 00                 2311 	.db 0x00
+   056B 00                 2312 	.db 0x00
+   056C 00                 2313 	.db 0x00
+   056D 00                 2314 	.db 0x00
+   056E 00                 2315 	.db 0x00
+   056F 00                 2316 	.db 0x00
+   0570 00                 2317 	.db 0x00
+   0571 00                 2318 	.db 0x00
+   0572 00                 2319 	.db 0x00
+   0573 00                 2320 	.db 0x00
+   0574 00                 2321 	.db 0x00
+   0575 00                 2322 	.db 0x00
+   0576 00                 2323 	.db 0x00
+   0577 00                 2324 	.db 0x00
+   0578 43 4F 43 4F 44 52  2325 	.ascii "COCODRILO"
+        49 4C 4F
+   0581 00                 2326 	.db 0x00
+   0582 00                 2327 	.db 0x00
+   0583 00                 2328 	.db 0x00
+   0584 00                 2329 	.db 0x00
+   0585 00                 2330 	.db 0x00
+   0586 00                 2331 	.db 0x00
+   0587 00                 2332 	.db 0x00
+   0588 00                 2333 	.db 0x00
+   0589 00                 2334 	.db 0x00
+   058A 00                 2335 	.db 0x00
+   058B 00                 2336 	.db 0x00
+   058C 00                 2337 	.db 0x00
+   058D 00                 2338 	.db 0x00
+   058E 00                 2339 	.db 0x00
+   058F 00                 2340 	.db 0x00
+   0590 00                 2341 	.db 0x00
+   0591 00                 2342 	.db 0x00
+   0592 00                 2343 	.db 0x00
+   0593 00                 2344 	.db 0x00
+   0594 00                 2345 	.db 0x00
+   0595 00                 2346 	.db 0x00
+   0596 00                 2347 	.db 0x00
+   0597 00                 2348 	.db 0x00
+   0598 00                 2349 	.db 0x00
+   0599 00                 2350 	.db 0x00
+   059A 00                 2351 	.db 0x00
+   059B 00                 2352 	.db 0x00
+   059C 00                 2353 	.db 0x00
+   059D 00                 2354 	.db 0x00
+   059E 00                 2355 	.db 0x00
+   059F 00                 2356 	.db 0x00
+   05A0 00                 2357 	.db 0x00
+   05A1 00                 2358 	.db 0x00
+   05A2 00                 2359 	.db 0x00
+   05A3 00                 2360 	.db 0x00
+   05A4 00                 2361 	.db 0x00
+   05A5 00                 2362 	.db 0x00
+   05A6 00                 2363 	.db 0x00
+   05A7 00                 2364 	.db 0x00
+   05A8 00                 2365 	.db 0x00
+   05A9 00                 2366 	.db 0x00
+   05AA 53 4F 4D 42 52 45  2367 	.ascii "SOMBRERO"
+        52 4F
+   05B2 00                 2368 	.db 0x00
+   05B3 00                 2369 	.db 0x00
+   05B4 00                 2370 	.db 0x00
+   05B5 00                 2371 	.db 0x00
+   05B6 00                 2372 	.db 0x00
+   05B7 00                 2373 	.db 0x00
+   05B8 00                 2374 	.db 0x00
+   05B9 00                 2375 	.db 0x00
+   05BA 00                 2376 	.db 0x00
+   05BB 00                 2377 	.db 0x00
+   05BC 00                 2378 	.db 0x00
+   05BD 00                 2379 	.db 0x00
+   05BE 00                 2380 	.db 0x00
+   05BF 00                 2381 	.db 0x00
+   05C0 00                 2382 	.db 0x00
+   05C1 00                 2383 	.db 0x00
+   05C2 00                 2384 	.db 0x00
+   05C3 00                 2385 	.db 0x00
+   05C4 00                 2386 	.db 0x00
+   05C5 00                 2387 	.db 0x00
+   05C6 00                 2388 	.db 0x00
+   05C7 00                 2389 	.db 0x00
+   05C8 00                 2390 	.db 0x00
+   05C9 00                 2391 	.db 0x00
+   05CA 00                 2392 	.db 0x00
+   05CB 00                 2393 	.db 0x00
+   05CC 00                 2394 	.db 0x00
+   05CD 00                 2395 	.db 0x00
+   05CE 00                 2396 	.db 0x00
+   05CF 00                 2397 	.db 0x00
+   05D0 00                 2398 	.db 0x00
+   05D1 00                 2399 	.db 0x00
+   05D2 00                 2400 	.db 0x00
+   05D3 00                 2401 	.db 0x00
+   05D4 00                 2402 	.db 0x00
+   05D5 00                 2403 	.db 0x00
+   05D6 00                 2404 	.db 0x00
+   05D7 00                 2405 	.db 0x00
+   05D8 00                 2406 	.db 0x00
+   05D9 00                 2407 	.db 0x00
+   05DA 00                 2408 	.db 0x00
+   05DB 00                 2409 	.db 0x00
+   05DC                    2410 __xinit__palabra_seleccionada:
+   05DC 00                 2411 	.db 0x00
+                           2412 	.area _CABS (ABS)

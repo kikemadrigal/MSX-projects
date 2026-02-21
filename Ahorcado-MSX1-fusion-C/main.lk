@@ -1,0 +1,12 @@
+-mjwx
+-i main.ihx
+-b _CODE = 0x0106
+-b _DATA = 0x0000
+-k fusion-c\lib\
+-k C:\Program Files\SDCC\bin\..\lib\z80
+-l fusion.lib
+-l z80
+main.rel
+fusion-c\include\crt0_msxdos.rel
+
+-e

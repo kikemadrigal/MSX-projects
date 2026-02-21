@@ -1,0 +1,7 @@
+
+-m(mode)
+    d=delete
+MSXTools.jar -m=d
+
+
+Quitar comentarios: java -jar MSXTools.jar -m=d -o=main.bas 
