@@ -1,0 +1,542 @@
+EVENT MAINLOOP1
+
+;Debug muestra en el lado superior derecho datos
+;at 3 20
+;display O
+;at 3 25
+;display K
+
+
+;Si es un amstrad
+IF P = 1
+    ;O variable utilizada para saber cuando tnmos que reproducir mísica
+    IF O > 0
+        ;call &bd19
+        ASM 205
+        ASM 25
+        ASM 189
+        ;call &9003
+        ASM 205
+        ASM 03
+        ASM 144
+        SUBTRACT 1 FROM O
+    ELSE 
+        ;call &9006 ->Stop music
+        ASM 205
+        ASM 06
+        ASM 144
+    ENDIF
+ENDIF
+
+;Si quedan cestas por recoger
+IF A > 0 
+    ;Reloj (variables R=décimas de segundo, T=Segundos, M=minutos)
+    IF CLOCK > 0
+        ADD 1 TO R
+        IF R>59 
+            ;Le restamos 1 a los segundos 
+            SUBTRACT 1 FROM T
+            LET R=0
+            IF T=0
+                SUBTRACT 1 FROM M
+                LET T=59
+                IF M = 255
+                    ;Si se acaba el tiempo te mata
+                    KILL
+                    LET M = 2
+                ENDIF
+            ENDIF
+        ENDIF
+        at 1 27
+        ;Con soubledigits obligamos a que siempre se muestren 2 digitos, si no llega se pone un 0
+        DISPLAY DOUBLEDIGITS M
+        AT 1 29
+        PRINT ":"
+        at 1 30
+        DISPLAY DOUBLEDIGITS T
+        ;Se pone el borde rojo cuando quedan menos de 10 segundos
+        IF M = 0
+            IF T < 10
+                ;Si el target es un MSX
+                IF P = 0
+                    ;Le ponemos el color rojo al borde
+                    BORDER 8
+                ;Si es un amstrad o spectrum
+                ELSE
+                    BORDER 6
+                ENDIF
+            ENDIF
+        ENDIF 
+    ENDIF
+ELSE
+    IF P = 0
+        ;MUSIC 0 0
+    ENDIF
+ENDIF
+
+
+; Puede ser que A de la vuelta y pase de 0 a 255, con esto nos curamos en salud
+IF A>200
+    A=0
+ENDIF
+
+; Si no está en modo jefe de la fase
+IF J=0
+    ;Y no quedan cestas por recoger
+    IF A<=0
+        ;Mostramos el mensaje de miaión cumplida
+        AT 9 9           
+        MESSAGE 0  
+        ;Hacemos el sonido de misión cumplida
+        IF P = 0
+            SOUND 5
+        ELSE
+            ;Si es amstrad
+            IF P = 1
+                ;Para seleccionar el subsonido utilizamos el registro a del z80
+                ;ld a, 0 / 3e 02 / 62 02
+                ASM 62
+                ASM 01
+                ;call &9000
+                ASM 205
+                ASM 00
+                ASM 144
+                LET O = 90
+               ;O variable utilizada para saber cuando tnmos que reproducir mísica
+               WHILE O > 0
+                   ;call &bd19
+                   ASM 205
+                   ASM 25
+                   ASM 189
+                   ;call &9003
+                   ASM 205
+                   ASM 03
+                   ASM 144
+                   SUBTRACT 1 FROM O
+               ENDWHILE
+               ;call &9006 ->Stop music
+               ASM 205
+               ASM 06
+               ASM 144
+            ;Si es un spectrum
+            ELSE
+                BEEP 60
+            ENDIF
+        ENDIF
+        ;Le sumamos con puntos los segundos que le han sobrado
+        ;Si es 1 minuto le sumamos 60 puntos
+        IF M = 1 
+            ADD 60 TO M
+        ;si son 2 minutos le sumamos 120 puntos
+        ELSE    
+            ADD 120 TO M
+        ENDIF
+        ;Hacemos una animación de ir sumando puntos
+        WHILE M > 0
+            ;Hacemos una pequeña pausa
+            DELAY 2
+            ;Le sumamos 1 a la puntuación
+            SCORE 1
+            SUBTRACT 1 FROM M
+            at 2 26
+            DISPLAY TRIPLEDIGITS M
+            ;Si es un spectrum hacemos un pitido
+            IF P = 2
+                BEEP 40
+            ENDIF
+            ;Mostramos la puntuación
+            AT 0 2
+            SHOWSCORE 
+        ENDWHILE
+        WHILE T > 0
+            DELAY 2
+            SCORE 1
+            SUBTRACT 1 FROM T
+            at 2 29
+            DISPLAY TRIPLEDIGITS T
+            ;Si es un spectrum hacemos un pitido
+            IF P = 2
+                BEEP 40
+            ENDIF
+            ;Mostramos la puntuación
+            AT 0 2
+            SHOWSCORE 
+        ENDWHILE
+        ;Hacemos una pequeña pausa
+        DELAY 100      
+        ;Borramos el mensaje  
+        REDRAW    
+        CLS    
+        ; Para entender esto tienes que mirar el mapa
+        IF SCREEN = 15
+            LET SCREEN = 16
+        ELSE
+            SCREENRIGHT
+        ENDIF
+        ;Marcamos a en 0 para que vuelva a tomar el valor de C con los bloques que hay que coger por pantalla
+        LET S = 0
+    ENDIF
+; Si está en modo jefe de fase
+ELSE
+    ;Si al jefe no le queda energia
+    ;la variable puede dar la vuelta y Pasar de 0 a 255
+    IF K>200 
+        LET K=0
+    ENDIF
+    ;Si al enemigo no le queda energía
+    IF K<=0
+        ;Si es la última pantalla finalizamos el juego
+        IF SCREEN = 29
+            ENDGAME
+        ELSE 
+            ;Hacemos el sonido de misión cumplida
+            IF P = 0
+                SOUND 5
+            ELSE
+                ;Si es amstrad
+                IF P = 1
+                    ;Para seleccionar el subsonido utilizamos el registro a del z80
+                    ;ld a, 0 / 3e 02 / 62 02
+                    ASM 62
+                    ASM 01
+                    ;call &9000
+                    ASM 205
+                    ASM 00
+                    ASM 144
+                    LET O = 90
+                ;O variable utilizada para saber cuando tnmos que reproducir mísica
+                WHILE O > 0
+                    ;call &bd19
+                    ASM 205
+                    ASM 25
+                    ASM 189
+                    ;call &9003
+                    ASM 205
+                    ASM 03
+                    ASM 144
+                    SUBTRACT 1 FROM O
+                ENDWHILE
+                ;call &9006 ->Stop music
+                ASM 205
+                ASM 06
+                ASM 144
+                ;Si es un spectrum
+                ELSE
+                    BEEP 60
+                ENDIF
+            ENDIF
+            ;Borrramos el mensaje de boss y la puntuación
+            AT 1 0
+            PRINT "          "
+            ; Ponemos el mensaje de fase completada
+            AT 9 9           
+            MESSAGE 1
+            ;Hacemos una pequeña pausa
+            DELAY 200    
+            ;Borramos el mensaje  
+            REDRAW            
+            CLS    
+            SCREENRIGHT
+            LET C = 0 
+            ;Marcamos que ya no estamos en modo jefe
+            LET J = 0
+            ;Marcamos a en 0 para que vuelva a tomar el valor de C con los bloques que hay que coger por pantalla
+            LET S = 0
+        ENDIF
+    ; Si al jefe le queda energia la pintamos
+    ELSE   
+        ;at 3 0
+        ;print "Boss:"
+        ;at 3 5
+        ;display DOUBLEDIGITS K
+        ;at 3 10
+        ;display J
+    ENDIF
+ENDIF   
+
+
+;la variable S también es tratada en el evento del player (archivo a01) 
+;y se pone a 1 cuando termina de actualizar las cosas
+IF S=0
+    ;=======================================================
+
+    ;                    LEVEL 1
+    
+    ;=======================================================
+    IF SCREEN=0
+        LET A=8
+        ;H=posición de las puertas del interruptor por pantalla eje y
+        LET H=9
+        ;I=posición de las puertas del interruptor por pantalla eje x
+        LET I=28
+    ENDIF
+    IF SCREEN=1
+        LET A=8
+        LET H=19
+        LET I=26
+    ENDIF
+    IF SCREEN=2 
+        LET A=8
+        LET H=19
+        LET I=24
+    ENDIF
+    IF SCREEN=3
+        LET A=8
+        LET H=5
+        LET I=26
+    ENDIF
+    IF SCREEN=4
+        LET A=9
+        LET H=19
+        LET I=26
+    ENDIF
+    IF SCREEN=5
+        LET A=9
+        LET H=4
+        LET I=3
+    ENDIF
+    IF SCREEN=6
+        LET A=9
+        LET H=15
+        LET I=3
+    ENDIF
+    IF SCREEN=7
+        LET A=7
+        LET H=15
+        LET I=23
+    ENDIF
+    IF SCREEN=8
+        LET A=7
+        LET H=12
+        LET I=29
+    ENDIF
+    IF SCREEN=9
+        LET A=1
+        LET K=100
+        ; Como es la última pantalla de la fase activamos el modo jefe de fase
+        LET J=1
+
+
+            
+        ;Mostramos la información del boss
+        ; Usamos las variables  V y W de las coordenaas del player porque aquí no las necesitamos
+        at 1 2
+        print "Boss:"
+        at 1 7
+        display TRIPLEDIGITS K
+        ;Coordenada en el eje x donde empezará a dibujarse la barra de energía del boss
+        LET N = 90
+        LET W = K
+        ;ADD N TO W
+        ;WHILE N < W
+        ;    ;Empezaremos de alto en el pixel 16, coordenada en el eje y donde empezará a dibujarse la barra de energía del boss
+        ;    LET V = 8
+        ;    ;Haremos clolumnas de 8 pixeles
+        ;    WHILE V < 16
+        ;        ;PLOT posición_X posición_y
+        ;        PLOT N V
+        ;        ADD 1 TO V
+        ;    ENDWHILE
+        ;    ADD 1 TO N
+        ;ENDWHILE
+    ENDIF
+
+
+
+    ;=======================================================
+
+    ;                    LEVEL 2
+    
+    ;=======================================================
+    ;H=Y
+    ;I=X
+    IF SCREEN=10
+        LET A=7 
+        LET H=15
+        LET I=26
+    ENDIF
+    IF SCREEN=11
+        LET A=8
+        LET H=10
+        LET I=2
+    ENDIF
+    IF SCREEN=12
+        LET A=8
+        LET H=8
+        LET I=12
+    ENDIF
+    IF SCREEN=13
+        LET A=8
+        LET H=8
+        LET I=28
+    ENDIF
+    IF SCREEN=14
+        LET A=7
+        LET H=8
+        LET I=3
+    ENDIF
+    IF SCREEN=15
+        LET A=8
+        LET H=3
+        LET I=22
+    ENDIF
+    IF SCREEN=16
+        LET A=9
+        LET H=19
+        LET I=28
+    ENDIF
+    IF SCREEN=17
+        LET A=6
+        LET H=19
+        LET I=28
+    ENDIF
+    IF SCREEN=18
+        LET A=8
+        LET H=8
+        LET I=3
+    ENDIF
+    IF SCREEN=19
+        LET A=1
+        LET K=100
+        ; Como es la última pantalla de la fase activamos el modo jefe de fase
+        LET J=1
+
+
+        ;Mostramos la información del boss
+        ; Usamos las variables  V y W de las coordenaas del player porque aquí no las necesitamos
+        at 1 2
+        print "Boss:"
+        at 1 7
+        display TRIPLEDIGITS K
+        ;Coordenada en el eje x donde empezará a dibujarse la barra de energía del boss
+        LET N = 100
+        LET W = K
+        ;ADD N TO W
+        ;WHILE N < W
+        ;    ;Empezaremos de alto en el pixel 16, coordenada en el eje y donde empezará a dibujarse la barra de energía del boss
+        ;    LET V = 8
+        ;    ;Haremos clolumnas de 8 pixeles
+        ;    WHILE V < 16
+        ;        ;PLOT posición_X posición_y
+        ;        PLOT N V
+        ;        ADD 1 TO V
+        ;    ENDWHILE
+        ;    ADD 1 TO N
+        ;ENDWHILE
+
+    ENDIF
+
+
+
+
+
+    ;=======================================================
+
+    ;                    LEVEL 3
+    
+    ;=======================================================
+    ;H=Y
+    ;I=X
+    IF SCREEN=20
+        LET A=8 
+        LET H=5
+        LET I=3
+    ENDIF
+    IF SCREEN=21
+        LET A=6
+        LET H=13
+        LET I=10
+    ENDIF
+    IF SCREEN=22
+        LET A=7
+        LET H=4
+        LET I=18
+    ENDIF
+    IF SCREEN=23
+        LET A=7
+        LET H=4
+        LET I=24
+    ENDIF
+    IF SCREEN=24
+        LET A=7
+        LET H=4
+        LET I=12
+    ENDIF
+    IF SCREEN=25
+        LET A=7
+        LET H=4
+        LET I=28      
+    ENDIF
+    IF SCREEN=26
+        LET A=7
+        LET H=11
+        LET I=8      
+    ENDIF
+    IF SCREEN=27
+        LET A=7
+        LET H=4
+        LET I=25
+    ENDIF
+    IF SCREEN=28
+        LET A=8
+        LET H=4
+        LET I=20
+    ENDIF
+    IF SCREEN=29
+        LET A=1
+        LET K=100
+        ; Como es la última pantalla de la fase activamos el modo jefe de fase
+        LET J=1
+
+
+
+        ;Mostramos la información del boss
+        ; Usamos las variables  V y W de las coordenaas del player porque aquí no las necesitamos
+        at 1 2
+        print "Boss:"
+        at 1 7
+        display DOUBLEDIGITS K
+        ;Coordenada en el eje x donde empezará a dibujarse la barra de energía del boss
+        LET N = 90
+        LET W = K
+        ;ADD N TO W
+        ;WHILE N < W
+        ;    ;Empezaremos de alto en el pixel 16, coordenada en el eje y donde empezará a dibujarse la barra de energía del boss
+        ;    LET V = 8
+        ;    ;Haremos clolumnas de 8 pixeles
+        ;    WHILE V < 16
+        ;        ;PLOT posición_X posición_y
+        ;        PLOT N V
+        ;        ADD 1 TO V
+        ;    ENDWHILE
+        ;    ADD 1 TO N
+        ;ENDWHILE
+ 
+    ENDIF
+
+    ;Cestas por coger
+    ;Mostramos las que faltan por coger
+    AT 0 19
+    print " "
+    AT 0 18
+    DISPLAY A
+
+    ;Balas
+    ;balas que le quedan al cazador
+    ;AT 2 11
+    ;print "balas:"
+    AT 0 23
+    display TRIPLEDIGITS B
+
+    ;Nivel
+    ;Motramos en nivel en el que estamos
+    ;AT 2 0
+    ;print "Screen:"
+    AT 0 30
+    DISPLAY DOUBLEDIGITS screen
+
+ENDIF
+
+
+
+

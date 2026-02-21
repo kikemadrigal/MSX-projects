@@ -1,0 +1,14 @@
+
+Problemas
+---------
+
+-Como evitar que se vuelvan a dibujar los bloques collectables en amstrad y spectrum?
+-Como poner la música en amstrad?
+-Como poner la música en spectrum, he llegado a poner la música de beeper pero no se reproduce en juegos grandes
+
+
+
+
+todo
+----
+-testea el juego en apk

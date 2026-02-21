@@ -1,0 +1,168 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "OpenMSX ROM32 main.asm",
+            "remoteType": "openmsx",
+            "listFiles": [
+                {
+                    "path": "obj/main.lst",
+                    "useFiles": true,
+                    "asm": "sjasmplus",
+                    "mainFile": "src/ROM32/main.asm"
+                }
+            ],
+            "startAutomatically": false,
+            "commandsAfterLaunch": [
+                "-e openmsx_info version"
+            ],
+            "resetOnLaunch": false,
+            "rootFolder": "${workspaceFolder}",
+            "tmpDir": ".tmp"
+        },
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "OpenMSX MSXbasic loader.asm",
+            "remoteType": "openmsx",
+            "listFiles": [
+                {
+                    "path": "obj/loader.lst",
+                    "useFiles": true,
+                    "asm": "sjasmplus",
+                    "mainFile": "src/MSXBasic/loader.asm"
+                }
+            ],
+            "startAutomatically": false,
+            "commandsAfterLaunch": [
+                "-e openmsx_info version"
+            ],
+            "resetOnLaunch": false,
+            "rootFolder": "${workspaceFolder}",
+            "tmpDir": ".tmp"
+        },
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "OpenMSX MSXbasic main.asm",
+            "remoteType": "openmsx",
+            "listFiles": [
+                {
+                    "path": "obj/main.lst",
+                    "useFiles": true,
+                    "asm": "sjasmplus",
+                    "mainFile": "src/MSXBasic/main.asm"
+                }
+            ],
+            "startAutomatically": false,
+            "commandsAfterLaunch": [
+                "-e openmsx_info version"
+            ],
+            "resetOnLaunch": false,
+            "rootFolder": "${workspaceFolder}",
+            "tmpDir": ".tmp"
+        },
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "OpenMSX MSXDos loader.asm",
+            "remoteType": "openmsx",
+            "listFiles": [
+                {
+                    "path": "obj/loader.lst",
+                    "useFiles": true,
+                    "asm": "sjasmplus",
+                    "mainFile": "src/MSXDos/loader.asm"
+                }
+            ],
+            "startAutomatically": false,
+            "commandsAfterLaunch": [
+                "-e openmsx_info version"
+            ],
+            "resetOnLaunch": false,
+            "rootFolder": "${workspaceFolder}",
+            "tmpDir": ".tmp"
+        },
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "OpenMSX MSXDos main.asm",
+            "remoteType": "openmsx",
+            "listFiles": [
+                {
+                    "path": "obj/main.lst",
+                    "useFiles": true,
+                    "asm": "sjasmplus",
+                    "mainFile": "src/MSXDos/main.asm"
+                }
+            ],
+            "startAutomatically": false,
+            "commandsAfterLaunch": [
+                "-e openmsx_info version"
+            ],
+            "resetOnLaunch": false,
+            "rootFolder": "${workspaceFolder}",
+            "tmpDir": ".tmp"
+        },
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "Simulator",
+            "remoteType": "zsim",
+            "zsim": {
+                "memoryModel": "ZX48K"
+            },
+            "sjasmplus": [
+                {
+                    "path": "your_sld_file"
+                }
+            ],
+            "topOfStack": "your_stack_top",
+            "load": "your_sna_or_nex_file"
+        },
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "ZEsarUX",
+            "remoteType": "zrcp",
+            "sjasmplus": [
+                {
+                    "path": "your_sld_file"
+                }
+            ],
+            "topOfStack": "your_stack_top",
+            "load": "your_sna_or_nex_file"
+        },
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "CSpect",
+            "remoteType": "cspect",
+            "sjasmplus": [
+                {
+                    "path": "your_sld_file"
+                }
+            ],
+            "topOfStack": "your_stack_top",
+            "load": "your_sna_or_nex_file"
+        },
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "ZXNext",
+            "remoteType": "zxnext",
+            "sjasmplus": [
+                {
+                    "path": "your_sld_file"
+                }
+            ],
+            "topOfStack": "your_stack_top",
+            "load": "your_sna_or_nex_file"
+        }
+    ]
+}

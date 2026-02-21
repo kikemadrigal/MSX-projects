@@ -1,0 +1,148 @@
+EVENT INTROMENU
+
+
+;0 MSX, 1 amstrad, 2 spectrum (sino eleges MSx tenrás que comentar los definemusic y music)
+LET P = 1
+
+;Si es un MSX
+IF P = 0 
+    ;DEFINEMUSIC "music_start.pt3"
+    ;DEFINEMUSIC "music_game.pt3"
+    ;DEFINEMUSIC "music_end.pt3"
+    ;MUSIC 1 1
+    ;Por favor, descomenta las siguiente líneas
+    ;event10, línea 52 (MAINLOOP1) MUSIC 0 0
+    ;event14, línea 4 (RESTARTSCREEN)MUSIC 2 1
+    ;event16, linea 4 (killplayer) MUSIC 0 0
+    ;event17, linea 12 (lostgame) MUSIC 3 0
+ELSE
+    ;Si es un amstrad
+    IF P = 1
+        ;Para seleccionar el subsonido utilizamos el registro a del z80
+        ;ld a, 0 / 3e 00 / 62 00
+        ASM 62
+        ASM 00
+        ;call &9000
+        ASM 205
+        ASM 00
+        ASM 144
+    ;Si es un spectrum
+    ELSE
+        ;SOUND 1		; Tema musical Pac-man
+        ;SOUND 0             ; Música sólo una vez
+        ;SOUND 36		; monitor
+    ENDIF
+ENDIF
+
+
+
+;       COLOURS
+; Amstrad / spectrum
+; 0.Negro, 1 azul oscuro, 3 rosa, 4 verde, 5 azul claro, 6 amarillo, 7 blanco
+; MSX
+;0 transparente, 1 negro, 2 verde normal, 3 verde claro, 4 azul oscuro, 5 azul turquesa, 6 rojo oscuro
+;7 azul claro, 8 rojo claro, 9 rosa, 10 amarillo, 11 ambar, 12 verde oscuro, 13 lila, 14 fris, 15 blanco
+;Establecemos el color del borde (0 negro)
+BORDER 0
+;Establecemos el color del borde (0 begro)
+PAPER 0
+;Establecemos el color de la tinta (7 blanco)
+INK 7
+;Esto utiliza la máscara ;128 * FLASH + 64 * BRIGHT + 8 * PAPER + INK
+IF P = 2
+    COLOUR 7
+ENDIF
+CLS
+
+LET CONTROL = 99
+WHILE CONTROL >= 99
+    AT 2 7
+    PRINT "8 bits Murcia presents:"
+    AT 4 7
+    PRINT "The hunter"
+    AT 8 10
+    PRINT "1. KEYBOARD"
+    AT 10 10
+    PRINT "2. KEMPSTON"
+    ;AT 12 10
+    ;PRINT "3. SINCLAIR"
+    AT 12 10
+    PRINT "3. REDEFINE"
+    LET CONTROL = 99
+    WHILE CONTROL = 99
+        ;Si es un amstrad estaremos llamando a la rutina en ensamblador de reprofucir bloque de música
+        IF P = 1
+            ;call &bd19
+            ASM 205
+            ASM 25
+            ASM 189
+            ;call &9003
+            ASM 205
+            ASM 03
+            ASM 144
+        ENDIF
+        IF P = 2
+        	;SOUND 96            ; reproduce siguiente nota
+		    ;SOUND 36            ; monitor
+        ENDIF
+        IF KEY OPTION1
+            LET CONTROL = 0
+        ENDIF
+        IF KEY OPTION2
+            LET CONTROL = 1
+        ENDIF
+        ;IF KEY OPTION3
+        ;    LET CONTROL = 2
+        ;ENDIF
+        IF KEY OPTION3
+            ;Si es un amstrad, pausamos la música
+            IF P = 1
+                ;call &9006 ->Stop music
+                ASM 205
+                ASM 06
+                ASM 144
+            ENDIF
+            CLS
+            AT 3 9
+            PRINT "PRESS KEY FOR:"
+            AT 6 12
+            PRINT "up"
+            WAITKEY
+            DEFINEKEY UP
+            AT 7 12
+            PRINT "DOWN"
+            WAITKEY
+            DEFINEKEY DOWN
+            AT 8 12
+            PRINT "LEFT"
+            WAITKEY
+            DEFINEKEY LEFT
+            AT 9 12
+            PRINT "RIGHT"
+            WAITKEY
+            DEFINEKEY RIGHT
+            AT 10 12
+            PRINT "FIRE1"
+            WAITKEY
+            DEFINEKEY FIRE1
+            at 10 10
+            LET CONTROL = 100
+            CLS
+        ENDIF
+    ENDWHILE
+ 
+ENDWHILE
+
+;Si es un amstrad, pausamos la música
+IF P = 1
+    ;call &9006 ->Stop music
+    ASM 205
+    ASM 06
+    ASM 144
+ENDIF
+
+CLS
+
+
+
+

@@ -5,3 +5,5 @@ MSXTools.jar -m=d
 
 
 Quitar comentarios: java -jar MSXTools.jar -m=d -o=main.bas 
+
+java -jar MSXTools.jar -m=a -o=screen0.tmx  

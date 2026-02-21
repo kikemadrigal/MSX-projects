@@ -1,0 +1,123 @@
+;El sprite que sigue a otro sprite
+EVENT SPRITETYPE6
+
+;Si es un spectrum
+IF P = 2
+    ; 0.Negro, 1 azul oscuro, 3 rosa, 4 verde, 5 azul claro, 6 amarillo, 7 blanco
+    ;Lo pintamos de color blanco
+    spriteink 7
+ENDIF
+
+
+
+
+;Si es el 2 sprite del player
+IF SETTINGA = 0
+    LET X = V
+    LET Y = W
+    ;Com oen amstrad y spectrum no queremos un segundo sprite
+    ;Con esto quitamos el 2 sprite del player que le metemos para que tenga más colorines en MSX 1
+    IF COLLISION 0
+        ;Si es amstrad
+        IF P = 1
+            REMOVE
+        ENDIF
+        ;Si es spectrum
+        IF P = 2
+            REMOVE
+        ENDIF
+    ENDIF 
+ENDIF
+
+
+;Si es el sprite del boss
+IF SETTINGA = 1
+    LET X = F
+    LET Y = G  
+    ADD 16 TO Y
+    ;Colision de l aparte de debajo del boss con el player
+    IF COLLISION PLAYER
+        ; Si el modo test no está establecido
+        IF C = 0
+            KILL
+        ENDIF
+    ENDIF
+    ;Si hay una colisión con el disparo
+    IF COLLISION 1
+        ; Hacemos un sonido
+        IF P = 0
+            SOUND 4
+        ELSE
+            ;Si es amstrad
+            IF P = 1
+                ;call &9006 ->Stop music
+                ASM 205
+                ASM 06
+                ASM 144
+                ;Para seleccionar el subsonido utilizamos el registro a del z80
+                ;ld a, 0 / 3e 02 / 62 02
+                ASM 62
+                ASM 02
+                ;call &9000
+                ASM 205
+                ASM 00
+                ASM 144
+                ;Necesitamos que reproduzca 10 ciclos
+                LET O = 10
+            ;Si es un spectrum
+            ELSE
+                BEEP 14
+            ENDIF
+        ENDIF
+        ;K=Energía del enemigo
+        SUBTRACT 1 FROM K
+        ; Si al boss no le queda energía lo quitamos
+        IF K <= 0
+            EXPLODE 30
+            REMOVE
+        ;Si le queda energía al enemigo al haber colisión con el disparo borramos solo el disparo
+        ELSE
+            OTHER
+                REMOVE
+            ENDSPRITE
+        ENDIF
+        ;Volvemos a activar los disparos del player
+        LET D = 1
+        ;Mostramos la información del boss actualizada al haber una colosión con el disparo
+        at 1 7
+        display TRIPLEDIGITS K
+        ;Barra de energía
+        ;Coordenada en el eje x donde empezará a dibujarse la barra de energía del boss
+        ;LET N = 90
+        ;LET L = K
+        ;ADD N TO L
+        ;WHILE N < L
+        ;    ;Empezaremos de alto en el pixel 16, coordenada en el eje y donde emepezará a dibujarse labarra de energía
+        ;    LET V = 8
+        ;    ;Haremos clolumnas de 8 pixeles
+        ;    WHILE V < 16
+        ;        
+        ;        ;PLOT posición_X posición_y
+        ;        PLOT N V
+        ;        ADD 1 TO V
+        ;        
+        ;    ENDWHILE
+        ;    ADD 1 TO N
+        ;ENDWHILE
+    ENDIF
+ENDIF
+
+
+
+;Si es un spectrum
+IF P = 2
+    ;Lo pintamos de color azul claro
+    ; 0.Negro, 1 azul oscuro, 3 rosa, 4 verde, 5 azul claro, 6 amarillo, 7 blanco
+    spriteink 3
+ENDIF
+
+
+
+
+
+

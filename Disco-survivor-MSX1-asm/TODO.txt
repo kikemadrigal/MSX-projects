@@ -1,0 +1,3 @@
+-Ponle de ligar a las chicas para desbloquear salida
+-Sistema de colisiones con sprites no funciona bien
+-El golpe se escucha depues de soltar la tecla

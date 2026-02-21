@@ -1,0 +1,106 @@
+EVENT RESTARTSCREEN
+
+IF P = 0
+    ;MUSIC 2 1
+ENDIF
+
+
+;Ponemos los minutos en 2
+LET M = 2
+;ponemos los segundos en 60
+LET T = 60
+;Cuando el contador de tiempo es menor de 10 se pone el borde rojo y ahora lo ponemos negro
+BORDER 0
+
+
+
+;------------HUD----------------
+;       COLOURS
+; Amstrad / spectrum
+; 0.Negro, 1 azul oscuro, 3 rosa, 4 verde, 5 azul claro, 6 amarillo, 7 blanco
+; MSX
+;0 transparente, 1 negro, 2 verde normal, 3 verde claro, 4 azul oscuro, 5 azul turquesa, 6 rojo oscuro
+;7 azul claro, 8 rojo claro, 9 rosa, 10 amarillo, 11 ambar, 12 verde oscuro, 13 lila, 14 fris, 15 blanco
+
+;Signo dolar, mostramos el dibujo de la puntuación
+;El score aparece también en el eventogetblock (event20)
+;PUT 8 0 5
+;Si el target es MSX (P=0) utilizamos otra combinación de colores
+IF P = 0
+    INK 10
+ELSE
+    INK 6
+ENDIF
+AT 0 0
+PRINT "$"
+INK 15
+AT 0 2
+SHOWSCORE
+
+
+;Corazón, mostramos el dibujo de las vidas
+;Lives también aparece en el evento KILLPLAYER (envent16)
+;PUT 80 0 12
+;Ponemos el corazón de color rojo
+IF P = 0
+    INK 6
+ELSE
+    INK 3
+ENDIF
+AT 0 10
+;El % es el corazón modificado en fonts
+PRINT "%"
+INK 15
+AT 0 12
+DISPLAY DOUBLEDIGITS LIVES
+
+;Cesta de caza, mostramos el dibujo de las cestas a recoger
+;Las cestas que faltan por coger también aparecen en el eventogetblock (event20), en el evento mainloop(event10, linea 337)
+;PUT 128 0 1 
+;Ponemos la cesata de color verde
+IF P = 0
+    INK 2
+ELSE
+    INK 4
+ENDIF
+AT 0 16
+PRINT "&"
+INK 15
+;Balas, motramos el número de balas
+;Aprece en el evento mainloop(event10, linea 349) y en el evento del player(event00, en la linea 191 y en la 299)
+;PUT 168 0 10
+;Ponemos las balas de color azul claro
+IF P = 0
+    INK 7
+ELSE    
+    INK 5
+ENDIF
+AT 0 21
+;El signo ' es el dibujo de la bala redefinido en fonts
+PRINT "'"
+INK 15
+
+
+;Pantalla, en el evento mainloop(event10, linea 343)
+;Motramos el dibujo del nivel en el que estamos
+;PUT 224 0 8
+;Ponemos la pantalla de color azul oscuro
+IF P = 0
+    INK 4
+ELSE
+    INK 1
+ENDIF
+AT 0 28
+PRINT "("
+INK 15
+
+;-------------------------
+;      renglón 2
+;-------------------------
+
+;Reloj
+;Mostramos la hora al final del segundo renglón, aparece en el mainloop1 (event10, línea 42)
+;PUT 192 16 11
+
+
+

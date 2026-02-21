@@ -1,0 +1,226 @@
+;Evento para los animales
+EVENT SPRITETYPE2
+
+
+
+
+;Debug para mostrar los valores de las variablesd del jugador
+;at 2 0
+;display TRIPLEDIGITS SETTINGB
+;at 2 4
+;display TRIPLEDIGITS P
+
+IF A<>0
+    IF DIRECTION = LEFT
+        IF SETTINGA = 0
+            let image = 11
+        ENDIF
+        IF SETTINGA = 1
+            let image = 13
+        ENDIF
+        IF SETTINGA = 2
+            let image = 15
+        ENDIF
+        IF SETTINGA = 3
+            let image = 17
+        ENDIF
+        IF SETTINGA = 4
+            let image = 19
+        ENDIF
+        IF SETTINGA = 5
+            let image = 21
+        ENDIF
+        ;la bola
+        IF SETTINGA = 6
+            let image = 23
+        ENDIF
+        ;Comprobamos si hay un bloque sólido en el suelo
+        SUBTRACT 9 FROM X
+        IF CANGODOWN
+            LET DIRECTION = RIGHT                   
+        ENDIF
+        ADD 9 TO X
+        ;Si puede ir a la izquierda
+        IF CANGOLEFT
+            ;Lo movemos hacia la izquierda
+            SUBTRACT 1 FROM X
+            IF DEADLY
+                LET DIRECTION = RIGHT
+            ENDIF            
+        ELSE
+            LET DIRECTION = RIGHT
+        ENDIF
+    ;Si la dirección es derecha
+    ELSE
+        IF SETTINGA = 0
+            let image = 10
+        ENDIF
+        IF SETTINGA = 1
+            let image = 12
+        ENDIF
+        IF SETTINGA = 2
+            let image = 14
+        ENDIF
+        IF SETTINGA = 3
+            let image = 16
+        ENDIF
+        IF SETTINGA = 4
+            let image = 18
+        ENDIF
+        IF SETTINGA = 5
+            let image = 20
+        ENDIF
+        ;la bola
+        IF SETTINGA = 6
+            let image = 24
+        ENDIF
+        ;Comprobamos que hay un bloque sólido en el suelo
+        ADD 9 TO X
+        IF CANGODOWN
+            LET DIRECTION = LEFT                         
+        ENDIF
+        SUBTRACT 9 FROM X
+        ;Si puede ir a la derecha
+        IF CANGORIGHT
+            ;Lo movemos a la derecha
+            ADD 1 TO X   
+            ;Comprobamos su el bloque es de muerte
+            IF DEADLY
+                LET DIRECTION = LEFT
+            ENDIF
+        ELSE
+            LET DIRECTION = LEFT
+        ENDIF
+
+    ENDIF
+    ANIMATE SLOW
+ENDIF
+
+
+IF COLLISION PLAYER
+    ;La plataforma que se mueve horizontal con el player
+    IF SETTINGA = 7
+        ;Conservamos la posición y del bloque
+        LET Q = Y
+        ;vamos al player
+        OTHER
+        ; Si el bloque está más bajo que el player
+        IF Q > Y
+            ;Miramos la distancia entre el bloque y el player
+            SUBTRACT Y FROM Q
+            IF Q > 2
+                ADD Y TO Q
+                LET Y = Q
+                SUBTRACT 16 FROM Y
+                STOPFALL
+            ENDIF
+            IF KEY UP
+                JUMP 9
+            ENDIF
+        ;Si el bloque está encima del player
+        ELSE
+            SUBTRACT Y FROM Q
+            ; Si no hay un bloque wall debajo
+            IF CANGODOWN
+                IF Q > 2
+                    ADD 2 TO Y
+                    FALL
+                ENDIF
+            ELSE
+                KILL
+            ENDIF
+
+        ENDIF
+    ;Colision de los animales con el player
+    ELSE
+        ;Si el modo test no está establecido
+        IF C = 0
+            KILL
+        ENDIF
+    ENDIF
+
+ENDIF
+
+
+;Colision de los animales con la bala
+IF COLLISION 1
+
+    ;Si no es una bola, (las bolas no se pueden destruir)
+    IF SETTINGA < 6
+        ;Vamos a la bala
+        OTHER
+            ;si la bala proviene del player
+            IF SETTINGA = 0
+                ;Almcenamos que se está en modo player
+                LET Q = 0
+                ;Esto hace un efecto de explosión
+                EXPLODE 30
+                ;REMOVE
+            ;Si la bala proviene del boss
+            ELSE
+                LET Q = 1
+            ENDIF
+            ;Activamos que el player pueda crar más balas
+            LET D = 1
+            ;Activamos que el boss pueda crar más balas
+            ;LET O = 1
+            
+        ENDSPRITE
+
+
+        ;Si se está en modo player 
+        IF Q = 0
+            ;Si su imagen es un conejo creamos un objetos de tipo bala
+            IF IMAGE=12
+                PUT X Y 3
+            ENDIF
+            IF IMAGE=13
+                PUT X Y 3
+            ENDIF
+            ;Si es la imagen del zorro creamos un objetos de tipo bala
+            IF IMAGE=16
+                PUT X Y 3
+            ENDIF
+            IF IMAGE=17
+                PUT X Y 3
+            ENDIF
+            ;Si es la imagen del pinguino creamos un objetos de tipo bala
+            IF IMAGE=20
+                PUT X Y 3
+            ENDIF
+            IF IMAGE=21
+                PUT X Y 3
+            ENDIF
+            ;Borramos la bala-lo has tenido que quitar porque se borra en el remove del animal
+            REMOVE            
+        
+
+
+            ;Hacemos el sonido de muerte
+            IF P = 0
+                SOUND 5
+            ELSE
+                ;Si es amstrad
+                IF P = 1
+                    ;Para seleccionar el subsonido utilizamos el registro a del z80
+                    ;ld a, 0 / 3e 02 / 62 02
+                    ASM 62
+                    ASM 02
+                    ;call &9000
+                    ASM 205
+                    ASM 00
+                    ASM 144
+                    ;Necesitamos que reproduzca 10 ciclos
+                    LET O = 2
+                ;Si es un spectrum
+                ELSE
+                    BEEP 60
+                ENDIF
+            ENDIF
+        ENDIF
+    ENDIF ; final de si no es una bola
+
+
+
+ENDIF
+

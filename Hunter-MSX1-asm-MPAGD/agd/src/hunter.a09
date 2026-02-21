@@ -1,0 +1,146 @@
+EVENT INITSPRITE
+;el tipo o es el player
+;el tipo 1 es la bala
+;el tipo 2 es el perro
+;el tipo 3 es el conejo
+;el tipo 4 es el pájaro
+
+if type=0
+	spriteink 6
+	LET DIRECTION = RIGHT
+   LET SETTINGB = 0
+endif
+
+
+
+if type=1
+	spriteink 2
+endif
+
+
+
+
+;Si es un animal, bola o bloque que se mueve horizontal
+if type=2
+	spriteink 5
+   ;Si la imgen es la del perro a la derecha
+   IF IMAGE=10
+      LET SETTINGA = 0
+      spriteink 5
+   ENDIF
+   ;Si es un conejo
+   IF IMAGE = 12
+      spriteink 7
+      LET SETTINGA = 1
+   ENDIF
+   ;Si es una tortuga
+   IF IMAGE = 14
+      spriteink 8
+      LET SETTINGA = 2
+   ENDIF
+   ;Si es un zorro
+   IF IMAGE = 16
+      spriteink 9
+      LET SETTINGA = 3
+   ENDIF
+   ;Si es la oca
+   IF IMAGE = 18
+      ;Si no es el perro es el conejo
+      spriteink 10
+      LET SETTINGA = 4
+   ENDIF
+   ;Si es un pinguino
+   IF IMAGE = 20
+      ;Si no es el perro es el conejo
+      spriteink 11
+      LET SETTINGA = 5
+   ENDIF
+   ;Si es la bola
+   IF IMAGE = 23
+      spriteink 11
+      LET SETTINGA = 6
+   ENDIF
+   ;Si es el bloque que se mueve horizontalmente
+   IF IMAGE = 31
+      spriteink 11
+      LET SETTINGA = 7
+   ENDIF
+ENDIF
+
+
+
+;En el caso de los boss
+if type=3
+   IF IMAGE = 33
+	   spriteink 10
+      ;El setting lo utilizamos para saber si es el boss 0, 1, 2
+      LET SETTINGA = 0
+   ENDIF
+   IF IMAGE = 35
+      SPRITEINK 13
+      LET SETTINGA = 1
+   ENDIF
+   ;Si es el jefe final
+   IF IMAGE = 37
+      SPRITEINK 11
+      LET SETTINGA = 2
+   ENDIF
+endif
+
+
+
+
+IF TYPE = 4
+	spriteink 3
+   ;Si es un pájara
+   IF IMAGE = 26
+      LET SETTINGA = 0
+   ENDIF
+   ;Si es un bloque que sube y baja
+   IF IMAGE = 32
+      LET SETTINGA = 1
+   ENDIF
+ENDIF
+
+
+
+;Si es de tipo sprite perseguidor
+IF TYPE = 6
+   ;Si es el 2 del player
+   IF IMAGE = 2
+      LET SETTINGA = 0
+      spriteink 4
+   ENDIF
+   ;Si es el malo de la 1 fase
+   IF IMAGE = 34
+      LET SETTINGA = 1
+      ;Le ponemos el color amarillo
+      spriteink 11
+   ENDIF
+   ;Si es el malo de la 2 fase
+   IF IMAGE = 36
+      LET SETTINGA = 1
+      spriteink 13
+   ENDIF
+   ;Si es el jefe final
+   IF IMAGE = 38
+      LET SETTINGA = 1
+      spriteink 11
+   ENDIF
+ENDIF
+
+
+
+
+;Nos aseguramos qu el interruptor esté en off y el settiga del player a 0
+IF TYPE 8                  ; or wherever your switch code is
+      ;IF E = 0             ; if electricity is off
+      ;   LET FRAME = 1     ; display the OFF frame
+      ;   SPRITEINK 2       ; and make it RED
+      ;ELSE                 ; otherwise electricity is ON
+      ;   LET FRAME = 0     ; so display the ON frame
+      ;   SPRITEINK 4       ; make it green
+      ;ENDIF
+      LET E = 0
+      LET SETTINGA = 0     ; to start with there is no active collision
+ENDIF

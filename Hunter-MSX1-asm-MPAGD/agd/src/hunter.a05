@@ -1,0 +1,115 @@
+;Para el búo
+EVENT SPRITETYPE5
+;El sstinga será par alamacenar la dirección
+;El settingb como contandor de impactos de bala
+;at 3 21
+;DISPLAY DOUBLEDIGITS SETTINGB 
+
+
+;Si es unspectrum
+IF P = 2
+    ;Lo pintamos de color blanco
+    spriteink 7
+ENDIF
+
+
+IF A<>0
+    IF SETTINGA = LEFT
+        IF CANGOLEFT
+            SPRITELEFT
+        ELSE
+            LET SETTINGA = RIGHT
+            LET FRAME = 0
+        ENDIF
+    ELSE
+        IF CANGORIGHT
+            SPRITERIGHT
+        ELSE
+            LET SETTINGA = LEFT
+            LET FRAME = 0
+        ENDIF
+    ENDIF
+
+    IF DIRECTION = UP
+        IF CANGOUP
+            SPRITEUP
+        ELSE
+            LET DIRECTION = DOWN
+            LET FRAME = 0
+        ENDIF
+    ELSE
+        IF CANGODOWN
+            SPRITEDOWN
+        ELSE
+            LET DIRECTION = UP
+            LET FRAME = 0
+        ENDIF
+    ENDIF
+    ANIMATE SLOW
+ENDIF
+
+;Colisión del buo con el player
+IF COLLISION PLAYER
+    ; Si el modo test no está establecido
+    IF C = 0
+        KILL
+    ENDIF
+ENDIF
+
+;colisión con la bala
+IF COLLISION 1
+    ; Hacemos un sonido
+    IF P = 0
+        SOUND 4
+    ELSE
+        ;Si es amstrad
+        IF P = 1
+            ;Para seleccionar el subsonido utilizamos el registro a del z80
+            ;ld a, 0 / 3e 02 / 62 02
+            ASM 62
+            ASM 04
+            ;call &9000
+            ASM 205
+            ASM 00
+            ASM 144
+            ;Necesitamos que reproduzca 10 ciclos
+            LET O = 5
+        ;Si es un spectrum
+        ELSE
+            BEEP 2
+        ENDIF
+    ENDIF
+
+
+
+
+
+
+
+    ADD 1 TO SETTINGB
+    ;Si los impactos de bala son mayores de 10
+    IF SETTINGB >= 10
+        EXPLODE 30
+        REMOVE
+        OTHER
+            REMOVE
+        ENDSPRITE
+    ;Si los disparos son menos de 10
+    ELSE
+        ;Borramo solo la bala
+        OTHER
+            REMOVE
+        ENDSPRITE
+    ENDIF
+    ;Volvemos a activar la bala
+    LET D=1
+
+ENDIF
+
+
+
+;Si es unspectrum
+IF P = 2
+    ;Lo pintamos de color amarillo 
+    spriteink 6
+ENDIF

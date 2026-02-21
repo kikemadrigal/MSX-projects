@@ -1,0 +1,125 @@
+;Para el disparo
+EVENT SPRITETYPE1
+
+;Debug
+;at 3 0 
+;DISPLAY TRIPLEDIGITS SETTINGA
+;at 3 4
+;DISPLAY TRIPLEDIGITS Y
+;at 3 8
+;DISPLAY TRIPLEDIGITS LEFTEDGE
+;at 3 12  
+;DISPLAY TRIPLEDIGITS RIGHTEDGE
+;at 3 16
+;DISPLAY DOUBLEDIGITS DIRECTION
+
+
+; Si son balas del player 
+IF SETTINGA = 0 
+    ;Le ponemos el sprite 9 (ver los sprites)
+    LET IMAGE = 9
+ELSE
+    ; Si son balas del 1 boss
+    IF SETTINGA = 1
+        LET IMAGE = 39
+    ENDIF
+ENDIF
+
+
+
+IF DIRECTION LEFT
+    ;Si el disparo es del player
+    IF SETTINGA = 0
+        REPEAT 6
+            ;Si no hay ningún boque sólido (wallblock)
+            IF CANGOLEFT
+                SPRITELEFT
+                ;SUBTRACT 8 FROM X
+                ;Si la bala ha salido de la pantalla por la izquierda la borramos
+                IF X < LEFTEDGE
+                    ;Marcamos para que se pueda volver a disparar el player
+                    LET D = 1
+                    ;Marcamos para que se pueda volver a disparar el boss
+                    ;LET O = 1
+                    REMOVE
+                ENDIF
+            ;Si ha tropezad con un bloque wall la borramos
+            ELSE
+                ;Marcamos para que se pueda volver a disparar el player
+                LET D = 1
+                ;Marcamos para que se pueda volver a disparar el boss
+                ;LET O = 1
+                REMOVE
+            ENDIF
+        ENDREPEAT
+    ;Si el disparo es del boss
+    ELSE
+        IF CANGOLEFT
+            SPRITELEFT
+            ;SUBTRACT 8 FROM X
+            ;Si la bala ha salido de la pantalla por la izquierda la borramos
+            IF X < LEFTEDGE
+                ;Marcamos para que se pueda volver a disparar el player
+                ;LET D = 1
+                ;Marcamos para que se pueda volver a disparar el boss
+                ;LET O = 1
+                REMOVE
+            ENDIF
+        ;Si ha tropezad con un bloque wall la borramos
+        ELSE
+            ;Marcamos para que se pueda volver a disparar el player
+            ;LET D = 1
+            ;Marcamos para que se pueda volver a disparar el boss
+            ;LET O = 1
+            REMOVE
+        ENDIF
+    ENDIF
+ENDIF
+IF DIRECTION RIGHT
+    ;Si el disparo es del player
+    IF SETTINGA = 0
+        REPEAT 6
+            IF CANGORIGHT
+                SPRITERIGHT
+                ;ADD 8 TO X
+                ;Si la bala ha salido de la pantalla por la derecha la borramos
+                IF X > RIGHTEDGE
+                    ;Marcamos para que se pueda volver a disparar el player
+                    LET D = 1
+                    ;Marcamos para que se pueda volver a disparar el boss
+                    ;LET O = 1
+                    REMOVE
+                ENDIF
+            ;Si mientras va por la derecha se encuentra con algún wallblock
+            ELSE
+                ;Marcamos para que se pueda volver a disparar el player
+                LET D = 1
+                ;Marcamos para que se pueda volver a disparar el boss
+                ;LET O = 1
+                REMOVE
+            ENDIF
+        ENDREPEAT
+    ;Si el disparo es del boss
+    ELSE
+        IF CANGORIGHT
+            SPRITERIGHT
+            ;ADD 8 TO X
+            ;Si la bala ha salido de la pantalla por la derecha la borramos
+            IF X > RIGHTEDGE
+                ;Marcamos para que se pueda volver a disparar el player
+                ;LET D = 1
+                ;Marcamos para que se pueda volver a disparar el boss
+                ;LET O = 1
+                REMOVE
+            ENDIF
+        ;Si mientras va por la derecha se encuentra con algún wallblock
+        ELSE
+            ;Marcamos para que se pueda volver a disparar el player
+            ;LET D = 1
+            ;Marcamos para que se pueda volver a disparar el boss
+            ;LET O = 1
+            REMOVE
+        ENDIF
+    ENDIF
+ENDIF
+ANIMATE FAST

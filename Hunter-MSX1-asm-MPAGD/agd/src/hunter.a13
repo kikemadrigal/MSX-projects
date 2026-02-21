@@ -1,0 +1,133 @@
+EVENT GAMEINIT 
+
+
+; Como elegir tu plataforma
+;1.Ve al evento12 (Intromenu, linea 5) y dale el valor a la variable P según si es MSX, amstrad o spectrum
+;2.Ve al evento12 (Intromenu, lineas de la 8 a la 25, fijate que hay otras líneas en otros archivos) Quita o pon los comentarios par aponer la música según la suite que utilices
+
+
+;      Eventos
+
+;1 - Intro/Menu - 12
+;2 - Game Initialisation - 13
+;4 - Initialise sprite - 9
+;Loop
+;5 - Restartscreen - 14
+;6 - Main Loop 1 - 10
+;7 al 14 - Sprite Types - 0 al 8
+;15 - Main Loop 2 - 11
+;16 - Newhighscore - 19
+;17 - Collectblock - 20
+;18 - Killplayer - 16
+;19 - Completedgame - 18
+;20 - Lostgame - 17
+;endloop
+
+
+;     Sonidos / Sounds
+
+;1 Jumping
+;2 Explosion, disparo boss
+;3 Shoot
+;4 Pickup,Colisión enemigo con boss
+;5 Event, disparo player
+;6 Laser
+;7 Jet
+
+;Amstrad
+;0 Musica inicio : EVENT12 INTROMNEU, 00
+;1 winig : 
+;2 ending
+;3 disparo :EVENT00 PLAYER, 03
+;4 colision enemigo
+;5 objeto recogido :EVENT00 PLAYER, 04
+;6 enemigo muerto
+;7 interruptor
+;8 bloque cogido, evento20 (COLLECTBLOCK)
+
+;    DIRECTION
+
+; LEFT 1
+; RIGHT 0
+; UP 2
+; DOWN 3
+
+
+;       COLOURS
+; Amstrad / spectrum
+; 0.Negro, 1 azul oscuro, 3 rosa, 4 verde, 5 azul claro, 6 amarillo, 7 blanco
+; MSX
+;0 transparente, 1 negro, 2 verde normal, 3 verde claro, 4 azul oscuro, 5 azul turquesa, 6 rojo oscuro
+;7 azul claro, 8 rojo claro, 9 rosa, 10 amarillo, 11 ambar, 12 verde oscuro, 13 lila, 14 fris, 15 blanco
+
+;Para poder ver las pantallas directamente
+;Debug
+LET SCREEN = 1
+;SI C == 1 pone el modo test y las colisiones no funcionan excepto el timepo, las balas y la plataforma que te chafa por encima, mirar la 3 variable abajp
+;Si es un spectrum 128 * FLASH + 64 * BRIGHT + 8 * PAPER + INK 
+
+;P (0 msx 1 amstrad 2 spectrum )
+; por favor, especifica en el evento INTROMENU (event12) el valor de P   
+
+;Settings
+;ver archivo envent09 (INITSPRITE)
+
+; -----------variables----------
+LET LIVES = 10
+
+
+
+;GEN.| PLAYER | BALA | ANIMAL | BOSS | SWITCH 
+
+        LET A = 1 ; Objetivos que hay que coger para podr pasar de pantalla,aparece en el mainloop event10 y en el collect block event20
+        LET B = 100 ; variable utilizada para contar las bala
+LET C = 0   ; pone el modo test y las colisiones no funcionan excepto el timepo, las balas y la plataforma que te chafa por encima
+                LET D = 1 ; Solo se permite 1 bala a la vez para el player
+                                        LET E = 0 ; número de balas disparadas por el player
+                                LET F = 0 ; Utilizada para la posición x del boss
+                                LET G = 0 ; Utilizada para la posición y del boss
+                                        LET H = 0 ; Posición de las puertas del interruptor por pantalla eje y
+                                        LET I = 0 ; Posición de las puertas del interruptor por pantalla eje x
+                                LET J = 0 ; Determina cuando entramos en la pantalla del boss que siempre es la 10 (o la 9 si contamos con el 0)
+                                LET K = 0 ; Determina la energía del boss, el primer jefe tendrá una energía de 100, utilizada en mainloop(event10) y en el boss (event03)   
+LET M = 2 ; Minutos, esta variable se inicializará con 2 minutos, aparece en restartsvreen(event14) y en mainloop (event10)   
+                                LET L = 0 ; Almacena el segundo actual para que el boss no vuelva a disparar en ese instante
+                                LET N = 0 ; Para mostrar la barra de enerhía del boss                                 
+                                LET O = 1 ; Utilizada para reproducir música en modo amstrad
+LET P = P ;Indica el target , 0 MSX, 1 Amstrad, 2 spectrum, está evento INTROMENU (event12) por motivos de carga de música 
+                LET Q = 0 ; Utilizada en el evento 2 de los animales para saber si la bala la generó el player
+LET R = 0 ; Décimas de segundo segundos, utiliza en mainlopp (event10), en el boss (event3)
+LET S = 0 ; Hace que solo se haga una iteración en el mainloop(event 10) y en el player (event 0) y aqui es donde se pone a 1 porque este evento se lee después del mainloop
+LET T = 60 ; Segundos, esta variable se inicializará con 60 segundos, aparece en restartsvreen(event14) y en mainloop (event10)                  
+        LET U = 0 ; Dirección player, utilizada en el mainlopp (event10) y en el boss (event03) para determinar la dirección de la bala del boss
+        LET V = 0 ; Para trabajar con las coordenadas X del player
+        LET W = 0 ; Para trabajar con las coordenadas Y del player
+        LET X = 0 ; Variable interna de engine de agd para la posición X del player
+        LET Y = 0 ; Variable interna de engine de agd para la posición Y del player
+                                LET Z = 0 ; Utilizada en el boss (event03) para cambiar de sprite para hacer efecto animación
+
+
+
+
+
+;Types (ver event09 INITSPRITE)
+;Type 0 ;determina el tipo de player, por defecto en MPAGD
+        ;Settinga 
+        ;Settingb
+        ;image del 0 al 8
+
+;Type 1 ;Es el comportamiento de la bala
+        ;Settinga determina si la ha creado el player (0), o el boss (1)
+        ;Settingb
+        ;image 9
+ ;Type 2 ;Es el comportamiento del animal
+        ;Settinga determina si es un zorro(0,image 10y 11), un conejo(1,image 12 y 23)
+        ;        una tortuga, una cabra, un cisne, un pinguino, una bola
+        ;Settingb
+        ;image del 10 al 24      
+
+
+
+
+
+

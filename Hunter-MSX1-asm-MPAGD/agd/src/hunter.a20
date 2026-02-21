@@ -1,0 +1,45 @@
+;Evento que ocurre al coger un bloque
+EVENT COLLECTBLOCK
+
+;Sumamos a la puntuación 10 puntos
+SCORE 10
+;Restamos a la variable de bloques que hay que recoger por pantalla
+SUBTRACT 1 TO A
+;Hacemos un sonido
+;sI ES MSX
+IF P = 0
+    SOUND 3
+
+ELSE
+    ;Si es amstrad
+    IF P = 1
+        ;Con esto evitamos que se quede el sonido colgado cuando pase de pantalla
+        IF A>0
+            ;Para seleccionar el subsonido utilizamos el registro a del z80
+            ;ld a, 8 / 3e 08 / 62 08
+            ASM 62
+            ASM 04
+            ;call &9000
+            ASM 205
+            ASM 00
+            ASM 144
+            LET O = 5
+        ENDIF
+    ELSE
+        BEEP 50
+    ENDIF
+ENDIF
+;Mostramos la puntuación
+AT 0 2
+SHOWSCORE 
+
+;Borramos lo que había escrito
+AT 0 18
+print " "
+;Mostramos las que faltan por coger
+AT 0 18
+DISPLAY A
+
+
+
+

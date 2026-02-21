@@ -1,0 +1,301 @@
+EVENT PLAYER
+;Recuerda que el hilo de ejecución es el siguiente:
+;1 - Intro/Menu (events.a12)
+;2 - Game Initialisation (events.a13)
+;3 - Restart Screen (events.a14)
+;4 - Initialise sprite (events.a09)
+;5 - Main Loop 1 (events.a10)
+;6 - Sprite Types (events.a00 - events.a08)
+;7 - Main Loop 2 (events.a11)
+
+;Para ver para lo que sirven cada variable ver el archivo Game Initialisation (events.a13)
+
+;Debug para mostrar los valores de las variablesd del jugador
+;at 2 0
+;display TRIPLEDIGITS SETTINGB
+;at 2 4
+;display TRIPLEDIGITS E
+;at 2 8
+;display TRIPLEDIGITS T
+;at 2 12
+;display TRIPLEDIGITS RIGHTEDGE
+;at 2 16
+;display DOUBLEDIGITS DIRECTION
+
+
+;Estas variables so utiladas en el main loop y en el evento 3 del noss
+LET V = X
+LET W = Y
+LET U = DIRECTION
+
+
+;Si es un spectrum
+IF P = 2
+    ;Lo pintamos de color blanco
+    spriteink 7
+ENDIF
+
+;Posicionamos el player en todas las pantaññas en la misma posición
+IF S=0
+    LET X=16
+    LET Y=160
+    ;esto es para que solo haga esto una vez, la S solo valdrá 0 cuando se cambie de pantalla o te maten
+    LET S=1 
+ENDIF
+
+
+
+;------------------OBJECTS--------------------
+DETECTOBJ
+if OBJ=3
+    ;anañdimos 100 balas más
+    ADD 10 TO B
+    ;Borramos el objeto y lo metemos en ek inventario
+    GET OBJ
+    ;Hacemos un sonidoM
+    IF P = 0
+        SOUND 5
+    ELSE
+        IF P = 1
+            ;Para seleccionar el subsonido utilizamos el registro a del z80
+            ;ld a, 4 / 3e 04 / 62 04
+            ASM 62
+            ASM 04
+            ;call &9000
+            ASM 205
+            ASM 00
+            ASM 144
+            LET O = 10
+        ELSE
+            BEEP 16
+        ENDIF
+    ENDIF
+    ;Motramos el número de balas
+    AT 0 23
+    DISPLAY TRIPLEDIGITS B
+endif
+;--------------END OBJECTS--------------------
+
+
+
+;------------------BLOCKS--------------------
+GETBLOCKS 
+;Rambien existe GETBLOCK X Y:
+;   IF GOT CUSTOMBLOCK
+;       ADD 1 FROM LIVES
+;        ;Hacemos un sonidoM
+;       IF P = 0
+;           SOUND 5
+;       ELSE
+;           IF P = 1
+;               ;Para seleccionar el subsonido utilizamos el registro a del z80
+;               ;ld a, 4 / 3e 04 / 62 04
+;               ASM 62
+;               ASM 04
+;               ;call &9000
+;               ASM 205
+;               ASM 00
+;               ASM 144
+;               LET O = 10
+;           ELSE
+;               BEEP 16
+;           ENDIF
+;       ENDIF
+;   LET LINE = X
+;   LET COLUMN = Y
+;   DIVIDE LINE BY 8
+;   DIVIDE COLUMN BY 8
+;   ;Ponemos aki un bloque vacío
+;   PUTBLOCK 0 
+;   ENDIF
+
+
+; Si está tocando un bloque de muerte
+IF DEADLY
+    IF C = 0
+        KILL
+    ENDIF
+ENDIF
+;--------------END BLOCKS--------------------
+
+;Siempre que el sprite no esté cayendo o saltando, esto verifica si el sprite está parado sobre tierra firme
+FALL
+
+IF KEY LEFT
+    LET DIRECTION = LEFT
+    LET IMAGE = 1
+    IF X <= LEFTEDGE
+        LET X = LEFTEDGE
+        EXIT
+    ELSE
+        IF CANGOLEFT
+            SPRITELEFT
+            ANIMATE
+        ENDIF
+    ENDIF
+ENDIF
+
+
+
+IF KEY RIGHT
+    LET DIRECTION = RIGHT
+    LET IMAGE = 0
+    IF X >= RIGHTEDGE
+        LET X = RIGHTEDGE
+        EXIT
+    ELSE
+        IF CANGORIGHT
+            SPRITERIGHT
+            ANIMATE
+        ENDIF
+    ENDIF
+ENDIF
+
+
+IF KEY UP
+    IF LADDERABOVE
+        IMAGE=4
+        ANIMATE
+        SPRITEUP
+    ELSE
+        JUMP 9
+        
+    ENDIF
+ENDIF
+
+IF KEY DOWN
+    IF LADDERBELOW
+        IMAGE=4
+        ANIMATE
+        SPRITEDOWN
+    ENDIF
+ENDIF
+
+
+
+
+IF KEY FIRE
+    ;Si es contador de número de disparos es menor que 2
+    IF D < 2
+        ;Con esto hacemos que solo se puedan disparar 5 balas por segundo
+        ;Guardamos el segundo en el que estamos en la variable E
+        ADD 1 TO D
+        LET E = T
+        ;Si quedan le quedan balas al player
+        IF B>0
+            IF P = 0
+                SOUND 2
+            ELSE 
+                ;Si es amstrad
+                IF P = 1
+                    ;Para seleccionar el subsonido utilizamos el registro a del z80
+                    ;ld a, 4 / 3e 00 / 62 00
+                    ASM 62
+                    ASM 03
+                    ;call &9000
+                    ASM 205
+                    ASM 00
+                    ASM 144
+                    LET O = 5
+                ;Si es spectrum
+                ELSE
+                    BEEP 50
+                ENDIF
+            ENDIF
+            SPAWN 1 9
+            LET U = DIRECTION
+            LET V= X
+            LET W= Y
+            ;Hay que sumarle unos pixeles a la derecha e izquierda a la bala
+            ;IF DIRECTION = LEFT
+            ;    SUBTRACT 16 FROM V 
+            ;ELSE
+            ;    ADD 16 TO V            
+            ;ENDIF
+            ;Con esto configuramos los parámetros de la bala
+            SPAWNED
+                LET DIRECTION = U
+                ; Le decimos que el disparo proviene del player
+                LET SETTINGA = 0
+                LET X= V
+                LET Y= W
+            ENDSPRITE
+            ;Quitamos 1 al número de balas
+            SUBTRACT 1 FROM B
+            ;Motramos el número de balas
+            AT 0 23
+            DISPLAY TRIPLEDIGITS B 
+        ;Si no hay balas le quitamos una vida y le recoargamos 100
+        ELSE
+            KILL
+            ADD 100 TO B
+            ; Ponemos el mensaje de qu elas balas se agotaron
+            AT 9 9          
+            MESSAGE 5
+            ;Hacemos una pequeña pausa
+            DELAY 100    
+            ;Borramos el mensaje  
+            REDRAW  
+            LET D = 0
+        ENDIF
+    ELSE
+    ;Cuando el segundo sea distinto reiniciaremos la variable que cuenta los disparos
+        IF T <> E
+            LET D = 0
+        ENDIF
+    ENDIF
+ENDIF
+
+
+IF KEY FIRE2
+    IF LADDERABOVE
+        IMAGE=4
+        ANIMATE
+        SPRITEUP
+    ELSE
+        JUMP 9
+    ENDIF
+ENDIF
+
+IF KEY FIRE3
+    IF LADDERABOVE
+        IMAGE=4
+        ANIMATE
+        SPRITEUP
+    ELSE
+        JUMP 9
+    ENDIF
+ENDIF
+
+;IF KEY OPTION1
+;    JUMP 9
+;ENDIF
+;
+;IF KEY OPTION2
+;    JUMP 9
+;ENDIF
+
+
+;Colision del player con la bala
+IF COLLISION 1     
+    ;Vamos a la bala
+    OTHER
+        ;Si es una bala del boss
+        IF SETTINGA = 1
+            ;El evento Killplayer hace varias cosas, como sonidos, pausas y mensajes
+            KILL
+        ENDIF
+    ENDSPRITE
+ENDIF
+
+
+
+
+;Si es un spectrum
+IF P = 2
+    ;Lo pintamos de color azul claro
+    ; 0.Negro, 1 azul oscuro, 3 rosa, 4 verde, 5 azul claro, 6 amarillo, 7 blanco
+    spriteink 5
+ENDIF
+
+

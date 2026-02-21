@@ -1,0 +1,72 @@
+EVENT COMPLETEDGAME
+
+CLS
+
+
+
+
+at 2 5
+PRINT "Has ganado!!!"
+at 5 0
+PRINT "Creditos"
+at 6 0
+PRINT "--------"
+at 9 0
+PRINT "Logica: Kike Madrigal"
+at 11 0
+PRINT "Programacion: Kike Madrigal"
+at 13 0
+PRINT "Graficos: Kike Madrigal"
+at 15 0
+PRINT "Musica y efectos: Kike Madrigal"
+
+
+
+;DELAY 255        
+;DELAY 255        
+;DELAY 255 
+
+;Hacemos el sonido de misión cumplida
+IF P = 0
+    SOUND 5
+    ;MUSIC 3 1
+ELSE
+    ;Si es amstrad
+    IF P = 1
+        ;Para seleccionar el subsonido utilizamos el registro a del z80
+        ;ld a, 0 / 3e 02 / 62 02
+        ASM 62
+        ASM 01
+        ;call &9000
+        ASM 205
+        ASM 00
+        ASM 144
+        LET O = 190
+        ;O variable utilizada para saber cuando tnmos que reproducir mísica
+        WHILE O > 0
+            ;call &bd19
+            ASM 205
+            ASM 25
+            ASM 189
+            ;call &9003
+            ASM 205
+            ASM 03
+            ASM 144
+            SUBTRACT 1 FROM O
+        ENDWHILE
+        ;call &9006 ->Stop music
+        ASM 205
+        ASM 06
+        ASM 144
+    ;Si es un spectrum
+    ELSE
+        BEEP 60
+    ENDIF
+ENDIF
+
+AT 19 0
+PRINT "Presione una tecla para continuar"
+WAITKEY
+
+
+

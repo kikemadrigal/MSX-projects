@@ -1,0 +1,56 @@
+EVENT LOSTGAME
+
+CLS
+
+
+;Hacemos el sonido de misión cumplida
+IF P = 0
+    SOUND 5
+ELSE
+    ;Si es amstrad
+    IF P = 1
+        ;Para seleccionar el subsonido utilizamos el registro a del z80
+        ;ld a, 0 / 3e 02 / 62 02
+        ASM 62
+        ASM 02
+        ;call &9000
+        ASM 205
+        ASM 00
+        ASM 144
+        LET O = 70
+        ;O variable utilizada para saber cuando tnmos que reproducir mísica
+        WHILE O > 0
+            ;call &bd19
+            ASM 205
+            ASM 25
+            ASM 189
+            ;call &9003
+            ASM 205
+            ASM 03
+            ASM 144
+            SUBTRACT 1 FROM O
+        ENDWHILE
+        ;call &9006 ->Stop music
+        ASM 205
+        ASM 06
+        ASM 144
+    ;Si es un spectrum
+    ELSE
+        BEEP 60
+    ENDIF
+ENDIF
+
+
+
+AT 10 8           
+MESSAGE 2
+AT 12 8
+MESSAGE 3
+AT 12 15 
+SHOWSCORE
+
+;MUSIC 3 0
+DELAY 254
+
+
+

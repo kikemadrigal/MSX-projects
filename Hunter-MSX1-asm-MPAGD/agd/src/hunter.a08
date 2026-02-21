@@ -1,0 +1,87 @@
+;El interruptor 
+EVENT SPRITETYPE8
+
+;Debug
+
+;at 3 21
+;DISPLAY DOUBLEDIGITS SETTINGA
+;at 3 26
+;DISPLAY DOUBLEDIGITS E
+
+
+
+
+
+
+;H=posición de las puertas del interruptor por pantalla eje y
+;LET H=9
+;I=posición de las puertas del interruptor por pantalla eje x
+;LET I=28
+;SETTINGA determina si el interruptor ha sido ya tocado, settinga=0 es que no lo han tocado
+
+IF SETTINGA = 0                    ; Está apagado el interruptor?
+        SPRITEINK 2               ; La ponemos en verde cuando está apagada
+        LET FRAME = 0             ; Ponemos el frame 1 que es donde sale apagado
+        ;Mostramos los bloques de la puerta
+        AT H I
+        PUTBLOCK 9
+        ADD 1 TO H
+        AT H I
+        PUTBLOCK 9
+        ADD 1 TO H
+        AT H I
+        PUTBLOCK 9
+        SUBTRACT 2 FROM H
+ELSE                         ; Si está encendido el interruptor
+        SPRITEINK 4              ;Lo ponemos de color azul
+        LET FRAME = 1            ; Motramos el display encedido
+        ;Mostramos bloques vacíos
+        AT 9 28
+        AT H I
+        PUTBLOCK 0
+        ADD 1 TO H
+        AT H I
+        PUTBLOCK 0
+        ADD 1 TO H
+        AT H I
+        PUTBLOCK 0
+
+        SUBTRACT 2 FROM H
+ENDIF
+
+
+
+IF COLLISION 0              ;Si hay colision con el player
+    IF SETTINGA = 0          ; Si el interruptor no lo han tocado
+        LET SETTINGA = 1 ;Lo marcamos como tiocado
+        ; Hacemos un sonido
+        IF P = 0
+            SOUND 0
+        ELSE
+            ;Si es amstrad
+            IF P = 1
+                ;Para seleccionar el subsonido utilizamos el registro a del z80
+                ;ld a, 7 / 3e 07 / 62 07
+                ASM 62
+                ASM 07
+                ;call &9000
+                ASM 205
+                ASM 00
+                ASM 144
+                ;Necesitamos que reproduzca 10 ciclos
+                LET O = 5
+            ;Si es un spectrum
+            ELSE
+                BEEP 14
+            ENDIF
+        ENDIF
+
+
+
+
+
+    ENDIF
+      
+ENDIF
+
+

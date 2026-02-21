@@ -1,0 +1,301 @@
+;EL boss
+EVENT SPRITETYPE3
+
+;Debug
+;at 3 18
+;DISPLAY DIRECTION
+;at 3 21
+;DISPLAY O
+;at 3 24
+;DISPLAY D
+;at 3 26
+;Dirección bala para que salga a la derecha o i<quierda
+;display U
+
+
+
+;F y G son las coordenadas x e y del boss que utilizaremos en el evento6 el sprite que sigue a otro sprite
+; para hacer los jefes más grandes
+LET F = X
+LET G = Y
+
+;Si es un spectrum
+IF P = 2
+    ; 0.Negro, 1 azul oscuro, 3 rosa, 4 verde, 5 azul claro, 6 amarillo, 7 blanco
+    ;Lo pintamos de color blanco
+    spriteink 7
+ENDIF
+
+;Si los milisegundos se ponen a 0 eso es que ha pasado 1 segundo
+IF R = 1
+    ADD 1 TO Z
+    IF Z = 4
+        LET Z = 0
+        LET FRAME = 0
+    ELSE
+        LET FRAME = 1
+    ENDIF
+ENDIF
+
+;Se moverá casi todo el tiempo de izquiera a derecha de arriba a abajo,etc y solo atacará al  player cuando Z=0
+IF Z>=2
+    ;Si es el boss 0
+    IF SETTINGA = 0
+        IF DIRECTION = LEFT
+            ;Si puede ir a la izquierda lo movemos a la izquierda
+            IF CANGOLEFT
+                ;y si no hay colisión del sprite de la parte de abajo (ya que son 2 sprites)
+                SPRITELEFT
+            ;Si no puede ir a la izquierda es que hay un bloque pared
+            ELSE
+                ;Le ponemos la dirección derecha
+                LET DIRECTION = RIGHT
+            ENDIF
+        ;Si la dirección no es izquierda, lo movemos a la derecha
+        ELSE
+            IF CANGORIGHT
+                SPRITERIGHT 
+            ELSE
+                LET DIRECTION = LEFT
+            ENDIF
+        ENDIF
+    ENDIF
+    ;Si es el boss 1
+    IF SETTINGA = 1
+        IF DIRECTION = UP
+            ;Si puede ir a la izquierda lo movemos a la izquierda
+            IF CANGOUP
+                SPRITEUP
+            ;Si no puede ir a la izquierda es que hay un bloque pared
+            ELSE
+                ;Le ponemos la dirección derecha
+                LET DIRECTION = DOWN
+            ENDIF
+        ;Si la dirección no es izquierda, lo movemos a la derecha
+        ELSE
+            IF CANGODOWN
+                SPRITEDOWN
+            ELSE
+                LET DIRECTION = UP
+            ENDIF
+        ENDIF
+    ENDIF
+    ;Si es el jefe final irá todo el rato a por ti pero un poco más despacio
+    IF SETTINGA = 2
+        GETRANDOM 100
+        IF RND < 20
+            IF Y > W
+                IF CANGOUP
+                    SPRITEUP
+                ENDIF
+            ENDIF
+            IF Y < W
+                IF CANGODOWN
+                    SPRITEDOWN
+                ENDIF
+            ENDIF
+            IF X > V
+                IF CANGOLEFT
+                    SPRITELEFT
+                ENDIF
+            ENDIF
+            IF X < V
+                IF CANGORIGHT
+                    SPRITERIGHT
+                ENDIF
+            ENDIF
+        ENDIF
+    ENDIF
+; si Z vale 0 atacará al player
+ELSE
+    GETRANDOM 100
+    IF RND < 20
+        IF Y > W
+            IF CANGOUP
+                SPRITEUP
+            ENDIF
+        ENDIF
+        IF Y < W
+            IF CANGODOWN
+                SPRITEDOWN
+            ENDIF
+        ENDIF
+        IF X > V
+            IF CANGOLEFT
+                SPRITELEFT
+            ENDIF
+        ENDIF
+        IF X < V
+            IF CANGORIGHT
+                SPRITERIGHT
+            ENDIF
+        ENDIF
+    ENDIF
+
+
+    ;Solo crearemos el disparo si es un segundo distinto
+
+    IF L <> Z
+        ; Hacemos un sonido
+        IF P = 0
+            SOUND 2
+        ELSE
+            ;Si es amstrad
+            IF P = 1
+                ;Para seleccionar el subsonido utilizamos el registro a del z80
+                ;ld a, 0 / 3e 02 / 62 02
+                ASM 62
+                ASM 03
+                ;call &9000
+                ASM 205
+                ASM 00
+                ASM 144
+                ;Necesitamos que reproduzca 10 ciclos
+                LET O = 10
+            ;Si es un spectrum
+            ELSE
+                BEEP 50
+            ENDIF
+        ENDIF
+
+
+
+
+
+        
+        ;Creamos una bala con la imagen 9
+        SPAWN 1 9    
+        LET V = X
+        LET W = Y
+        ;Vamos a asignar la U que es la futura dirección de bala
+        ;Si la dirección actual del boss es la derecha vamos a añadir o quitarle los 16px
+        ;del sprite para que no marque colisión
+        IF DIRECTION = LEFT
+            SUBTRACT 16 FROM V
+            LET U = LEFT
+        ; Si no es la derecha puede ser izquierda, arriba o abajo
+        ELSE
+            IF DIRECTION = RIGHT
+                ADD 16 TO V
+                LET U = RIGHT
+            ELSE
+                IF DIRECTION = UP
+                    SUBTRACT 20 FROM V
+                    LET U = LEFT
+                ELSE
+                    ADD 20 TO V
+                    LET U = RIGHT
+                ENDIF
+            ENDIF
+        ENDIF
+        
+        ;Con esto configuramos los parámetros de la bala
+        SPAWNED
+            ;En settina le ponemos que es de tipo 1 boss
+            LET SETTINGA = 1
+            ;Le ponemos el sprite de la bala
+            LET IMAGE = 29
+            LET DIRECTION = U
+            LET X = V
+            LET Y = W
+        ENDSPRITE
+        ;Almacenamos el contador para que no se vuelva a disparar en ese segundo
+        LET L = Z
+    ENDIF
+
+ENDIF
+;Las animaciones las controlamos nostros con frame
+;ANIMATE SLOW
+
+
+
+
+;Colision del boss con el player
+IF COLLISION PLAYER
+    ;Si el modo test no está establecido
+    IF C = 0
+        KILL
+    ENDIF
+ENDIF
+
+;Si hay una colisión con el disparo
+IF COLLISION 1
+    ; Hacemos un sonido
+    IF P = 0
+        SOUND 4
+    ELSE
+        ;Si es amstrad
+        IF P = 1
+            ;call &9006 ->Stop music
+            ASM 205
+            ASM 06
+            ASM 144
+            ;Para seleccionar el subsonido utilizamos el registro a del z80
+            ;ld a, 0 / 3e 02 / 62 02
+            ASM 62
+            ASM 02
+            ;call &9000
+            ASM 205
+            ASM 00
+            ASM 144
+            ;Necesitamos que reproduzca 10 ciclos
+            LET O = 10
+        ;Si es un spectrum
+        ELSE
+            BEEP 14
+        ENDIF
+    ENDIF
+    ;K=Energía del enemigo
+    SUBTRACT 1 FROM K
+    ; Si al boss no le queda energía lo quitamos
+    IF K <= 0
+        EXPLODE 30
+        REMOVE
+    ;Si le queda energía al enemigo al haber colisión con el disparo borramos solo el disparo
+    ELSE
+        OTHER
+            REMOVE
+        ENDSPRITE
+    ENDIF
+    ;Volvemos a activar los disparos del player
+    LET D = 1
+    ;Mostramos la información del boss actualizada al haber una colosión con el disparo
+    at 1 7
+    display TRIPLEDIGITS K
+    ;Barra de energía del enemigo
+    ;Coordenada en el eje x donde empezará a dibujarse la barra de energía del boss
+    ;LET N = 90
+    ;LET L = K
+    ;ADD N TO L
+    ;WHILE N < L
+    ;    ;Empezaremos de alto en el pixel 16, coordenada en el eje y donde emepezará a dibujarse labarra de energía
+    ;    LET V = 8
+    ;    ;Haremos clolumnas de 8 pixeles
+    ;    WHILE V < 16
+    ;        
+    ;        ;PLOT posición_X posición_y
+    ;        PLOT N V
+    ;        ADD 1 TO V
+    ;        
+    ;    ENDWHILE
+    ;    ADD 1 TO N
+    ;ENDWHILE
+ENDIF
+
+
+;Si es un spectrum
+IF P = 2
+    ;Lo pintamos de color azul claro
+    ; 0.Negro, 1 azul oscuro, 3 rosa, 4 verde, 5 azul claro, 6 amarillo, 7 blanco
+    spriteink 3
+ENDIF
+
+
+
+
+
+;DATA 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+;DATA 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 10
+
+
+

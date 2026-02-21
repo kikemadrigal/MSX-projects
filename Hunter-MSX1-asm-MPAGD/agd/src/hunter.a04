@@ -1,0 +1,102 @@
+;Para el pájaro y el bloque que sube y baja
+EVENT SPRITETYPE4
+
+;LET M = X
+;LET N = Y
+
+;Si es un spectrum
+IF P = 2
+    ;Lo pintamos de color blanco
+    spriteink 7
+ENDIF 
+
+IF A<>0
+    IF DIRECTION = UP
+        IF CANGOUP
+            SPRITEUP
+            IF DEADLY
+                LET DIRECTION = DOWN
+            ENDIF
+        ELSE
+            LET DIRECTION = DOWN
+        ENDIF
+    ELSE
+        IF CANGODOWN
+            SPRITEDOWN
+            IF DEADLY
+                LET DIRECTION = UP
+            ENDIF
+        ELSE
+            LET DIRECTION = UP
+        ENDIF
+    ENDIF
+    ANIMATE SLOW
+ENDIF
+
+
+;Colision del pájar y bloque con el player
+IF COLLISION PLAYER
+    ;Si es un pájaro
+    IF SETTINGA = 0
+        ; Si el modo test no está establecido
+        IF C = 0
+            KILL
+        ENDIF
+    ;Si es un bloque que sube y baja
+    ELSE
+        ;Conservamos la posición y del bloque
+        LET Q = Y
+        ;vamos al player
+        OTHER
+        ; Si el bloque está más bajo que el player
+        IF Q > Y
+            ;Miramos la distancia entre el bloque y el player
+            SUBTRACT Y FROM Q
+            IF Q > 2
+                ADD Y TO Q
+                LET Y = Q
+                SUBTRACT 16 FROM Y
+                STOPFALL
+            ENDIF
+            IF KEY UP
+                JUMP 9
+            ENDIF
+        ;Si el bloque está encima del player
+        ELSE
+            SUBTRACT Y FROM Q
+            ; Si no hay un bloque wall debajo
+            IF CANGODOWN
+                IF Q > 2
+                    ADD 2 TO Y
+                    FALL
+                ENDIF
+            ELSE
+                ;Colisión si el bloque te pesca encima
+                KILL
+            ENDIF
+
+        ENDIF
+        ENDSPRITE
+    ENDIF
+ENDIF
+
+;Colisión con el disparo
+IF COLLISION 1
+    ;Si es un pájaro
+    IF SETTINGA = 0
+        EXPLODE 30
+        OTHER
+            ;REMOVE
+        ENDSPRITE
+        REMOVE
+        LET D=1
+    ENDIF
+ENDIF
+
+
+;Si es un spectrum
+IF P = 2
+    ;Lo pintamos de color azul claro
+    ; 0.Negro, 1 azul oscuro, 3 rosa, 4 verde, 5 azul claro, 6 amarillo, 7 blanco
+    spriteink 3
+ENDIF
