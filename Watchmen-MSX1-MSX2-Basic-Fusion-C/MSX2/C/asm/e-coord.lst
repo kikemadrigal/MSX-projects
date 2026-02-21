@@ -1,0 +1,77 @@
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.02.06 - 00:39:07]
+
+asm/e-coord.asm
+Errors: 0
+
+       1   00:0000                      		 output e-coord.bin
+       2   00:D000  FE                  	db   #fe
+       3   00:D001  00 D0               	dw   INICIO 
+       4   00:D003  6C D0               	dw   FINAL
+       5   00:D005  00 D0               	dw   INICIO 
+       6   00:D007                      	org  #d000 
+       7   00:D000  (00:0002)           entity_type_enemy1 equ	2 
+       8   00:D000  (00:0004)           entity_type_enemy2 equ	4 
+       9   00:D000                      INICIO: 
+      10   00:D000                          ;level 0
+      11   00:D000                          ; Enemy1 [x,y,type], enemy2 [x,y,type], enemy3 [x,y,type]
+      12   00:D000                          db 14*8, 3*8, entity_type_enemy1,4*8, 9*8, entity_type_enemy1, 6*8, 15*8, entity_type_enemy1
+      12   00:D000  70 18 02 20 48 02 30 78 02 
+      13   00:D009                          ;level 1
+      14   00:D009                          db 3*8, 5*8, entity_type_enemy1, 15*8, 1*8, entity_type_enemy1, 15*8, 10*8, entity_type_enemy1
+      14   00:D009  18 28 02 78 08 02 78 50 02 
+      15   00:D012                          ;level 2
+      16   00:D012                          db  23*8,2*8, entity_type_enemy1, 28*8,6*8,entity_type_enemy1,23*8, 16*8, entity_type_enemy1
+      16   00:D012  B8 10 02 E0 30 02 B8 80 02 
+      17   00:D01B                          ;level 3
+      18   00:D01B                          db  23*8,2*8, entity_type_enemy1,10*8, 6*8, entity_type_enemy1, 10*8, 15*8, entity_type_enemy1
+      18   00:D01B  B8 10 02 50 30 02 50 78 02 
+      19   00:D024                          ;level 4
+      20   00:D024                          db  6*8,2*8, entity_type_enemy1,15*8, 7*8, entity_type_enemy1, 7*8, 14*8, entity_type_enemy1
+      20   00:D024  30 10 02 78 38 02 38 70 02 
+      21   00:D02D                          ;level 5
+      22   00:D02D                          db  10*8,2*8, entity_type_enemy1,15*8, 16*8, entity_type_enemy1, 6*8, 13*8, entity_type_enemy1
+      22   00:D02D  50 10 02 78 80 02 30 68 02 
+      23   00:D036                          ;level 6
+      24   00:D036                          db  20*8,2*8, entity_type_enemy1,15*8, 6*8, entity_type_enemy1, 20*8, 15*8, entity_type_enemy1
+      24   00:D036  A0 10 02 78 30 02 A0 78 02 
+      25   00:D03F                          ;level 7 (aqui se debe de poner un menos de la pantalla que sale en el MSX)
+      26   00:D03F                          db  4*8,4*8, entity_type_enemy1,4*8, 9*8, entity_type_enemy1, 23*8, 15*8, entity_type_enemy1
+      26   00:D03F  20 20 02 20 48 02 B8 78 02 
+      27   00:D048                          ;level 8
+      28   00:D048                          db  5*8,2*8, entity_type_enemy1,15*8, 11*8, entity_type_enemy1, 28*8, 16*8, entity_type_enemy1
+      28   00:D048  28 10 02 78 58 02 E0 80 02 
+      29   00:D051                          ;level 9
+      30   00:D051                          db  15*8,3*8, entity_type_enemy1,15*8, 11*8, entity_type_enemy1, 20*8, 20*8, entity_type_enemy1
+      30   00:D051  78 18 02 78 58 02 A0 A0 02 
+      31   00:D05A                          ;level 10
+      32   00:D05A                          db  22*8,5*8, entity_type_enemy1,15*8, 8*8, entity_type_enemy1, 20*8, 16*8, entity_type_enemy1
+      32   00:D05A  B0 28 02 78 40 02 A0 80 02 
+      33   00:D063                          ;level 11
+      34   00:D063                          db  22*8,5*8, entity_type_enemy1,15*8, 8*8, entity_type_enemy1, 20*8, 16*8, entity_type_enemy1
+      34   00:D063  B0 28 02 78 40 02 A0 80 02 
+      35   00:D06C                      FINAL: 
+
+    LABELS
+-------------------------------------------------
+00:00000002   entity_type_enemy1
+00:00000004 X entity_type_enemy2
+00:0000D000   INICIO
+00:0000D06C   FINAL
+
+
+ Output: asm/e-coord.out
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000D000  Size: *  Used: 00000000
+
+    No output
+
+ Output: e-coord.bin
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000D000  Size: *  Used: 00000073
+
+   Address   Length Align   Label
+   0000D000     115         INICIO

@@ -1,0 +1,84 @@
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.02.06 - 00:39:07]
+
+asm/g-coord.asm
+Errors: 0
+
+       1   00:0000                      		 output g-coord.bin
+       2   00:D000  FE                  	db   #fe
+       3   00:D001  00 D0               	dw   INICIO 
+       4   00:D003  48 D0               	dw   FINAL
+       5   00:D005  00 D0               	dw   INICIO 
+       6   00:D007                      	org  #d000 
+       7   00:D000                      INICIO: 
+       8   00:D000                          ;level  0
+       9   00:D000  08 98               	db 1*8,19*8   ;Player initial position x, y
+      10   00:D002  E8 10                   db 29*8,2*8   ;door position x, y
+      11   00:D004  08 78                   db 1*8,15*8     ;Phone position x, y 
+      12   00:D006                          ;level 1
+      13   00:D006  20 A0                   db  4*8,20*8
+      14   00:D008  10 20                   db 2*8,4*8
+      15   00:D00A  E0 50                   db 28*8,10*8   
+      16   00:D00C                          ;wordl 2
+      17   00:D00C  18 A0                   db 3*8,20*8   ;Player initial position
+      18   00:D00E  20 78                   db 4*8,15*8   ;door position
+      19   00:D010  D8 58                   db 27*8,11*8  ;Phone position
+      20   00:D012                          ;level 3
+      21   00:D012  10 A0                   db 2*8,20*8   ;Player initial position
+      22   00:D014  10 08                   db 2*8,1*8    ;door position
+      23   00:D016  E0 A0                   db 28*8,20*8  ;Phone position
+      24   00:D018                          ;level 4
+      25   00:D018  A0 98                   db 20*8,19*8  ;Player initial position
+      26   00:D01A  08 98                   db 1*8,19*8   ;door position
+      27   00:D01C  A0 10                   db 20*8,2*8  ;Phone position
+      28   00:D01E                          ;level 5
+      29   00:D01E  78 98                   db 15*8,19*8  ;Player initial position
+      30   00:D020  E8 60                   db 29*8,12*8   ;door position
+      31   00:D022  10 68                   db 2*8,13*8  ;Phone position
+      32   00:D024                          ;level 6 (o la 7 vista en el MSX, pon 6 en game_update)
+      33   00:D024  08 A0                   db 1*8,20*8  ;Player initial position
+      34   00:D026  E8 98                   db 29*8,19*8   ;door position
+      35   00:D028  E8 10                   db 29*8,2*8  ;Phone position
+      36   00:D02A                          ;level 7
+      37   00:D02A  D0 A0                   db 26*8,20*8  ;Player initial position
+      38   00:D02C  E8 18                   db 29*8,3*8 ;door position
+      39   00:D02E  08 A0                   db 1*8,20*8  ;Phone position
+      40   00:D030                          ;level 8
+      41   00:D030  20 A0                   db 4*8,20*8  ;Player initial position
+      42   00:D032  E8 50                   db 29*8,10*8   ;door position
+      43   00:D034  80 80                   db 16*8,16*8  ;Phone position
+      44   00:D036                          ;level 9
+      45   00:D036  20 A0                   db 4*8,20*8  ;Player initial position
+      46   00:D038  38 18                   db 7*8,3*8  ;door position
+      47   00:D03A  28 80                   db 5*8,16*8  ;Phone position
+      48   00:D03C                          ;level 10
+      49   00:D03C  20 A0                   db 4*8,20*8  ;Player initial position
+      50   00:D03E  10 98                   db 2*8,19*8  ;door position
+      51   00:D040  E0 38                   db 28*8,7*8  ;Phone position
+      52   00:D042                          ;level 11
+      53   00:D042  20 A0                   db 4*8,20*8  ;Player initial position
+      54   00:D044  08 A0                   db 1*8,20*8   ;door position
+      55   00:D046  E0 30                   db 28*8,6*8  ;Phone position
+      56   00:D048                      FINAL: 
+
+    LABELS
+-------------------------------------------------
+00:0000D000   INICIO
+00:0000D048   FINAL
+
+
+ Output: asm/g-coord.out
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000D000  Size: *  Used: 00000000
+
+    No output
+
+ Output: g-coord.bin
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000D000  Size: *  Used: 0000004F
+
+   Address   Length Align   Label
+   0000D000      79         INICIO

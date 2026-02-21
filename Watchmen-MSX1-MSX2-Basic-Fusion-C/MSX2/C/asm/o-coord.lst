@@ -1,0 +1,500 @@
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.02.06 - 00:39:07]
+
+asm/o-coord.asm
+Errors: 0
+
+       1   00:0000                      		 output o-coord.bin
+       2   00:D000  FE                  	db   #fe
+       3   00:D001  00 D0               	dw   INICIO 
+       4   00:D003  B4 D0               	dw   FINAL
+       5   00:D005  00 D0               	dw   INICIO 
+       6   00:D007                      	org  #d000 
+       7   00:D000  (00:0016)           entity_type_object_money equ	#16 
+       8   00:D000  (00:0032)           entity_type_object_divan1 equ	#32
+       9   00:D000  (00:0080)           entity_type_object_divan2 equ	#80
+      10   00:D000                      INICIO: 
+      11   00:D000                          ; level 0
+      12   00:D000                          ;---------------------------
+      13   00:D000                          ; coordinate_object 0
+      14   00:D000  08                      db 1*8
+      15   00:D001  18                      db 3*8
+      16   00:D002  16                      db entity_type_object_money
+      17   00:D003                      
+      18   00:D003                          ; coordinate_object 1
+      19   00:D003  70                      db 14*8
+      20   00:D004  18                      db 3*8
+      21   00:D005  16                      db entity_type_object_money
+      22   00:D006                          
+      23   00:D006                          ; coordinate_object 2
+      24   00:D006  08                      db 1*8
+      25   00:D007  48                      db 9*8
+      26   00:D008  16                      db entity_type_object_money
+      27   00:D009                      
+      28   00:D009                          ;coordinate_object 3
+      29   00:D009  70                      db 14*8
+      30   00:D00A  78                      db 15*8
+      31   00:D00B  32                      db entity_type_object_divan1
+      32   00:D00C                          
+      33   00:D00C                          ;coordinate_object 4
+      34   00:D00C  40                      db 8*8
+      35   00:D00D  18                      db 3*8
+      36   00:D00E  80                      db entity_type_object_divan2
+      37   00:D00F                          
+      38   00:D00F                          
+      39   00:D00F                      
+      40   00:D00F                      
+      41   00:D00F                      
+      42   00:D00F                      
+      43   00:D00F                      
+      44   00:D00F                      
+      45   00:D00F                      
+      46   00:D00F                      
+      47   00:D00F                      
+      48   00:D00F                      
+      49   00:D00F                      
+      50   00:D00F                      
+      51   00:D00F                      
+      52   00:D00F                      
+      53   00:D00F                          ; level 1
+      54   00:D00F                          ;---------------------------
+      55   00:D00F                           ; coordinate_object 0
+      56   00:D00F  E0                      db 28*8
+      57   00:D010  08                      db 1*8
+      58   00:D011  16                      db entity_type_object_money
+      59   00:D012                          
+      60   00:D012                          ; coordinate_object 1
+      61   00:D012  78                      db 15*8
+      62   00:D013  28                      db 5*8
+      63   00:D014  16                      db entity_type_object_money
+      64   00:D015                          
+      65   00:D015                          ; coordinate_object 2
+      66   00:D015  10                      db 2*8
+      67   00:D016  50                      db 10*8
+      68   00:D017  16                      db entity_type_object_money
+      69   00:D018                          
+      70   00:D018                          ; coordinate_object 3
+      71   00:D018  90                      db 18*8
+      72   00:D019  28                      db 5*8
+      73   00:D01A  32                      db entity_type_object_divan1
+      74   00:D01B                            
+      75   00:D01B                          ; coordinate__object 4
+      76   00:D01B  08                      db 1*8
+      77   00:D01C  D0                      db 26*8
+      78   00:D01D  80                      db entity_type_object_divan2
+      79   00:D01E                      
+      80   00:D01E                      
+      81   00:D01E                      
+      82   00:D01E                      
+      83   00:D01E                      
+      84   00:D01E                      
+      85   00:D01E                      
+      86   00:D01E                      
+      87   00:D01E                      
+      88   00:D01E                      
+      89   00:D01E                      
+      90   00:D01E                      
+      91   00:D01E                      
+      92   00:D01E                      
+      93   00:D01E                      
+      94   00:D01E                      
+      95   00:D01E                      
+      96   00:D01E                      
+      97   00:D01E                      
+      98   00:D01E                          ; level 2
+      99   00:D01E                          ;---------------------------
+     100   00:D01E                      
+     101   00:D01E                         ;coordinate_object 0
+     102   00:D01E  D0                      db 26*8
+     103   00:D01F  10                      db 2*8
+     104   00:D020  16                      db entity_type_object_money
+     105   00:D021                          
+     106   00:D021                          ;coordinate_object 1
+     107   00:D021  38                      db 7*8
+     108   00:D022  60                      db 12*8
+     109   00:D023  16                      db entity_type_object_money
+     110   00:D024                          
+     111   00:D024                           ;coordinate_object 2
+     112   00:D024  A8                      db 21*8
+     113   00:D025  30                      db 6*8
+     114   00:D026  16                      db entity_type_object_money
+     115   00:D027                          
+     116   00:D027                          ;coordinate_object 3
+     117   00:D027  78                      db  15*8
+     118   00:D028  10                      db  2*8
+     119   00:D029  32                      db  entity_type_object_divan1
+     120   00:D02A                            
+     121   00:D02A                          ;coordinate_object 4
+     122   00:D02A  18                      db 3*8
+     123   00:D02B  E0                      db 28*8
+     124   00:D02C  80                      db entity_type_object_divan2
+     125   00:D02D                      
+     126   00:D02D                      
+     127   00:D02D                      
+     128   00:D02D                      
+     129   00:D02D                      
+     130   00:D02D                      
+     131   00:D02D                      
+     132   00:D02D                      
+     133   00:D02D                      
+     134   00:D02D                      
+     135   00:D02D                      
+     136   00:D02D                      
+     137   00:D02D                      
+     138   00:D02D                      
+     139   00:D02D                      
+     140   00:D02D                      
+     141   00:D02D                      
+     142   00:D02D                          ; level 3
+     143   00:D02D                          ;---------------------------
+     144   00:D02D                          
+     145   00:D02D                          ;coordinate_object 0
+     146   00:D02D  50                      db 10*8
+     147   00:D02E  10                      db 2*8
+     148   00:D02F  16                      db entity_type_object_money
+     149   00:D030                          
+     150   00:D030                          ;coordinate_object 1
+     151   00:D030  18                      db 3*8
+     152   00:D031  30                      db 6*8
+     153   00:D032  16                      db entity_type_object_money
+     154   00:D033                          
+     155   00:D033                           ;coordinate_object 2
+     156   00:D033  E0                      db 28*8
+     157   00:D034  78                      db 15*8
+     158   00:D035  16                      db entity_type_object_money
+     159   00:D036                          
+     160   00:D036                          ;coordinate_object 3
+     161   00:D036  10                      db 2*8
+     162   00:D037  E0                      db 28*8
+     163   00:D038  32                      db entity_type_object_divan1
+     164   00:D039                      
+     165   00:D039                          ;coordinate_object 4
+     166   00:D039  70                      db 14*8
+     167   00:D03A  58                      db 11*8
+     168   00:D03B  80                      db entity_type_object_divan2
+     169   00:D03C                      
+     170   00:D03C                      
+     171   00:D03C                      
+     172   00:D03C                      
+     173   00:D03C                      
+     174   00:D03C                      
+     175   00:D03C                      
+     176   00:D03C                      
+     177   00:D03C                      
+     178   00:D03C                      
+     179   00:D03C                      
+     180   00:D03C                      
+     181   00:D03C                      
+     182   00:D03C                          ; level 4
+     183   00:D03C                          ;---------------------------
+     184   00:D03C                          
+     185   00:D03C                          ;coordinate_object 0
+     186   00:D03C  E0                      db 28*8
+     187   00:D03D  10                      db 2*8
+     188   00:D03E  16                      db entity_type_object_money
+     189   00:D03F                          
+     190   00:D03F                          ;coordinate_object 1
+     191   00:D03F  E8                      db 29*8
+     192   00:D040  58                      db 11*8
+     193   00:D041  16                      db entity_type_object_money
+     194   00:D042                          
+     195   00:D042                           ;coordinate_object 2
+     196   00:D042  18                      db 3*8
+     197   00:D043  70                      db 14*8
+     198   00:D044  16                      db entity_type_object_money
+     199   00:D045                          
+     200   00:D045                          ;coordinate_object 3
+     201   00:D045  78                      db 15*8
+     202   00:D046  10                      db 2*8
+     203   00:D047  32                      db entity_type_object_divan1
+     204   00:D048                      
+     205   00:D048                          ;coordinate_object 4
+     206   00:D048  40                      db 8*8
+     207   00:D049  D0                      db 26*8
+     208   00:D04A  80                      db entity_type_object_divan2
+     209   00:D04B                      
+     210   00:D04B                      
+     211   00:D04B                      
+     212   00:D04B                      
+     213   00:D04B                      
+     214   00:D04B                      
+     215   00:D04B                      
+     216   00:D04B                      
+     217   00:D04B                      
+     218   00:D04B                      
+     219   00:D04B                      
+     220   00:D04B                      
+     221   00:D04B                      
+     222   00:D04B                      
+     223   00:D04B                          ; level 5
+     224   00:D04B                          ;---------------------------
+     225   00:D04B                          
+     226   00:D04B                          ;coordinate_object 0
+     227   00:D04B  08                      db 1*8
+     228   00:D04C  28                      db 5*8
+     229   00:D04D  16                      db entity_type_object_money
+     230   00:D04E                          
+     231   00:D04E                          ;coordinate_object 1
+     232   00:D04E  E8                      db 29*8
+     233   00:D04F  28                      db 5*8
+     234   00:D050  16                      db entity_type_object_money
+     235   00:D051                          
+     236   00:D051                           ;coordinate_object 2
+     237   00:D051  E8                      db 29*8
+     238   00:D052  A0                      db 20*8
+     239   00:D053  16                      db entity_type_object_money
+     240   00:D054                          
+     241   00:D054                          ;coordinate_object 3
+     242   00:D054  00                      db 0*8
+     243   00:D055  D0                      db 26*8
+     244   00:D056  32                      db entity_type_object_divan1
+     245   00:D057                      
+     246   00:D057                          ;coordinate_object 4
+     247   00:D057  00                      db 0*8
+     248   00:D058  D0                      db 26*8
+     249   00:D059  80                      db entity_type_object_divan2
+     250   00:D05A                      
+     251   00:D05A                      
+     252   00:D05A                      
+     253   00:D05A                      
+     254   00:D05A                      
+     255   00:D05A                      
+     256   00:D05A                      
+     257   00:D05A                      
+     258   00:D05A                      
+     259   00:D05A                          ; level 6
+     260   00:D05A                          ;---------------------------
+     261   00:D05A                          
+     262   00:D05A                          ;coordinate_object 0
+     263   00:D05A  10                      db 2*8
+     264   00:D05B  10                      db 2*8
+     265   00:D05C  16                      db entity_type_object_money
+     266   00:D05D                          
+     267   00:D05D                          ;coordinate_object 1
+     268   00:D05D  E8                      db 29*8
+     269   00:D05E  50                      db 10*8
+     270   00:D05F  16                      db entity_type_object_money
+     271   00:D060                          
+     272   00:D060                           ;coordinate_object 2
+     273   00:D060  10                      db 2*8
+     274   00:D061  78                      db 15*8
+     275   00:D062  16                      db entity_type_object_money
+     276   00:D063                          
+     277   00:D063                          ;coordinate_object 3
+     278   00:D063  00                      db 0*8
+     279   00:D064  D0                      db 26*8
+     280   00:D065  32                      db entity_type_object_divan1
+     281   00:D066                      
+     282   00:D066                          ;coordinate_object 4
+     283   00:D066  00                      db 0*8
+     284   00:D067  D0                      db 26*8
+     285   00:D068  80                      db entity_type_object_divan2
+     286   00:D069                          
+     287   00:D069                      
+     288   00:D069                      
+     289   00:D069                      
+     290   00:D069                      
+     291   00:D069                      
+     292   00:D069                      
+     293   00:D069                      
+     294   00:D069                      
+     295   00:D069                          ; level 7
+     296   00:D069                          ;---------------------------
+     297   00:D069                          
+     298   00:D069                          ;coordinate_object 0
+     299   00:D069  08                      db 1*8
+     300   00:D06A  20                      db 4*8
+     301   00:D06B  16                      db entity_type_object_money
+     302   00:D06C                          
+     303   00:D06C                          ;coordinate_object 1
+     304   00:D06C  70                      db 14*8
+     305   00:D06D  18                      db 3*8
+     306   00:D06E  16                      db entity_type_object_money
+     307   00:D06F                          
+     308   00:D06F                           ;coordinate_object 2
+     309   00:D06F  10                      db 2*8
+     310   00:D070  78                      db 15*8
+     311   00:D071  16                      db entity_type_object_money
+     312   00:D072                          
+     313   00:D072                          ;coordinate_object 3
+     314   00:D072  30                      db 6*8
+     315   00:D073  48                      db 9*8
+     316   00:D074  32                      db entity_type_object_divan1
+     317   00:D075                      
+     318   00:D075                          ;coordinate_object 4
+     319   00:D075  C8                      db 25*8
+     320   00:D076  78                      db 15*8
+     321   00:D077  80                      db entity_type_object_divan2
+     322   00:D078                      
+     323   00:D078                      
+     324   00:D078                      
+     325   00:D078                      
+     326   00:D078                      
+     327   00:D078                      
+     328   00:D078                      
+     329   00:D078                      
+     330   00:D078                      
+     331   00:D078                      
+     332   00:D078                      
+     333   00:D078                          ; level 8
+     334   00:D078                          ;---------------------------
+     335   00:D078                          
+     336   00:D078                          ;coordinate_object 0
+     337   00:D078  10                      db 2*8
+     338   00:D079  10                      db 2*8
+     339   00:D07A  16                      db entity_type_object_money
+     340   00:D07B                          
+     341   00:D07B                          ;coordinate_object 1
+     342   00:D07B  A0                      db 20*8
+     343   00:D07C  30                      db 6*8
+     344   00:D07D  16                      db entity_type_object_money
+     345   00:D07E                          
+     346   00:D07E                           ;coordinate_object 2
+     347   00:D07E  E8                      db 29*8
+     348   00:D07F  80                      db 16*8
+     349   00:D080  16                      db entity_type_object_money
+     350   00:D081                          
+     351   00:D081                          ;coordinate_object 3
+     352   00:D081  68                      db 13*8
+     353   00:D082  58                      db 11*8
+     354   00:D083  32                      db entity_type_object_divan1
+     355   00:D084                      
+     356   00:D084                          ;coordinate_object 4
+     357   00:D084  50                      db 10*8
+     358   00:D085  10                      db 2*8
+     359   00:D086  80                      db entity_type_object_divan2
+     360   00:D087                      
+     361   00:D087                      
+     362   00:D087                      
+     363   00:D087                      
+     364   00:D087                      
+     365   00:D087                      
+     366   00:D087                      
+     367   00:D087                          ; level 9
+     368   00:D087                          ;---------------------------
+     369   00:D087                          
+     370   00:D087                          ;coordinate_object 0
+     371   00:D087  10                      db 2*8
+     372   00:D088  38                      db 7*8
+     373   00:D089  16                      db entity_type_object_money
+     374   00:D08A                          
+     375   00:D08A                          ;coordinate_object 1
+     376   00:D08A  D0                      db 26*8
+     377   00:D08B  38                      db 7*8
+     378   00:D08C  16                      db entity_type_object_money
+     379   00:D08D                          
+     380   00:D08D                           ;coordinate_object 2
+     381   00:D08D  10                      db 2*8
+     382   00:D08E  80                      db 16*8
+     383   00:D08F  16                      db entity_type_object_money
+     384   00:D090                          
+     385   00:D090                          ;coordinate_object 3
+     386   00:D090  20                      db 4*8
+     387   00:D091  A0                      db 20*8
+     388   00:D092  32                      db entity_type_object_divan1
+     389   00:D093                      
+     390   00:D093                          ;coordinate_object 4
+     391   00:D093  00                      db 0*8
+     392   00:D094  E0                      db 28*8
+     393   00:D095  80                      db entity_type_object_divan2
+     394   00:D096                      
+     395   00:D096                      
+     396   00:D096                      
+     397   00:D096                      
+     398   00:D096                      
+     399   00:D096                      
+     400   00:D096                      
+     401   00:D096                      
+     402   00:D096                          ; level 10
+     403   00:D096                          ;---------------------------
+     404   00:D096                          
+     405   00:D096                          ;coordinate_object 0
+     406   00:D096  20                      db 4*8
+     407   00:D097  48                      db 9*8
+     408   00:D098  16                      db entity_type_object_money
+     409   00:D099                          
+     410   00:D099                          ;coordinate_object 1
+     411   00:D099  D0                      db 26*8
+     412   00:D09A  48                      db 9*8
+     413   00:D09B  16                      db entity_type_object_money
+     414   00:D09C                          
+     415   00:D09C                           ;coordinate_object 2
+     416   00:D09C  A8                      db 21*8
+     417   00:D09D  80                      db 16*8
+     418   00:D09E  16                      db entity_type_object_money
+     419   00:D09F                          
+     420   00:D09F                          ;coordinate_object 3
+     421   00:D09F  78                      db 15*8
+     422   00:D0A0  60                      db 12*8
+     423   00:D0A1  32                      db entity_type_object_divan1
+     424   00:D0A2                      
+     425   00:D0A2                          ;coordinate_object 4
+     426   00:D0A2  90                      db 18*8
+     427   00:D0A3  80                      db 16*8
+     428   00:D0A4  80                      db entity_type_object_divan2
+     429   00:D0A5                      
+     430   00:D0A5                      
+     431   00:D0A5                      
+     432   00:D0A5                      
+     433   00:D0A5                      
+     434   00:D0A5                      
+     435   00:D0A5                      
+     436   00:D0A5                      
+     437   00:D0A5                      
+     438   00:D0A5                      
+     439   00:D0A5                      
+     440   00:D0A5                          ; level 11
+     441   00:D0A5                          ;---------------------------
+     442   00:D0A5                          
+     443   00:D0A5                          ;coordinate_object 0
+     444   00:D0A5  10                      db 2*8
+     445   00:D0A6  10                      db 2*8
+     446   00:D0A7  16                      db entity_type_object_money
+     447   00:D0A8                          
+     448   00:D0A8                          ;coordinate_object 1
+     449   00:D0A8  E8                      db 29*8
+     450   00:D0A9  50                      db 10*8
+     451   00:D0AA  16                      db entity_type_object_money
+     452   00:D0AB                          
+     453   00:D0AB                           ;coordinate_object 2
+     454   00:D0AB  10                      db 2*8
+     455   00:D0AC  78                      db 15*8
+     456   00:D0AD  16                      db entity_type_object_money
+     457   00:D0AE                          
+     458   00:D0AE                          ;coordinate_object 3
+     459   00:D0AE  00                      db 0*8
+     460   00:D0AF  D8                      db 27*8
+     461   00:D0B0  32                      db entity_type_object_divan1
+     462   00:D0B1                      
+     463   00:D0B1                          ;coordinate_object 4
+     464   00:D0B1  00                      db 0*8
+     465   00:D0B2  D8                      db 27*8
+     466   00:D0B3  80                      db entity_type_object_divan2
+     467   00:D0B4                          
+     468   00:D0B4                      FINAL: 
+     469   00:D0B4                      
+
+    LABELS
+-------------------------------------------------
+00:00000016   entity_type_object_money
+00:00000032   entity_type_object_divan1
+00:00000080   entity_type_object_divan2
+00:0000D000   INICIO
+00:0000D0B4   FINAL
+
+
+ Output: asm/o-coord.out
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000D000  Size: *  Used: 00000000
+
+    No output
+
+ Output: o-coord.bin
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000D000  Size: *  Used: 000000BB
+
+   Address   Length Align   Label
+   0000D000     187         INICIO

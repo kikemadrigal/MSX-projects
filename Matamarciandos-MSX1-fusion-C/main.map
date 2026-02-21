@@ -1,0 +1,280 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           
+     00000000  l__CABS                         
+     00000000  l__DABS                         
+     00000000  l__HEADER                       
+     00000000  l__HEAP                         
+     00000000  l__HOME                         
+     00000000  s__CABS                         
+     00000000  s__DABS                         
+     00000000  s__HEADER                       
+     00000000  s__HEADER0                      
+     00000001  l__GSFINAL                      
+     00000006  l__HEADER0                      
+     0000000F  l__GSINIT                       
+     00000072  l__DATA                         
+     000000C4  l__INITIALIZER                  
+     000000C6  l__INITIALIZED                  
+     00000106  s__CODE                         
+     00001B1A  l__CODE                         
+     00001C20  s__DATA                         
+     00001C92  s__INITIALIZED                  
+     00001D58  s__GSINIT                       
+     00001D58  s__HOME                         
+     00001D67  s__GSFINAL                      
+     00001D68  s__INITIALIZER                  
+     00001E2C  s__HEAP                         
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00000106    00001B1A =        6938. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000106  _sys_entity_init                   main
+     00000116  _player_template                   main
+     00000121  _mothership_template               main
+     0000012C  _enemy_template                    main
+     00000137  _sys_create_entity                 main
+     0000014F  _sys_create_player                 main
+     0000015C  _sys_create_mothership             main
+     00000169  _sys_create_enemy                  main
+     00000176  _sys_entity_get_array_structs_en   main
+     0000017A  _sys_entity_get_num_entities       main
+     00000182  _sys_entity_get_max_entities       main
+     00000185  _man_sprites_init                  main
+     0000018E  _sprite_enemy1                     main
+     000001AE  _sprite_enemy2                     main
+     000001CE  _color_sprite_enemy1               main
+     000001DE  _color_sprite_enemy2               main
+     000001EE  _man_sprites_load                  main
+     00000297  _sys_render_init                   main
+     000002D5  _sys_render_update                 main
+     000004F1  _sys_physics_init                  main
+     000004F2  _sys_physics_update                main
+     0000052E  _sys_physics_check_keyboard        main
+     00000574  _sys_ai_init                       main
+     00000575  _sys_ai_behaviour_mothership       main
+     000005A5  _sys_ai_behaviour_enemy            main
+     00000619  _sys_ai_update                     main
+     00000637  _man_game_init                     main
+     0000064C  _man_game_play                     main
+     00000687  _scoreboard                        main
+     000006E7  _wait                              main
+     000006EA  _main                              main
+     000006FB  _rand                              rand
+     000007BA  _srand                             rand
+     000007D7  _SubLine                           vdp_graph2plus
+     00000841  _Line                              vdp_graph2plus
+     000008D6  _BoxFill                           vdp_graph2plus
+     0000094A  _BoxLine                           vdp_graph2plus
+     00000A36  _PutSprite                         putsprite
+     00000A9E  _SpriteSmall                       spriteSmall
+     00000ADF  _SC8SpritePattern                  
+     00000AE8  _SC5SpritePattern                  
+     00000AF1  _SC8SpriteColors                   
+     00000AFB  _SC5SpriteColors                   
+     00000B6C  _SC5SpriteAttribs                  
+     00000B9B  _Sprite32Bytes                     
+     00000C25  _vMSX                              
+     00000C6D  _SetVDPWrite                       
+     00000C93  _WriteScr                          
+     00000CB6  _SetVDPRead                        
+     00000CD8  _ReadScr                           
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00000106    00001B1A =        6938. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000D36  _PsetXY                            
+     00000D7C  _PgetXY                            
+     00000DAC  _Point                             
+     00000DF9  _NewLine                           
+     00000E88  _OLD_Line                          
+     00000F03  _OLD_Rect                          
+     00000F72  _Paint                             
+     00000FF8  _HMMC                              
+     000010A9  _LMMC                              
+     00001113  _HMCM                              
+     000011E9  _HMCM_SC8                          
+     000012DA  _HMMM                              
+     00001339  _YMMM                              
+     00001392  _HMMV                              
+     000013E0  _LMMV                              
+     00001433  _Pset                              
+     00001479  _LMMM                              
+     000014F8  _fLMMM                             
+     00001525  _Draw                              
+     00001759  _SpriteReset                       spritereset
+     0000176B  _SetSpritePattern                  setspritepattern
+     000017C1  _SetBorderColor                    
+     000017CF  _VDPwriteNi                        
+     000017DF  _JoystickRead                      joystickread
+     000017FE  _VpokeFirst                        vpoke
+     0000188A  _Vpoke                             vpoke
+     000018A2  _Itoa                              itoa
+     000019C9  _OutPorts                          
+     000019D9  _StrReverse                        strreverse
+     00001A5E  _StrLen                            
+     00001A79  ___sdcc_enter_ix                   
+     00001A83  _OutPort                           
+     00001A8D  __modschar                         
+     00001A9A  __modsint                          
+     00001AA6  _PutText                           
+     00001AE6  _SetColors                         setcolors
+     00001B40  _Sprite16                          sprite16
+     00001B77  __divsint                          
+     00001B80  __divschar                         
+     00001B87  __div8                             
+     00001B8B  __div_signexte                     
+     00001B8F  __div16                            
+     00001BB5  __get_remainder                    
+     00001BBF  _Screen                            
+     00001BDF  __divuint                          
+     00001BE7  __divuchar                         
+     00001BEE  __divu8                            
+     00001BF1  __divu16                           
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_DATA                               00001C20    00000072 =         114. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00001C20  _array_structs_entities            main
+     00001C8E  _zero_type_at_the_end              main
+     00001C8F  _num_entities                      main
+     00001C90  _array_entities                    main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_INITIALIZED                        00001C92    000000C6 =         198. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00001C92  _sprite_mothership_left            main
+     00001CB2  _sprite_mothership_right           main
+     00001CD2  _color_sprite_mothership_left      main
+     00001CE2  _color_sprite_mothership_right     main
+     00001CF2  _sprite_playership                 main
+     00001D12  _sprite_scoreboard                 main
+     00001D32  _color_sprite_playership           main
+     00001D42  _color_sprite_scoreboard           main
+     00001D52  _heap_top                          
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_GSINIT                             00001D58    0000000F =          15. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_GSFINAL                            00001D67    00000001 =           1. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_INITIALIZER                        00001D68    000000C4 =         196. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_HEADER0                            00000000    00000006 =           6. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_HEAP                               00001E2C    00000000 =           0. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00001E2C  _HEAP_start                        
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+
+Files Linked                              [ module(s) ]
+
+main.rel                                  [ main ]
+fusion-c\include\crt0_msxdos.rel          [  ]
+
+
+Libraries Linked                          [ object file ]
+
+C:\Program Files\SDCC\bin\..\lib\z80/z80.lib
+                                          [ rand.rel ]
+fusion-c\lib\/fusion.lib                  [ vdp_graph2plus.rel ]
+fusion-c\lib\/fusion.lib                  [ putsprite.rel ]
+fusion-c\lib\/fusion.lib                  [ spriteSmall.rel ]
+fusion-c\lib\/fusion.lib                  [ spritemore.rel ]
+fusion-c\lib\/fusion.lib                  [ vdp_graph2.rel ]
+fusion-c\lib\/fusion.lib                  [ spritereset.rel ]
+fusion-c\lib\/fusion.lib                  [ setspritepattern.rel ]
+fusion-c\lib\/fusion.lib                  [ setbordercolor.rel ]
+fusion-c\lib\/fusion.lib                  [ vdpwriteni.rel ]
+fusion-c\lib\/fusion.lib                  [ joystickread.rel ]
+fusion-c\lib\/fusion.lib                  [ vpoke.rel ]
+fusion-c\lib\/fusion.lib                  [ itoa.rel ]
+fusion-c\lib\/fusion.lib                  [ outports.rel ]
+fusion-c\lib\/fusion.lib                  [ strreverse.rel ]
+fusion-c\lib\/fusion.lib                  [ strlen.rel ]
+C:\Program Files\SDCC\bin\..\lib\z80/z80.lib
+                                          [ crtenter.rel ]
+fusion-c\lib\/fusion.lib                  [ outport.rel ]
+C:\Program Files\SDCC\bin\..\lib\z80/z80.lib
+                                          [ modsigned.rel ]
+fusion-c\lib\/fusion.lib                  [ puttext.rel ]
+fusion-c\lib\/fusion.lib                  [ setcolors.rel ]
+fusion-c\lib\/fusion.lib                  [ sprite16.rel ]
+C:\Program Files\SDCC\bin\..\lib\z80/z80.lib
+                                          [ divsigned.rel ]
+fusion-c\lib\/fusion.lib                  [ screen.rel ]
+C:\Program Files\SDCC\bin\..\lib\z80/z80.lib
+                                          [ divunsigned.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+
+User Base Address Definitions
+
+_CODE = 0x0106
+_DATA = 0x0000
+
+

@@ -1,0 +1,129 @@
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.02.05 - 03:07:51]
+
+asm/sprcol.asm
+Errors: 0
+
+       1   00:0000                      		 output sprcol.bin
+       2   00:D000  FE                  	db   #fe
+       3   00:D001  00 D0               	dw   INICIO 
+       4   00:D003  E0 D1               	dw   FINAL
+       5   00:D005  00 D0               	dw   INICIO 
+       6   00:D007                      	org  #d000 
+       7   00:D000                       
+       8   00:D000                      INICIO: 
+       9   00:D000                      sprites_colors: 
+      10   00:D000                      ;Data colors sprite 0, name: diban-rojo
+      11   00:D000                      	db 8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+      11   00:D000  08 08 08 08 08 08 08 08 08 08 08 08 08 08 08 08 
+      12   00:D010                      ;Data colors sprite 1, name: diban-azul
+      13   00:D010                      	db 4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4
+      13   00:D010  04 04 04 04 04 04 04 04 04 04 04 04 04 04 04 04 
+      14   00:D020                      ;Data colors sprite 2, name: fire
+      15   00:D020                      	db 10,10,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+      15   00:D020  0A 0A 08 08 08 08 08 08 08 08 08 08 08 08 08 08 
+      16   00:D030                      ;Data colors sprite 3, name: player-left-1
+      17   00:D030                      	db 6,6,9,9,9,4,4,4,5,5,6,6,6,6,6,12
+      17   00:D030  06 06 09 09 09 04 04 04 05 05 06 06 06 06 06 0C 
+      18   00:D040                      ;Data colors sprite 4, name: player-left-2
+      19   00:D040                      	db 6,6,9,9,9,4,4,4,5,5,6,6,6,6,6,12
+      19   00:D040  06 06 09 09 09 04 04 04 05 05 06 06 06 06 06 0C 
+      20   00:D050                      ;Data colors sprite 5, name: player-right-1
+      21   00:D050                      	db 6,6,9,9,9,4,4,4,5,5,6,6,6,6,6,12
+      21   00:D050  06 06 09 09 09 04 04 04 05 05 06 06 06 06 06 0C 
+      22   00:D060                      ;Data colors sprite 6, name: player-right-2
+      23   00:D060                      	db 6,6,9,9,9,4,4,4,5,5,6,6,6,6,6,12
+      23   00:D060  06 06 09 09 09 04 04 04 05 05 06 06 06 06 06 0C 
+      24   00:D070                      ;Data colors sprite 7, name: player-up-1
+      25   00:D070                      	db 6,6,9,9,9,4,4,4,5,5,6,6,6,6,6,12
+      25   00:D070  06 06 09 09 09 04 04 04 05 05 06 06 06 06 06 0C 
+      26   00:D080                      ;Data colors sprite 8, name: player-up-2
+      27   00:D080                      	db 6,6,9,9,9,4,4,4,5,5,6,6,6,6,6,12
+      27   00:D080  06 06 09 09 09 04 04 04 05 05 06 06 06 06 06 0C 
+      28   00:D090                      ;Data colors sprite 9, name: player-left-2
+      29   00:D090                      	db 6,6,9,9,9,4,4,4,5,5,5,5,5,5,5,5
+      29   00:D090  06 06 09 09 09 04 04 04 05 05 05 05 05 05 05 05 
+      30   00:D0A0                      ;Data colors sprite 10, name: player-left-2
+      31   00:D0A0                      	db 6,6,9,9,9,4,4,4,5,5,5,5,5,5,5,5
+      31   00:D0A0  06 06 09 09 09 04 04 04 05 05 05 05 05 05 05 05 
+      32   00:D0B0                      ;Data colors sprite 11, name: Enemy-right-1
+      33   00:D0B0                      	db 6,6,6,12,12,12,12,12,12,12,12,13,13,6,6,6
+      33   00:D0B0  06 06 06 0C 0C 0C 0C 0C 0C 0C 0C 0D 0D 06 06 06 
+      34   00:D0C0                      ;Data colors sprite 12, name: Enemy-right-2
+      35   00:D0C0                      	db 6,6,6,6,12,12,12,12,12,12,12,12,12,13,13,13
+      35   00:D0C0  06 06 06 06 0C 0C 0C 0C 0C 0C 0C 0C 0C 0D 0D 0D 
+      36   00:D0D0                      ;Data colors sprite 13, name: Enemy-left-1
+      37   00:D0D0                      	db 6,6,6,12,12,12,12,12,12,12,12,13,13,6,6,6
+      37   00:D0D0  06 06 06 0C 0C 0C 0C 0C 0C 0C 0C 0D 0D 06 06 06 
+      38   00:D0E0                      ;Data colors sprite 14, name: Enemy-left-2
+      39   00:D0E0                      	db 6,6,6,6,12,12,12,12,12,12,12,12,12,13,13,13
+      39   00:D0E0  06 06 06 06 0C 0C 0C 0C 0C 0C 0C 0C 0C 0D 0D 0D 
+      40   00:D0F0                      ;Data colors sprite 15, name: Enemy-2-right-1
+      41   00:D0F0                      	db 0,6,6,9,9,9,4,4,4,4,4,4,4,4,14,14
+      41   00:D0F0  00 06 06 09 09 09 04 04 04 04 04 04 04 04 0E 0E 
+      42   00:D100                      ;Data colors sprite 16, name: Enemy-2-right-1
+      43   00:D100                      	db 0,6,6,9,9,9,4,4,4,4,4,4,4,4,14,14
+      43   00:D100  00 06 06 09 09 09 04 04 04 04 04 04 04 04 0E 0E 
+      44   00:D110                      ;Data colors sprite 17, name: Enemy-2-right-1
+      45   00:D110                      	db 0,6,6,9,9,9,4,4,4,4,4,4,4,4,14,14
+      45   00:D110  00 06 06 09 09 09 04 04 04 04 04 04 04 04 0E 0E 
+      46   00:D120                      ;Data colors sprite 18, name: Enemy-2-right-1
+      47   00:D120                      	db 0,6,6,9,9,9,4,4,4,4,4,4,4,4,14,14
+      47   00:D120  00 06 06 09 09 09 04 04 04 04 04 04 04 04 0E 0E 
+      48   00:D130                      ;Data colors sprite 19, name: Enemy-2-up-1
+      49   00:D130                      	db 0,0,6,6,9,9,4,4,4,4,4,4,4,4,14,14
+      49   00:D130  00 00 06 06 09 09 04 04 04 04 04 04 04 04 0E 0E 
+      50   00:D140                      ;Data colors sprite 20, name: Enemy-2-up-1
+      51   00:D140                      	db 0,0,0,6,6,9,4,4,4,4,4,4,4,4,14,14
+      51   00:D140  00 00 00 06 06 09 04 04 04 04 04 04 04 04 0E 0E 
+      52   00:D150                      ;Data colors sprite 21, name: Enemy-3-right-1
+      53   00:D150                      	db 9,9,9,9,6,8,8,8,8,8,8,8,8,8,14,14
+      53   00:D150  09 09 09 09 06 08 08 08 08 08 08 08 08 08 0E 0E 
+      54   00:D160                      ;Data colors sprite 22, name: Enemy-3-right-2
+      55   00:D160                      	db 9,9,9,9,6,8,8,8,8,8,8,8,8,8,14,14
+      55   00:D160  09 09 09 09 06 08 08 08 08 08 08 08 08 08 0E 0E 
+      56   00:D170                      ;Data colors sprite 23, name: Enemy-3-left-1
+      57   00:D170                      	db 9,9,9,9,6,8,8,8,8,8,8,8,8,8,14,14
+      57   00:D170  09 09 09 09 06 08 08 08 08 08 08 08 08 08 0E 0E 
+      58   00:D180                      ;Data colors sprite 24, name: Enemy-3-left-2
+      59   00:D180                      	db 9,9,9,9,6,8,8,8,8,8,8,8,8,8,14,14
+      59   00:D180  09 09 09 09 06 08 08 08 08 08 08 08 08 08 0E 0E 
+      60   00:D190                      ;Data colors sprite 25, name: Enemy-3-up-1
+      61   00:D190                      	db 9,9,9,9,6,8,8,8,8,8,8,8,8,8,14,14
+      61   00:D190  09 09 09 09 06 08 08 08 08 08 08 08 08 08 0E 0E 
+      62   00:D1A0                      ;Data colors sprite 26, name: Enemy-3-up-2
+      63   00:D1A0                      	db 9,9,9,9,6,8,8,8,8,8,8,8,8,8,14,14
+      63   00:D1A0  09 09 09 09 06 08 08 08 08 08 08 08 08 08 0E 0E 
+      64   00:D1B0                      ;Data colors sprite 27, name: object-1-money
+      65   00:D1B0                      	db 0,0,10,10,10,10,10,10,10,10,14,14,14,14,14,14
+      65   00:D1B0  00 00 0A 0A 0A 0A 0A 0A 0A 0A 0E 0E 0E 0E 0E 0E 
+      66   00:D1C0                      ;Data colors sprite 28, name: object-2-money
+      67   00:D1C0                      	db 0,0,10,10,10,10,10,10,10,10,14,14,14,14,14,14
+      67   00:D1C0  00 00 0A 0A 0A 0A 0A 0A 0A 0A 0E 0E 0E 0E 0E 0E 
+      68   00:D1D0                      ;Data colors sprite 29, name: object-3-money
+      69   00:D1D0                      	db 0,0,10,10,10,10,10,10,10,10,14,14,14,14,14,14
+      69   00:D1D0  00 00 0A 0A 0A 0A 0A 0A 0A 0A 0E 0E 0E 0E 0E 0E 
+      70   00:D1E0                      FINAL: 
+
+    LABELS
+-------------------------------------------------
+00:0000D000   INICIO
+00:0000D000 X sprites_colors
+00:0000D1E0   FINAL
+
+
+ Output: asm/sprcol.out
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000D000  Size: *  Used: 00000000
+
+    No output
+
+ Output: sprcol.bin
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000D000  Size: *  Used: 000001E7
+
+   Address   Length Align   Label
+   0000D000     487         INICIO

@@ -1,0 +1,134 @@
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2026.02.21 - 15:13:05]
+
+src\musicint.asm
+Errors: 7
+
+       1   00:0000                              output "musicint.bin"
+       2   00:D100                      ;music.bin necestia 800 bytes para alojarse en la RAM, en basic tenemos hasta la direccion &hf380-800= eb00
+       3   00:D100  FE                      db   #fe               ; ID archivo binario, siempre hay que poner el mismo 0FEh
+       4   00:D101  00 D1                   dw   INICIO            ; dirección de inicio
+       5   00:D103  40 D1                   dw   FINAL - 1         ; dirección final
+       6   00:D105  00 D1                   dw   INICIO            ; dircción del programa de ejecución (para cuando pongas r en bload"nombre_programa", r)
+       7   00:D107                      
+       8   00:D107                          org #D100 ; org se utiliza para decirle al z80 en que posición de memoria empieza nuestro programa (es la 33280 en decimal), en hezadecimal sería #8200
+       9   00:D100                          ; Las variables del pt3_player está definidas en el archivo PT3_player.asm en la dirección #f000
+      10   00:D100  (00:FD9A)           HKEYI equ #FD9A
+      11   00:D100                      ;inerrupcón de rutina d refresco vertical Vblank
+      12   00:D100                      ;HTIMI equ #FD9F 
+      13   00:D100  (00:FD9A)           HTIMI equ #FD9A
+      14   00:D100                      INICIO:
+      15   00:D100                      inicilizar_tracker:
+      16   00:D100                      
+      17   00:D100                      
+      18   00:D100                          ;Deactivamos las interrupciones
+      19   00:D100  F3                      di	
+      20   00:D101  21 DE D0            	ld		hl,SONG-99		; hl vale la direccion donde se encuentra la cancion - 99
+src\musicint.asm(21) : Label not found: PT3_INIT
+      21   00:D104  CD 00 00            	call	PT3_INIT			; Inicia el reproductor de PT3
+      22   00:D107                          
+      23   00:D107                          
+      24   00:D107                          ;Salvamos la rutina ISR(Interrupt service routine) si hubiese alguna.Son 5 bytes
+      25   00:D107  21 9A FD                ld hl,HTIMI
+      26   00:D10A  11 00 F2                ld de,rutina_previa
+      27   00:D10D  01 05 00                ld bc,5
+      28   00:D110  ED B0                   ldir
+      29   00:D112                      
+      30   00:D112                      
+      31   00:D112                          ;instalamos nuestra rutina
+      32   00:D112  3E C3                   ld a,#c3
+      33   00:D114  21 1F D1                ld hl, reproducir_bloque_musica
+      34   00:D117  32 9A FD                ld (HTIMI),a
+      35   00:D11A  22 9B FD                ld (HTIMI+1), hl
+      36   00:D11D                          ;Activamos las interrupciones
+      37   00:D11D  FB                  	ei 
+      38   00:D11E                          ;Volvemos al basic
+      39   00:D11E  C9                      ret
+      40   00:D11F                      
+      41   00:D11F                      reproducir_bloque_musica:
+      42   00:D11F                          ;------------------Reproducir Bloque de múscia--------
+      43   00:D11F                          ;halt						;sincronizacion
+      44   00:D11F  F3                  	di
+src\musicint.asm(45) : Label not found: PT3_ROUT
+      45   00:D120  CD 00 00            	call	PT3_ROUT			;Borrar el valor anterior
+src\musicint.asm(46) : Label not found: PT3_PLAY
+      46   00:D123  CD 00 00            	call	PT3_PLAY			;Reproduce el siguiente trozo de canción
+      47   00:D126                          ;lanzamos la rutina que había
+      48   00:D126  C3 00 F2                jp rutina_previa
+      49   00:D129  FB                      ei
+      50   00:D12A                          ;--------------Fin de reproducir bloque de música-----
+      51   00:D12A                      
+      52   00:D12A                          ;Volvemos al basic
+      53   00:D12A  C9                      ret
+      54   00:D12B                      para_cancion:
+      55   00:D12B                          ;volvemos a poner los 5 bytes que tenía
+      56   00:D12B  21 00 F2                ld hl,rutina_previa
+      57   00:D12E  11 9A FD                ld de,HTIMI
+      58   00:D131  01 05 00                ld bc,5
+      59   00:D134  ED B0                   ldir
+      60   00:D136                      
+src\musicint.asm(61) : Label not found: PT3_MUTE
+      61   00:D136  CD 00 00                call PT3_MUTE
+      62   00:D139  C9                      ret
+      63   00:D13A                      evitar_repeticion_cancion:
+      64   00:D13A  3A F8 F7                ld a, (#f7f8)
+src\musicint.asm(65) : Label not found: PT3_SETUP
+      65   00:D13D  32 00 00                ld (PT3_SETUP),a
+      66   00:D140  C9                      ret
+      67   00:D141                      tracker:
+src\musicint.asm(68) : Error opening file: src\.\src\PT3_player.asm
+      68   00:D141                      	include	"./src/PT3_player.asm"					;replayer de PT3
+      69   00:D141                      SONG:
+src\musicint.asm(70) : Error opening file: src\.\src\song.pt3
+      70   00:D141  (0000)              	incbin "./src/song.pt3"			;musica de ejemplo
+      71   00:D141                      
+      72   00:D141                      
+      73   00:D141                      ;definición de variables
+      74   00:D141                      ;contador: db 0
+      75   00:D141                                                  ;bytes
+      76   00:D141                      ;contador_vblanks equ #f200    ;1
+      77   00:D141                      ;contador_de_segundos equ #f201;1
+      78   00:D141  (00:F200)           rutina_previa equ #f200     ;5
+      79   00:D141                      FINAL:
+      80   00:D141                      
+      81   00:D141                      
+      82   00:D141                      
+      83   00:D141                      
+      84   00:D141                      
+      85   00:D141                      
+      86   00:D141                      
+      87   00:D141                      
+      88   00:D141                      
+      89   00:D141                      
+      90   00:D141                      
+
+    LABELS
+-------------------------------------------------
+00:0000FD9A X HKEYI
+00:0000FD9A   HTIMI
+00:0000D100   INICIO
+00:0000D100 X inicilizar_tracker
+00:0000D11F   reproducir_bloque_musica
+00:0000D12B X para_cancion
+00:0000D13A X evitar_repeticion_cancion
+00:0000D141 X tracker
+00:0000D141   SONG
+00:0000F200   rutina_previa
+00:0000D141   FINAL
+
+
+ Output: src\musicint.out
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000D100  Size: *  Used: 00000000
+
+    No output
+
+ Output: musicint.bin
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000D100  Size: *  Used: 00000048
+
+   Address   Length Align   Label
+   0000D100      72         INICIO
