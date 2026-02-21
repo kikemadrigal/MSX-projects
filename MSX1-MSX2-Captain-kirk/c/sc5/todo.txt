@@ -1,0 +1,8 @@
+-quitar color amarillo a los monos de arriba
+-Ve pensando en crear enemigos grandes
+    -los enemigos serán 4 sprites sobre un hmmm
+-Estudia poner agujeros negros
+-capsulas que aumenten el disparo
+-tests?
+-ponle los sonidos de muerte y ganador
+-Pon las imagenes a los de inicio a levels 1 y 2 

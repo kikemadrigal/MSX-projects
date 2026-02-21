@@ -1,0 +1,646 @@
+1 'El mapa completo son 120 patrones * 13 filas'
+1 'Juan quiere mover las 3 las 3 ultimas filas del banco 1  y las 3 primeras del banco 3'
+
+
+
+
+
+
+
+1 'Color caracteres, fondo, borde'
+10 cls:color 15,1,1:key off
+1 'Inicilizamos dispositivo: 003B, inicilizamos teclado: 003E, inicializamos el psg &h90'
+1 '&h41 y &h44 Enlazamos con las rutinas de apagar y encender la pantalla, &h156 borra el buffer del teclado'
+20 defusr=&h003B:a=usr(0):defusr1=&h003E:a=usr1(0):defusr2=&H90:a=usr2(0):defusr3=&h41:defusr4=&h44:defusr5=&h156
+30 screen 2,2,0
+1 'Todas las variables serán enteras'
+40 defint a-z
+1 'Definimos un canal necesario para poder mostrar texto, habrá que poner en el print o input #1'
+50 open "grp:" as #1
+1 '2000 es la subrrutina para pintar un mensaje'
+60 me$="^Loading sprites":gosub 2000
+1 'cargamos los sprites en VRAM'
+70 gosub 6000
+80 me$="^Loading tileset":gosub 2000
+1 'Cargamos los tiles'
+90 gosub 10000
+1 '90 bload"test.s02",s
+100 me$="^Borrar pantalla?":gosub 2100
+1 'Borramos la pantalla'
+110 gosub 20000
+120 dim m(120,13):sl=6:n=0:w=88
+130 x=0:y=9*8:v=8:h=8:l=9:s=0
+1 'Inicializamos el array con el menú, importante colocar el puntero de los datas al principio'
+140 restore 21000: gosub 20200
+1 'Pintamos toda la pantalla
+150 gosub 20800
+1 'Mostramos un mensaje sin pausa'
+160 me$="^Press space key to start":gosub 2100
+
+1 'Main loop :loop:'
+    1 'time incrementa en 1 cada vez que el vdp genera una interrupción, es decir en 1 segundo hace 60 incrementos'
+    1 'debug time'
+        1 '200 time=0:j=STICK(0) OR STICK(1)
+    200 j=STICK(0) OR STICK(1)
+    1 ' on variable goto numero_linea1, numero_linea2,etc salta a la linea 1,2,etc o si es cero continua la ejecución '
+    210 ON j GOTO 230,250,270,290,310,330,350,370
+    220 goto 400
+    1 'movimiento hacia arriba 
+    1 'Ponemos el sprite correspondiente que mira hacia arriba que irá alternando ente 2 sprites'
+    230 y=y-h:p=p4:goto 400
+    1 '2 Pulsado 2 movimiento hacia arriba derecha 
+    1 ' ponemos el sprite 0 o 1 que corresponde a los de la derecha'
+    250 x=x+v:y=y-h:p=p0:goto 400
+    1 '3 pulsado Movimiento hacia la derecha '
+    270 x=x+v:p=p0:goto 400
+    1 '4 Movimiento abajo derecha'
+    290 x=x+v:y=y+h:p=p0:goto 400
+    1 '5 Movimiento abajo'
+    310 y=y+h:p=p4:goto 400 
+    1 '6 Movimiento abajo izquierda'
+    330 x=x-v-4:y=y+h:p=p2:goto 400
+    1 '7 Movimiento izquierda'
+    350 x=x-v-4:p=p2:goto 400
+    1 '8 movimiento arriba izquierda'
+    370 x=x-v-4:y=y-h:p=p2:goto 400
+
+    400 rem nada de momento
+    1 'Chekeo de límites'
+    500 IF y<24 THEN y=24 else if y>112 then y=112
+    510 if x<0 then x=0 else if x>250 then x=250
+
+    1 'Render :framed_picture:'
+    1 '520 vpoke 6912,y:vpoke 6913,x:vpoke 6914,p
+    520 PUTSPRITE0,(X,Y),15,P
+
+    1 ' Aumentando el contador de pantalla y moviendo el tercio central'
+    600 if n<w then n=n+1:gosub 3000 else n=0
+    1 'Debug'
+    1 '680 me$=str$(time):gosub 2000
+690 goto 200
+
+1 'imprimir mensajes sin pausa (necesita que esté inicializada me$)''
+    2000 line(0,170)-(255,180),6,bf
+    2010 preset (0,170):? #1,me$
+2090 return
+
+1 'Imprimir mensajes con pausa (necesita que esté inicializada me$)'
+    2100 line(0,170)-(255,180),6,bf
+    2110 preset (0,170):? #1,me$
+    2120 if strig(0)=-1 then 2180 else 2120
+    2180 line(0,170)-(255,180),6,bf
+2190 return
+
+1 ' Scroll 
+    3000 _TURBO ON (m(),n)
+    1 'Fila 0:6144, 1: 6176, 2: 6208, 3. 6240, 4: 6272, 5: 6304, 6: 6336, 7: 6368, 8: 6400'
+    1 '6144+(32*8 filas)=6400'
+    1 '20605 d1=6144+(32*2)
+    1 '20605 d1=6208
+    1 '20610 d2=6144+(32*7)
+    3610 d2=6400
+    1 '20620 for r=2 to 5
+    3620 for r=8 to 11
+        3630 for c=n to 31+n
+            1 '20635 VPOKE d1,m(c,r):d1=d1+1
+            1 '20640 VPOKE d2,m(c,r+6):d2=d2+1
+            3640 VPOKE d2,m(c,r):d2=d2+1
+        3650 next c
+    3660 next r
+    3670 _TURBO OFF
+3690 return 
+
+1 'Rutina cargar sprites'
+    1 'Con leo dibujamos 14 sprites'
+    6000 call turbo on
+    1 '6010 for i=0 to 42:sp$=""
+    6010 for i=0 to 5:sp$=""
+        6020 for j=0 to 31
+            6030 read a$
+            6040 sp$=sp$+chr$(val(a$))
+        6050 next J
+        6060 sprite$(i)=sp$
+    6070 next i
+    1 '6080 for i=4 to 42 step 4:co=1
+    6080 for i=4 to 5 step 4:co=1
+        6090 for j=0 to 15
+            6100 co=co+1:if co>15 then co=1
+            6110 vpoke 6912+i,co
+        6120 next J
+    6130 next I
+    1' rem sprites data definitions
+    1' rem data definition sprite 0, name: Sprite-2
+    6140 data 32,48,56,127,127,63,126,63
+    6150 data 127,127,127,56,48,48,32,0
+    6160 data 0,0,0,224,240,224,0,0
+    6170 data 240,248,240,0,0,0,0,0
+    6180 rem data definition sprite 1, name: Sprite-2
+    6190 data 32,48,127,31,127,56,127,39
+    6200 data 127,48,56,60,127,31,127,32
+    6210 data 0,0,240,248,240,0,248,252
+    6220 data 248,0,0,0,240,248,240,0
+    1 '' rem data definition sprite 2, name: Sprite-16
+    6230 data 0,0,3,15,31,63,127,255
+    6240 data 127,63,15,15,0,0,0,0
+    6250 data 0,0,248,252,252,248,248,192
+    6260 data 248,252,252,248,0,0,0,0
+    1 '' rem data definition sprite 3, name: Sprite-16
+    6270 data 3,31,59,115,96,192,255,255
+    6280 data 255,192,96,48,27,15,3,3
+    6290 data 248,252,252,248,0,0,0,192
+    6300 data 0,0,0,0,248,252,252,248
+    6310 rem data definition sprite 4, name: Sprite-8
+    6320 data 0,0,0,15,159,207,255,255
+    6330 data 255,238,207,159,15,0,0,0
+    6340 data 0,0,0,248,252,254,248,240
+    6350 data 224,0,252,254,252,0,0,0
+    1 '' rem data definition sprite 5, name: Sprite-8
+    6360 data 3,7,3,31,159,206,255,255
+    6370 data 255,206,159,31,31,3,7,3
+    6380 data 252,254,252,224,128,0,224,240
+    6390 data 224,0,128,224,128,252,254,252
+
+   7940 for i=0 to 6:PUTSPRITE i,(0,210),15,i:next i
+
+
+   7980 call turbo off
+7990 return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1 'Rutina cargar la definición y colores de tiles en screen 2'
+    1 'Con leo dibujamos 96 tiles'
+    10000 call turbo on
+    1' Hay que recordar la estructura de la VRAM, el tilemap se divide en 3 zonas
+    1 'Nuestro tileset son X tiles o de 0 hasta el X-1'
+    1 'Definiremos a partir de la posición 0 de la VRAM 18 tiles de 8 bytes'
+    10030 restore 10040:FOR I=0 TO (160*8)-1
+        10035 READ A$
+        10036 VPOKE I,VAL("&H"+A$)
+        10037 VPOKE 2048+I,VAL("&H"+A$)
+        10038 VPOKE 4096+I,VAL("&H"+A$)
+    10039 NEXT I
+
+    10040 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10050 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10060 DATA 00,00,00,00,00,00,00,00
+    10070 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10080 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10090 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10100 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10110 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10120 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10130 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10140 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10150 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10160 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10170 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10180 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10190 DATA 00,00,00,00,00,00,00,00
+    10200 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10210 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10220 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10230 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10240 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10250 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10260 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10270 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10280 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10290 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10300 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10310 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10320 DATA 00,00,00,00,00,00,00,00
+    10330 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10340 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10350 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10360 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10370 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10380 DATA 00,00,00,00,00,00,00,00
+    10390 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10400 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10410 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10420 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10430 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10440 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10450 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10460 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10470 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10480 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10490 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10500 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10510 DATA 00,00,00,00,00,00,00,00
+    10520 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10530 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10540 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10550 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10560 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10570 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10580 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10590 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10600 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10610 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10620 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10630 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10640 DATA 00,00,00,00,00,00,00,00
+    10650 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10660 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10670 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10680 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10690 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10700 DATA 00,00,00,00,00,00,00,00
+    10710 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10720 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10730 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10740 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10750 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10760 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10770 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10780 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10790 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10800 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10810 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10820 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10830 DATA 00,00,00,00,00,00,00,00
+    10840 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10850 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10860 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10870 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10880 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10890 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10900 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10910 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10920 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10930 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10940 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10950 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10960 DATA 00,00,00,00,00,00,00,00
+    10970 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10980 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    10990 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11000 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11010 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11020 DATA 00,00,00,00,00,00,00,00
+    11030 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11040 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11050 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11060 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11070 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11080 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11090 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11100 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11110 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11120 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11130 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11140 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11150 DATA 00,00,00,00,00,00,00,00
+    11160 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11170 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11180 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11190 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11200 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11210 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11220 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11230 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11240 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11250 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11260 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11270 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11280 DATA 00,00,00,00,00,00,00,00
+    11290 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11300 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11310 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11320 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11330 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11340 DATA 00,00,00,00,FF,FF,FF,FF
+    11350 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11360 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11370 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11380 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11390 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11400 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11410 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11420 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11430 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11440 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11450 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11460 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11470 DATA 00,00,00,00,FF,FF,FF,FF
+    11480 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11490 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11500 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11510 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11520 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11530 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11540 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11550 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11560 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11570 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11580 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11590 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11600 DATA 00,00,00,00,FF,FF,FF,FF
+    11610 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11620 DATA FF,FF,FF,FF,FF,FF,FF,FF
+    11630 DATA FF,FF,FF,FF,FF,FF,FF,FF
+
+    1 'Definición de colores, los colores se definen a partir de la dirección 8192/&h2000'
+    1 'Como la memoria se divide en 3 bancos, la parte de arriba en medio y la de abajo hay que ponerlos en 3 partes'
+    13000 restore 17740:FOR I=0 TO (160*8)-1
+        13010 READ A$
+        13020 VPOKE 8192+I,VAL("&H"+A$): '&h2000'
+        13030 VPOKE 10240+I,VAL("&H"+A$): '&h2800'
+        13040 VPOKE 12288+I,VAL("&H"+A$): ' &h3000'
+    13050 NEXT I
+    13060 call turbo off
+    17740 DATA 21,21,21,21,21,21,21,21
+    17750 DATA 31,31,31,31,31,31,31,31
+    17760 DATA 31,31,31,31,31,31,31,31
+    17770 DATA 51,51,51,51,51,51,51,51
+    17780 DATA 61,61,61,61,61,61,61,61
+    17790 DATA 71,71,71,71,71,71,71,71
+    17800 DATA 81,81,81,81,81,81,81,81
+    17810 DATA 91,91,91,91,91,91,91,91
+    17820 DATA A1,A1,A1,A1,A1,A1,A1,A1
+    17830 DATA B1,B1,B1,B1,B1,B1,B1,B1
+    17840 DATA C1,C1,C1,C1,C1,C1,C1,C1
+    17850 DATA D1,D1,D1,D1,D1,D1,D1,D1
+    17860 DATA E1,E1,E1,E1,E1,E1,E1,E1
+    17870 DATA 21,21,21,21,21,21,21,21
+    17880 DATA 31,31,31,31,31,31,31,31
+    17890 DATA 31,31,31,31,31,31,31,31
+    17900 DATA 51,51,51,51,51,51,51,51
+    17910 DATA 61,61,61,61,61,61,61,61
+    17920 DATA 71,71,71,71,71,71,71,71
+    17930 DATA 81,81,81,81,81,81,81,81
+    17940 DATA 91,91,91,91,91,91,91,91
+    17950 DATA A1,A1,A1,A1,A1,A1,A1,A1
+    17960 DATA B1,B1,B1,B1,B1,B1,B1,B1
+    17970 DATA C1,C1,C1,C1,C1,C1,C1,C1
+    17980 DATA D1,D1,D1,D1,D1,D1,D1,D1
+    17990 DATA E1,E1,E1,E1,E1,E1,E1,E1
+    18000 DATA 21,21,21,21,21,21,21,21
+    18010 DATA 31,31,31,31,31,31,31,31
+    18020 DATA 31,31,31,31,31,31,31,31
+    18030 DATA 51,51,51,51,51,51,51,51
+    18040 DATA 61,61,61,61,61,61,61,61
+    18050 DATA 71,71,71,71,71,71,71,71
+    18060 DATA 21,21,21,21,21,21,21,21
+    18070 DATA 31,31,31,31,31,31,31,31
+    18080 DATA 31,31,31,31,31,31,31,31
+    18090 DATA 51,51,51,51,51,51,51,51
+    18100 DATA 61,61,61,61,61,61,61,61
+    18110 DATA 71,71,71,71,71,71,71,71
+    18120 DATA 81,81,81,81,81,81,81,81
+    18130 DATA 91,91,91,91,91,91,91,91
+    18140 DATA A1,A1,A1,A1,A1,A1,A1,A1
+    18150 DATA B1,B1,B1,B1,B1,B1,B1,B1
+    18160 DATA C1,C1,C1,C1,C1,C1,C1,C1
+    18170 DATA D1,D1,D1,D1,D1,D1,D1,D1
+    18180 DATA E1,E1,E1,E1,E1,E1,E1,E1
+    18190 DATA 21,21,21,21,21,21,21,21
+    18200 DATA 31,31,31,31,31,31,31,31
+    18210 DATA 31,31,31,31,31,31,31,31
+    18220 DATA 51,51,51,51,51,51,51,51
+    18230 DATA 61,61,61,61,61,61,61,61
+    18240 DATA 71,71,71,71,71,71,71,71
+    18250 DATA 81,81,81,81,81,81,81,81
+    18260 DATA 91,91,91,91,91,91,91,91
+    18270 DATA A1,A1,A1,A1,A1,A1,A1,A1
+    18280 DATA B1,B1,B1,B1,B1,B1,B1,B1
+    18290 DATA C1,C1,C1,C1,C1,C1,C1,C1
+    18300 DATA D1,D1,D1,D1,D1,D1,D1,D1
+    18310 DATA E1,E1,E1,E1,E1,E1,E1,E1
+    18320 DATA 21,21,21,21,21,21,21,21
+    18330 DATA 31,31,31,31,31,31,31,31
+    18340 DATA 31,31,31,31,31,31,31,31
+    18350 DATA 51,51,51,51,51,51,51,51
+    18360 DATA 61,61,61,61,61,61,61,61
+    18370 DATA 71,71,71,71,71,71,71,71
+    18380 DATA 21,21,21,21,21,21,21,21
+    18390 DATA 31,31,31,31,31,31,31,31
+    18400 DATA 31,31,31,31,31,31,31,31
+    18410 DATA 51,51,51,51,51,51,51,51
+    18420 DATA 61,61,61,61,61,61,61,61
+    18430 DATA 71,71,71,71,71,71,71,71
+    18440 DATA 81,81,81,81,81,81,81,81
+    18450 DATA 91,91,91,91,91,91,91,91
+    18460 DATA A1,A1,A1,A1,A1,A1,A1,A1
+    18470 DATA B1,B1,B1,B1,B1,B1,B1,B1
+    18480 DATA C1,C1,C1,C1,C1,C1,C1,C1
+    18490 DATA D1,D1,D1,D1,D1,D1,D1,D1
+    18500 DATA E1,E1,E1,E1,E1,E1,E1,E1
+    18510 DATA 21,21,21,21,21,21,21,21
+    18520 DATA 31,31,31,31,31,31,31,31
+    18530 DATA 31,31,31,31,31,31,31,31
+    18540 DATA 51,51,51,51,51,51,51,51
+    18550 DATA 61,61,61,61,61,61,61,61
+    18560 DATA 71,71,71,71,71,71,71,71
+    18570 DATA 81,81,81,81,81,81,81,81
+    18580 DATA 91,91,91,91,91,91,91,91
+    18590 DATA A1,A1,A1,A1,A1,A1,A1,A1
+    18600 DATA B1,B1,B1,B1,B1,B1,B1,B1
+    18610 DATA C1,C1,C1,C1,C1,C1,C1,C1
+    18620 DATA D1,D1,D1,D1,D1,D1,D1,D1
+    18630 DATA E1,E1,E1,E1,E1,E1,E1,E1
+    18640 DATA 21,21,21,21,21,21,21,21
+    18650 DATA 31,31,31,31,31,31,31,31
+    18660 DATA 31,31,31,31,31,31,31,31
+    18670 DATA 51,51,51,51,51,51,51,51
+    18680 DATA 61,61,61,61,61,61,61,61
+    18690 DATA 71,71,71,71,71,71,71,71
+    18700 DATA 21,21,21,21,21,21,21,21
+    18710 DATA 31,31,31,31,31,31,31,31
+    18720 DATA 31,31,31,31,31,31,31,31
+    18730 DATA 51,51,51,51,51,51,51,51
+    18740 DATA 61,61,61,61,61,61,61,61
+    18750 DATA 71,71,71,71,71,71,71,71
+    18760 DATA 81,81,81,81,81,81,81,81
+    18770 DATA 91,91,91,91,91,91,91,91
+    18780 DATA A1,A1,A1,A1,A1,A1,A1,A1
+    18790 DATA B1,B1,B1,B1,B1,B1,B1,B1
+    18800 DATA C1,C1,C1,C1,C1,C1,C1,C1
+    18810 DATA D1,D1,D1,D1,D1,D1,D1,D1
+    18820 DATA E1,E1,E1,E1,E1,E1,E1,E1
+    18830 DATA 21,21,21,21,21,21,21,21
+    18840 DATA 31,31,31,31,31,31,31,31
+    18850 DATA 31,31,31,31,31,31,31,31
+    18860 DATA 51,51,51,51,51,51,51,51
+    18870 DATA 61,61,61,61,61,61,61,61
+    18880 DATA 71,71,71,71,71,71,71,71
+    18890 DATA 81,81,81,81,81,81,81,81
+    18900 DATA 91,91,91,91,91,91,91,91
+    18910 DATA A1,A1,A1,A1,A1,A1,A1,A1
+    18920 DATA B1,B1,B1,B1,B1,B1,B1,B1
+    18930 DATA C1,C1,C1,C1,C1,C1,C1,C1
+    18940 DATA D1,D1,D1,D1,D1,D1,D1,D1
+    18950 DATA E1,E1,E1,E1,E1,E1,E1,E1
+    18960 DATA 21,21,21,21,21,21,21,21
+    18970 DATA 31,31,31,31,31,31,31,31
+    18980 DATA 31,31,31,31,31,31,31,31
+    18990 DATA 51,51,51,51,51,51,51,51
+    19000 DATA 61,61,61,61,61,61,61,61
+    19010 DATA 71,71,71,71,71,71,71,71
+    19020 DATA 21,21,21,21,E1,F1,F1,F1
+    19030 DATA 31,31,31,31,E1,F1,F1,F1
+    19040 DATA F1,F1,F1,F1,E1,F1,F1,F1
+    19050 DATA 51,51,51,51,F1,F1,F1,F1
+    19060 DATA 61,61,61,61,E1,F1,F1,F1
+    19070 DATA 71,71,71,71,E1,F1,F1,F1
+    19080 DATA 81,81,81,81,F1,F1,F1,F1
+    19090 DATA 91,91,91,91,F1,F1,F1,F1
+    19100 DATA A1,A1,A1,A1,E1,F1,F1,F1
+    19110 DATA B1,B1,B1,B1,F1,F1,F1,F1
+    19120 DATA C1,C1,C1,C1,E1,F1,F1,F1
+    19130 DATA D1,D1,D1,D1,E1,F1,F1,F1
+    19140 DATA E1,E1,E1,E1,F1,F1,F1,F1
+    19150 DATA 21,21,21,21,E1,F1,F1,F1
+    19160 DATA 31,31,31,31,E1,F1,F1,F1
+    19170 DATA F1,F1,F1,F1,E1,F1,F1,F1
+    19180 DATA 51,51,51,51,F1,F1,F1,F1
+    19190 DATA 61,61,61,61,E1,F1,F1,F1
+    19200 DATA 71,71,71,71,E1,F1,F1,F1
+    19210 DATA 81,81,81,81,F1,F1,F1,F1
+    19220 DATA 91,91,91,91,F1,F1,F1,F1
+    19230 DATA A1,A1,A1,A1,E1,F1,F1,F1
+    19240 DATA B1,B1,B1,B1,F1,F1,F1,F1
+    19250 DATA C1,C1,C1,C1,E1,F1,F1,F1
+    19260 DATA D1,D1,D1,D1,E1,F1,F1,F1
+    19270 DATA E1,E1,E1,E1,F1,F1,F1,F1
+    19280 DATA 21,21,21,21,E1,F1,F1,F1
+    19290 DATA 31,31,31,31,E1,F1,F1,F1
+    19300 DATA F1,F1,F1,F1,E1,F1,F1,F1
+    19310 DATA 51,51,51,51,F1,F1,F1,F1
+    19320 DATA 61,61,61,61,E1,F1,F1,F1
+    19330 DATA 71,71,71,71,E1,F1,F1,F1
+19990 return
+
+
+1 'Rutina borrar pantalla'
+1 'Ponemos que en la parte del mapa solo se vea el ultimo tile, dejamos el 3 tercio sin tocar para el marcador
+1 'en realidad la tabla de nombres son 768 bytes'
+    20000 FOR t=6144 TO (6144+768)-97
+        20010 vpoke t,255
+    20020 next t
+20090 return
+
+1 'Cargar array con compresión RLE-16'
+    20200 call turbo on (m())
+    20205 for r=0 to 12
+        20210 READ mp$:po=0
+        20220 for c=0 to len(mp$) step 4
+            1 'El 1 valor indica la cantidad de repeticiones, el 2 el valor en si'
+            20230 r$=mid$(mp$,c+1,2)
+            20240 tn$=mid$(mp$,c+3,2)
+            20250 tn=val("&h"+tn$):tn=tn-1
+            20260 re=val("&h"+r$)
+            20270 for i=0 to re
+                20280 m(po,r)=tn:po=po+1
+            20300 next i
+        20310 next c
+    20320 next r
+    20325 call turbo off
+20390 return
+
+
+
+
+1 ' Pintar toda la pantalla
+    20800 _TURBO ON (m())
+    20810 d=6144
+    20820 for r=0 to 12
+        1 ' Ahora leemos las columnas c hasta 32, (recuerda que para en la 88 que es 120-32)
+        20830 for c=0 to 31
+            20840 VPOKE d,m(c,r):d=d+1
+        20850 next c
+    20860 next r
+    20870 _TURBO OFF
+20890 return 
+
+1 'Level 0'
+21000 data 7741
+21010 data 7741
+21020 data 0000054104000341040008410400084106000010001104000341010003410b00044106000541040007410800
+21030 data 020000100011060000050006000700080400001000110e000009000a000b0900003000310400000500060007000812000009000a000b0800000500060007000808000009000a000b0a00
+21040 data 02000030003106000025002600270028040000300031220000250026002700281e0000250026002700281600
+21050 data 7700
+21060 data 7700
+21070 data 7700
+21080 data 0700005700580059005a0c00005b005c005d0800005700580059005a0a00005b005c005d0900005700580059005a0300005e005f00600900005b005c005d0900005700580059005a005e005f00600700005700580059005a0100
+21090 data 0100005b005c005d0200007700780079007a0200005e005f00600600007b007c007d0800007700780079007a0a00007b007c007d0900007700780079007a0300007e007f008006000039003a0000007b007c007d0900007700780079007a007e007f00800700007700780079007a0100
+21100 data 0100007b007c007d000006710100007e007f008000000039003a0039003a010003710000003200330034003500360037067101000039003a0200047101000032003300340035003600370000047100000039003a0000027100320033003400350036003709710100003b003c003d003e0871030007710000
+21110 data 7771
+21120 data 7771
+
+
+
+    1 'Lectora de mapa con un dígito'
+    1 '11020 for f=0 to 19
+    1 '    11030 READ D$
+    1 '    11040 for c=0 to 31
+    1 '        11050 tn$=mid$(D$,c+1,1)
+    1 '        11060 tn=val(tn$)
+    1 '        11070 VPOKE md+c,tn
+    1 '    11160 next c
+    1 '    11170 md=md+32
+    1 '11180 next f
+
+
+
+    1'----------------------------------------------------------------
+    1 'Lectura de mapa con 2 dígitos'
+    1 'El mapa lo he dibujado con tilemap con 20x20 tiles de 8 pixeles'
+    1 '21000 'gosub 6600
+    1 '1 'El mapa se encuentra en la dirección 6144 / &h1800 - 6912 /1b00'
+    1 '21010 md=6144
+    1 '21020 restore 22000:for f=0 to 15
+    1 '    21030 READ mp$
+    1 '    1 ' ahora leemos las columnas c
+    1 '    21040 for c=0 to 63 step 2
+    1 '        21050 tn$=mid$(mp$,c+1,2)
+    1 '        21060 tn=val("&h"+tn$):tn=tn-1
+    1 '        21070 if tn<>0 and tn<>-1 then VPOKE md,tn
+    1 '        21080 md=md+1
+    1 '    21160 next c
+    1 '    1 'Bajamos la fila'
+    1 '    21170 'md=md+12
+    1 '21180 next f
+    1 '21190 return
+1 '--------------------------------------------------------------------------------------'
+1 '-------------------------------------Mundo 1------------------------------------------'
+1 '--------------------------------------------------------------------------------------'
+
+1 '22000 data 2323232323232323232323232323232323232323232323232323232323232323
+1 '22010 data 2323232323232323232323232323232323232323232323232323232323232323
+1 '22020 data 2323232323232323232323232323232323232323232323232323232323232323
+1 '22030 data 2323232323232323232323232323232323232323232323232323232323232323
+1 '22040 data 2323232323232323232323232323232323232323232323232323232323232323
+1 '22050 data 2323232323232323232323232323232323232323232323232323232323232323
+1 '22060 data 2323232323232323232323232323232323232323232323232323232323232323
+1 '22070 data 2323232323232323232323232323232323232323232323232323232323232323
+1 '22080 data 2222222222222222222222222222222222222222222222222222222222222222
+1 '22090 data 2222222222222222222222222222222222222222222222222222222222222222
+1 '22100 data 2222222222222222222222222222222222222222222222222222222222222222
+1 '22110 data 2222222222222222222222222222222222222222222222222222222222222222
+1 '22120 data 2222222222222222222222222222222222222222222222222222222222222222
+1 '22130 data 2222222222222222222222222222222222222222222222222222222222222207
+1 '22140 data 1414141414141414141414141414141400001414141400001414141414141414
+1 '22150 data 1414141414141414141414141414141400001414141400001414141414141414
+
+

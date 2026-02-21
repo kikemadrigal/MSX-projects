@@ -1,0 +1,98 @@
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2020.12.11 - 01:22:22]
+
+src/music.asm
+Errors: 7
+
+       1   00:0000                              output "music.bin"
+       2   00:BF00                      ;music.bin necestia 800 bytes para alojarse en la RAM, en basic tenemos hasta la direccion &hf380-800= eb00
+       3   00:BF00  FE                      db   #fe               ; ID archivo binario, siempre hay que poner el mismo 0FEh
+       4   00:BF01  00 BF                   dw   INICIO            ; dirección de inicio
+       5   00:BF03  1E BF                   dw   FINAL - 1         ; dirección final
+       6   00:BF05  00 BF                   dw   INICIO            ; dircción del programa de ejecución (para cuando pongas r en bload"nombre_programa", r)
+       7   00:BF07                      
+       8   00:BF07                          org #bf00 ; org se utiliza para decirle al z80 en que posición de memoria empieza nuestro programa (es la 33280 en decimal), en hezadecimal sería #8200
+       9   00:BF00                          ; Las variables del pt3_player está definidas en el archivo PT3_player.asm en la dirección #f000
+      10   00:BF00                      INICIO:
+      11   00:BF00                      inicilizar_tracker:
+      12   00:BF00                          ;Deactivamos las interrupciones
+      13   00:BF00  F3                      di	
+      14   00:BF01  21 BB BE            	ld		hl,SONG-99		; hl vale la direccion donde se encuentra la cancion - 99
+src/music.asm(15) : Label not found: PT3_INIT
+      15   00:BF04  CD 00 00            	call	PT3_INIT			; Inicia el reproductor de PT3
+      16   00:BF07                          ;Activamos las interrupciones
+      17   00:BF07  FB                  	ei 
+      18   00:BF08                          ;Volvemos al basic
+      19   00:BF08  C9                      ret
+      20   00:BF09                      
+      21   00:BF09                      reproducir_bloque_musica:
+      22   00:BF09                          ;------------------Reproducir Bloque de múscia--------
+      23   00:BF09  76                      halt						;sincronizacion
+      24   00:BF0A  F3                  	di
+src/music.asm(25) : Label not found: PT3_ROUT
+      25   00:BF0B  CD 00 00            	call	PT3_ROUT			;Borrar el valor anterior
+src/music.asm(26) : Label not found: PT3_PLAY
+      26   00:BF0E  CD 00 00            	call	PT3_PLAY			;Reproduce el siguiente trozo de canción
+      27   00:BF11  FB                      ei
+      28   00:BF12                          ;--------------Fin de reproducir bloque de música-----
+      29   00:BF12                          ;Volvemos al basic
+      30   00:BF12  C9                      ret
+      31   00:BF13                      para_cancion:
+src/music.asm(32) : Label not found: PT3_MUTE
+      32   00:BF13  CD 00 00                call PT3_MUTE
+      33   00:BF16  C9                      ret
+      34   00:BF17                      evitar_repeticion_cancion:
+      35   00:BF17  3A F8 F7                ld a, (#f7f8)
+src/music.asm(36) : Label not found: PT3_SETUP
+      36   00:BF1A  32 00 00                ld (PT3_SETUP),a
+      37   00:BF1D  C9                      ret
+      38   00:BF1E                      tracker:
+src/music.asm(39) : Error opening file: PT3_player.asm
+      39   00:BF1E                      	include	"PT3_player.asm"					;replayer de PT3
+      40   00:BF1E                      SONG:
+src/music.asm(41) : Error opening file: song.pt3
+      41   00:BF1E  (0000)              	incbin "song.pt3"			;musica de ejemplo
+      42   00:BF1E                      
+      43   00:BF1E  00                  contador: db 0
+      44   00:BF1F                      
+      45   00:BF1F                      FINAL:
+      46   00:BF1F                      
+      47   00:BF1F                      
+      48   00:BF1F                      
+      49   00:BF1F                      
+      50   00:BF1F                      
+      51   00:BF1F                      
+      52   00:BF1F                      
+      53   00:BF1F                      
+      54   00:BF1F                      
+      55   00:BF1F                      
+      56   00:BF1F                      
+
+    LABELS
+-------------------------------------------------
+00:0000BF00   INICIO
+00:0000BF00 X inicilizar_tracker
+00:0000BF09 X reproducir_bloque_musica
+00:0000BF13 X para_cancion
+00:0000BF17 X evitar_repeticion_cancion
+00:0000BF1E X tracker
+00:0000BF1E   SONG
+00:0000BF1E X contador
+00:0000BF1F   FINAL
+
+
+ Output: src/music.out
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000BF00  Size: *  Used: 00000000
+
+    No output
+
+ Output: music.bin
+-------------------------------------------------
+
+ Page: 00
+  Org: 0000BF00  Size: *  Used: 00000026
+
+   Address   Length Align   Label
+   0000BF00      38         INICIO
