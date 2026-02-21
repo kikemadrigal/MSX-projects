@@ -12,11 +12,19 @@
 
     Language: basic
 
+    <img src="Leo-must-live-MSX1-basic/docs/caratula.png" width="200px">
+
+    Play: https://kikemadrigal.github.io/msx-projects/?disk=leo.dsk&M=MSX2E
+
 3. MSX mansion
 
     Plataforma: MSX1
 
     Language: basic
+
+    <img src="Mansion-MSX1-basic/docs/caratula.png" width="200px">
+
+    Play: https://kikemadrigal.github.io/msx-projects/?disk=mansion.dsk&M=MSX2E
 
 4. Watchmen
 
@@ -24,11 +32,19 @@
 
     Language: C
 
+    <img src="Watchmen-MSX1-MSX2-Basic-Fusion-C/docs/caratula.png" width="200px">
+
+    Play: https://kikemadrigal.github.io//msx-projects/?disk=watchmen.dsk&M=MSX2E
+
 5. Disco Survivor
 
     Plataforma: MSX1
 
     Language: asm
+
+    <img src="Disco-survivor-MSX1-asm/docs/caratula.png" width="200px">
+
+    Play: https://kikemadrigal.github.io//msx-projects/?cart=disco.romk&M=MSX2E
 
 6. Tetris
 
