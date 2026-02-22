@@ -1,6 +1,6 @@
 # juegos
 
-1. <a href="https://kikemadrigal.github.io/MSX-projects/tree/main/Hunter-MSX1-asm-MPAGD">Hunter</a>
+1. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Hunter-MSX1-asm-MPAGD" taeget="_blanck">Hunter</a>
 
     Plataforma: MSX1
 
@@ -10,7 +10,7 @@
 
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=hunter.dsk&M=MSX2E" taeget="_blanck">Play Hunter´s trail</a>
 
-2. <a href="https://kikemadrigal.github.io/MSX-projects/tree/main/Leo-must-live-MSX1-basic">Leo must live</a>
+2. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Leo-must-live-MSX1-basic" taeget="_blanck">Leo must live</a>
 
     Plataforma: MSX1
 
@@ -20,7 +20,7 @@
 
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=leo.dsk&M=MSX2E" taeget="_blanck">Play Leo must live</a>
 
-3. <a href="https://kikemadrigal.github.io/MSX-projects/tree/main/Mansion-MSX1-basic">MSX mansion</a>
+3. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Mansion-MSX1-basic" taeget="_blanck">MSX mansion</a>
 
     Plataforma: MSX1
 
@@ -30,7 +30,7 @@
 
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=mansion.dsk&M=MSX2E" taeget="_blanck">Play MSX mansion</a>
 
-4. <a href="https://kikemadrigal.github.io/MSX-projects/tree/main/Watchmen-MSX1-MSX2-Basic-Fusion-C">Watchmen</a>
+4. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Watchmen-MSX1-MSX2-Basic-Fusion-C" taeget="_blanck">Watchmen</a>
 
     Plataforma: MSX2
 
@@ -40,7 +40,7 @@
 
     <a href="https://kikemadrigal.github.io//msx-projects/?disk=watchmen.dsk&M=MSX2E">Play Watchmen</a>
 
-5. Disco Survivor
+5.  <a href=" https://github.com/kikemadrigal/MSX-projects/tree/main/Disco-survivor-MSX1-asm" taeget="_blanck">Disco Survivor</a>
 
     Plataforma: MSX1
 
