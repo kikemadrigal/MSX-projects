@@ -1,12 +1,14 @@
 # juegos
 
-1. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Hunter-MSX1-asm-MPAGD">Hunter</a>
+1. <a href="https://kikemadrigal.github.io/MSX-projects/tree/main/Hunter-MSX1-asm-MPAGD">Hunter</a>
 
     Plataforma: MSX1
 
     Language: asm-MPAGD
 
-2. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Leo-must-live-MSX1-basic">Leo must live</a>
+    <img src="Hunter-MSX1-asm-MPAGD\agd\assets\caratula.jpg" width="200px">
+
+2. <a href="https://kikemadrigal.github.io/MSX-projects/tree/main/Leo-must-live-MSX1-basic">Leo must live</a>
 
     Plataforma: MSX1
 
@@ -16,7 +18,7 @@
 
     <a href="https://kikemadrigal.github.io/msx-projects/?disk=leo.dsk&M=MSX2E">Play Leo must live</a>
 
-3. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Mansion-MSX1-basic">MSX mansion</a>
+3. <a href="https://kikemadrigal.github.io/MSX-projects/tree/main/Mansion-MSX1-basic">MSX mansion</a>
 
     Plataforma: MSX1
 
@@ -26,13 +28,13 @@
 
     <a href="https://kikemadrigal.github.io/msx-projects/?disk=mansion.dsk&M=MSX2E">Play MSX mansion</a>
 
-4. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Watchmen-MSX1-MSX2-Basic-Fusion-C">Watchmen</a>
+4. <a href="https://kikemadrigal.github.io/MSX-projects/tree/main/Watchmen-MSX1-MSX2-Basic-Fusion-C">Watchmen</a>
 
     Plataforma: MSX2
 
     Language: C
 
-    <img src="Watchmen-MSX1-MSX2-Basic-Fusion-C/docs/caratula.png" width="200px">
+    <img src="Watchmen-MSX1-MSX2-Basic-Fusion-C/images/caratula.jpg" width="200px">
 
     <a href="https://kikemadrigal.github.io//msx-projects/?disk=watchmen.dsk&M=MSX2E">Play Watchmen</a>
 
@@ -52,17 +54,29 @@
 
     Language: C
 
+    <img src="Tetris-MSX2/MSX-C/assets/caratula.jpg" width="200px">
+
+    <a href="https://kikemadrigal.github.io//msx-projects/?cart=disco.romk&M=MSX2E">Play Disco Survivor</a>
+
 7. Captain Kirk in space
 
     Platform: MSX2
 
     Language: C
 
+    <img src="Captain-kirk-space-MSX1-MSX2/c/sc5/assets/caratula.jpg" width="200px">
+
+    <a href="https://kikemadrigal.github.io//msx-projects/?cart=disco.romk&M=MSX2E">Play Disco Survivor</a>
+
 8. 3 en raya
 
     Platform: MSX2
 
     Language: C
+
+    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+
+    <a href="https://kikemadrigal.github.io//msx-projects/?cart=disco.romk&M=MSX2E">Play Disco Survivor</a>
 
 9. Ahorcado
 
