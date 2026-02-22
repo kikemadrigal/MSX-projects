@@ -18,7 +18,7 @@
 
     <img src="Leo-must-live-MSX1-basic/docs/caratula.png" width="200px">
 
-    <a href="https://kikemadrigal.github.io/msx-projects/?disk=leo.dsk&M=MSX2E">Play Leo must live</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=leo.dsk&M=MSX2E" taeget="_blanck">Play Leo must live</a>
 
 3. <a href="https://kikemadrigal.github.io/MSX-projects/tree/main/Mansion-MSX1-basic">MSX mansion</a>
 
@@ -28,7 +28,7 @@
 
     <img src="Mansion-MSX1-basic/docs/caratula.png" width="200px">
 
-    <a href="https://kikemadrigal.github.io/msx-projects/?disk=mansion.dsk&M=MSX2E">Play MSX mansion</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=mansion.dsk&M=MSX2E" taeget="_blanck">Play MSX mansion</a>
 
 4. <a href="https://kikemadrigal.github.io/MSX-projects/tree/main/Watchmen-MSX1-MSX2-Basic-Fusion-C">Watchmen</a>
 
@@ -48,7 +48,7 @@
 
     <img src="Disco-survivor-MSX1-asm/docs/caratula.png" width="200px">
 
-    <a href="https://kikemadrigal.github.io//msx-projects/?cart=disco.romk&M=MSX2E">Play Disco Survivor</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?cart=disco.rom&M=MSX2E" taeget="_blanck">Play Disco survivor</a>
 
 6. Tetris
 
