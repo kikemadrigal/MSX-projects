@@ -1,0 +1,1 @@
+10 load"check.bas",r

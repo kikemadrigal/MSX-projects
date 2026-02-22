@@ -1,0 +1,40 @@
+
+EVENT INTROMENU
+
+
+;LET CONTROL = 99
+;WHILE CONTROL >= 99
+;    CLS
+;    AT 8 10
+;    PRINT "1. KEYBOARD"
+;    AT 10 10
+;    PRINT "2. KEMPSTON"
+;    AT 12 10
+;    PRINT "3. SINCLAIR"
+;    AT 14 10
+;    PRINT "4. REDEFINE"
+;    LET CONTROL = 99
+;    WHILE CONTROL = 99
+;        IF KEY OPTION1
+;            LET CONTROL = 0
+;        ENDIF
+;        IF KEY OPTION2
+;            LET CONTROL = 1
+;        ENDIF
+;        IF KEY OPTION3
+;            LET CONTROL = 2
+;        ENDIF
+;        IF KEY OPTION4
+;            CLS
+;            AT 3 9
+;            PRINT "PRESS KEY FOR:"
+;            AT 6 12
+;            WHILE KEY OPTION4
+;            ENDWHILE
+;            PRINT "PAUSE"
+;            DEFINEKEY FIRE3
+;            LET CONTROL = 100
+;        ENDIF
+;    ENDWHILE
+;ENDWHILE
+;CLS

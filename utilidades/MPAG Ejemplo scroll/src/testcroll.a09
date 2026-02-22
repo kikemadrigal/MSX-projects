@@ -1,0 +1,9 @@
+EVENT INITSPRITE
+
+if type=0
+	spriteink 2
+endif
+
+if type=1
+	spriteink 6
+endif

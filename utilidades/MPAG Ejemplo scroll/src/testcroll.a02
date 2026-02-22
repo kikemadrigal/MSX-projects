@@ -1,0 +1,67 @@
+
+EVENT SPRITETYPE2
+IF DIRECTION UP
+    REPEAT 6
+        IF CANGOUP
+            SPRITEUP
+            IF Y < TOPEDGE
+                REMOVE
+            ENDIF
+        ELSE
+            REMOVE
+        ENDIF
+    ENDREPEAT
+ENDIF
+IF DIRECTION DOWN
+    REPEAT 6
+        IF CANGODOWN
+            SPRITEDOWN
+            IF Y > BOTTOMEDGE
+                REMOVE
+            ENDIF
+        ELSE
+            REMOVE
+        ENDIF
+    ENDREPEAT
+ENDIF
+IF DIRECTION LEFT
+    REPEAT 6
+        IF CANGOLEFT
+            SPRITELEFT
+            ;Si la bala ha salido de la pantalla  la borramos
+            IF X < LEFTEDGE
+                ;Marcamos para que se pueda volver a disparar el player
+                LET D = 1
+                ;Marcamos para que se pueda volver a disparar el boss
+                LET O = 1
+                REMOVE
+            ENDIF
+        ;Si ha tropezad con un bloque wall la borramos
+        ELSE
+            ;Marcamos para que se pueda volver a disparar el player
+            LET D = 1
+            ;Marcamos para que se pueda volver a disparar el boss
+            LET O = 1
+            REMOVE
+        ENDIF
+    ENDREPEAT
+ENDIF
+IF DIRECTION RIGHT
+    REPEAT 6
+        IF CANGORIGHT
+            SPRITERIGHT
+            IF Y > RIGHTEDGE
+                ;Marcamos para que se pueda volver a disparar el player
+                LET D = 1
+                ;Marcamos para que se pueda volver a disparar el boss
+                LET O = 1
+                REMOVE
+            ENDIF
+        ELSE
+            ;Marcamos para que se pueda volver a disparar el player
+            LET D = 1
+            REMOVE
+        ENDIF
+    ENDREPEAT
+ENDIF
+ANIMATE FAST

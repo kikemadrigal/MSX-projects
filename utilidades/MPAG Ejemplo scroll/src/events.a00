@@ -1,0 +1,50 @@
+
+EVENT PLAYER
+
+LET V = X
+LET W = Y
+
+
+
+
+
+
+ IF KEY UP
+ 
+  IF CANGOUP
+   SPRITEUP
+  ENDIF
+ ENDIF
+ IF KEY DOWN
+  IF CANGODOWN
+   SPRITEDOWN
+  ENDIF
+ ENDIF
+ IF KEY LEFT
+  IF CANGOLEFT
+   SPRITELEFT
+  ENDIF
+ ENDIF
+ IF KEY RIGHT
+  IF CANGORIGHT
+   SPRITERIGHT
+  ENDIF
+ ENDIF
+ 
+ STAR 0
+
+
+
+
+
+
+IF KEY FIRE
+        SOUND 2
+        SPAWN 2 2
+        SPAWNED
+            LET X= V
+            ADD 8 TO X
+            LET Y= W
+            LET DIRECTION = RIGHT
+        ENDSPRITE
+ENDIF

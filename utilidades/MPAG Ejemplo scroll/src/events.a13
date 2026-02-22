@@ -1,0 +1,24 @@
+
+EVENT GAMEINIT
+
+
+;LET LIVES = 3
+;AT 6 25
+;DISPLAY LIVES
+;
+;AT 2 25
+;SHOWSCORE
+;
+;AT 10 25
+;SHOWHIGH
+
+
+
+colour 11
+
+;AT 18 1
+;TICKER 31 "ababababababababababa"
+AT 22 1
+TICKER 31 "ababab  aba  baba  ba"
+;AT 23 1
+;TICKER 31 "                     "
