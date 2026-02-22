@@ -58,7 +58,7 @@
 
     <img src="Tetris-MSX2/MSX-C/assets/caratula.jpg" width="200px">
 
-    <a href="https://kikemadrigal.github.io//msx-projects/?cart=disco.romk&M=MSX2E">Play Disco Survivor</a>
+    <a href="https://kikemadrigal.github.io//msx-projects/?cart=tetris.dsk&M=MSX2E">Play Disco Survivor</a>
 
 7. Captain Kirk in space
 
@@ -68,7 +68,7 @@
 
     <img src="Captain-kirk-space-MSX1-MSX2/c/sc5/assets/caratula.jpg" width="200px">
 
-    <a href="https://kikemadrigal.github.io//msx-projects/?cart=disco.romk&M=MSX2E">Play Disco Survivor</a>
+    <a href="https://kikemadrigal.github.io//msx-projects/?cart=kirk1.dsk&M=MSX2E">Play Disco Survivor</a>
 
 8. 3 en raya
 
