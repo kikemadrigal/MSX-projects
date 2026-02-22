@@ -8,7 +8,7 @@
 
     <img src="Hunter-MSX1-asm-MPAGD\agd\assets\caratula.jpg" width="200px">
 
-    <a href="https://kikemadrigal.github.io/msx-projects/?disk=hunter.dsk&M=MSX2E">Play Hunter´s trail</a>
+    <a href="https://kikemadrigal.github.io/msx-projects/index.html?disk=hunter.dsk&M=MSX2E">Play Hunter´s trail</a>
 
 2. <a href="https://kikemadrigal.github.io/MSX-projects/tree/main/Leo-must-live-MSX1-basic">Leo must live</a>
 
