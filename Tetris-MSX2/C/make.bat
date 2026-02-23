@@ -1,1 +1,0 @@
-gcc -o game.exe SrRecursive.c
