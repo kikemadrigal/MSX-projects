@@ -15,7 +15,7 @@
 
 2. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Leo-must-live-MSX1-basic" taeget="_blanck">
     Leo must live
-    
+    <br> 
     <img src="Leo-must-live-MSX1-basic/docs/caratula.png" width="200px"></a>
 
     Plataforma: MSX1
@@ -28,7 +28,7 @@
 
 3. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Mansion-MSX1-basic" taeget="_blanck">
     MSX mansion
-    
+    <br> 
     <img src="Mansion-MSX1-basic/docs/caratula.png" width="200px">
     </a>
 
@@ -42,7 +42,7 @@
 
 4. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Watchmen-MSX1-MSX2-Basic-Fusion-C" taeget="_blanck">
     Watchmen
-    
+     <br> 
     <img src="Watchmen-MSX1-MSX2-Basic-Fusion-C/images/caratula.jpg" width="200px">
     </a>
 
@@ -56,7 +56,7 @@
 
 5.  <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Disco-survivor-MSX1-asm" target="_blanck">
     Disco Survivor
-    
+    <br> 
     <img src="Disco-survivor-MSX1-asm/docs/caratula.png" width="200px">
     </a>
 
@@ -70,9 +70,9 @@
 
 6. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Tetris-MSX2" target="_blanck">
     Titris
-
-   <img src="Tetris-MSX2/MSX-C/assets/caratula.jpg" width="200px">
-   </a>
+    <br> 
+    <img src="Tetris-MSX2/MSX-C/assets/caratula.jpg" width="200px">
+    </a>
 
     Platform: MSX2
 
@@ -82,8 +82,9 @@
 
     <hr>
 
-7. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Captain-kirk-space-MSX1-MSX2">Captain Kirk in space
-
+7. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Captain-kirk-space-MSX1-MSX2">
+    Captain Kirk in space
+    <br> 
     <img src="Captain-kirk-space-MSX1-MSX2/c/sc5/assets/caratula.jpg" width="200px">
     </a>
     
@@ -93,7 +94,9 @@
 
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=kirk1.dsk&M=MSX2E" taeget="_blanck">Play Captain Kirk in space</a>
 
-8. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/3-en-raya-MSX1-fusion-C">3 en raya
+8. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/3-en-raya-MSX1-fusion-C">
+    3 en raya
+    <br> 
     <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
     </a>
 
@@ -105,43 +108,23 @@
 
 9. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Ahorcado-MSX1-fusion-C">
     Ahorcado
-
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    <br> 
+    <img src="Ahorcado-MSX1-fusion-C/img/caratula.jpg" width="200px">
     </a>
 
-    Platform: MSX2
+    Platform: MSX1
 
     Language: C
 
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=ahorcado.dsk&M=MSX2E" taeget="_blanck">Play Ahorcado</a>
 
-10.  <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Captain-Kirk-Mars-MSX1-MSX2-fusion-C">
-    Captain Kirk in Mars (WIP)
+## DEMOS jugables pero hasta un punto
 
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
-    </a>
+<hr><hr>
 
-    Plaforms: MSX1 y MSX2
-
-    Language: C, asm y basic
-
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=kirk2.dsk&M=MSX2E" taeget="_blanck">Play MSX mansion</a>
-
-11. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/MSXpolice-MSX1-asm">
-    MSXPolice (WIP)
-
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
-    </a>
-
-    Plataforma: MSX1
-
-    Language: asm
-
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play MSX MSX police</a>
-
-12. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Amenaza-MSX2">
-    Amenaza (WIP)
-
+10. <a href="">
+    Crazy (DEMO)
+    <br> 
     <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
     </a>
 
@@ -151,9 +134,33 @@
 
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
 
-13. <a href="">
-    Crazy pong (WIP)
+11.  <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Captain-Kirk-Mars-MSX1-MSX2-fusion-C">
+    Captain Kirk in Mars (DEMO)
+    <br> 
+    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    </a>
 
+    Plaforms: MSX1 y MSX2
+
+    Language: C, asm y basic
+
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=kirk2.dsk&M=MSX2E" taeget="_blanck">Play MSX mansion</a>
+
+12. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/MSXpolice-MSX1-asm">
+    MSXPolice (DEMO)
+    <br>
+    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    </a>
+
+    Plataforma: MSX1
+
+    Language: asm
+
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play MSX MSX police</a>
+
+13. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Amenaza-MSX2">
+    Amenaza (DEMO)
+    <br> 
     <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
     </a>
 
@@ -164,8 +171,8 @@
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
 
 14. <a href="">
-    Matamarcianos (WIP)
-
+    Crazy pong (DEMO)
+    <br> 
     <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
     </a>
 
@@ -176,8 +183,8 @@
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
 
 15. <a href="">
-    Friends (WIP)
-
+    Matamarcianos (DEMO)
+    <br> 
     <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
     </a>
 
@@ -188,8 +195,8 @@
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
 
 16. <a href="">
-    Starfield (WIP)
-
+    Friends (DEMO)
+    <br> 
     <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
     </a>
 
@@ -200,8 +207,8 @@
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
 
 17. <a href="">
-    Birds (WIP)
-
+    Starfield (DEMO)
+    <br> 
     <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
     </a>
 
@@ -212,8 +219,8 @@
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
 
 18. <a href="">
-    Crazy (WIP)
-
+    Birds (DEMO)
+    <br> 
     <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
     </a>
 
@@ -226,53 +233,46 @@
 
 
 
+
+
 # Utilidades
+
 
 asm como depurar codigo con dezog
 
 asm-ejemplo-compilacion con glass compiler
 
+asm-MPAG Ejemplo scroll
+
 asm-MSX1-captura teclado
 
 Basic MSX-professional-template-plantilla
 
-Basic MSX1-MSX2 Codigo-para-cargar-pantallas
-
-
-
 Basic MSX2 programa editor sprites
-
-
 
 Basic MSX2-MSX-MUSIC-sound-test
 
-
-
 Basic-dignifier-ejemplo-uso
+
+Basic-mapas-MSX2-ejemplo1 cargando mapas SC5 con copy
+
+Basic-mapas-MSX2-Ejemplo2-cargar-mapas-SC5-copy
+
+Basic-mapas-MSX2-ejemplo4 cargando mapas SC5 con copy
 
 Basic-MSX-captura de teclado
 
 Basic-MSX-checkMSX
 
-Basic-MSX2-ejemplo1 cargando mapas SC5 con copy
+Basic-pantallas-MSX1-MSX2 Codigo-para-cargar-pantallas
 
-Basic-MSX2-Ejemplo2-cargar-mapas-SC5-copy
+Basic-scroll--C-MSX1-MSx2-Ejemplos de uso de scroll horizontal
 
-Basic-MSX2-ejemplo4 cargando mapas SC5 con copy
+Basic-scroll-MSX2 ejemplo scroll vertical con copy
 
+Basic-scroll-MSX2-Ejemplo scroll horizontal SC5 con copy
 
+Basic-scroll-MSX2Plus-scroll-horizontal-vdp-o-setScroll
 
 Bsaic MSX1 ejemplo manejo archivos en discos
-
-MPAG Ejemplo scroll
-
-
-Basic- C-MSx1-MSx2-Ejemplos de uso de scroll horizontal
-
-Basic MSX2 ejemplo scroll vertical con copy
-
-Basic MSX2-Ejemplo scroll horizontal SC5 con copy
-
-Basic-MSX2Plus-scroll-horizontal-vdp-o-setScroll
-
 
