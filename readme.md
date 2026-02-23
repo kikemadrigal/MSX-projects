@@ -132,7 +132,7 @@
 
     Language: basic
 
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dsk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=crazy.dsk&M=MSX2E" taeget="_blanck">Play Crazy drop</a>
 
 11. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Captain-Kirk-Mars-MSX1-MSX2-fusion-C">
     Captain Kirk in Mars (DEMO)
@@ -228,7 +228,7 @@
 
     Language: basic
 
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=birds.dsk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=birds.dsk&M=MSX2E" taeget="_blanck">Play birds</a>
 
 
 
