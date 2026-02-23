@@ -104,7 +104,7 @@
 
     Language: C
 
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=3enraya.dskk&M=MSX2E" taeget="_blanck">Play 3 en raya</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=3enraya.dsk&M=MSX2E" taeget="_blanck">Play 3 en raya</a>
 
 9. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Ahorcado-MSX1-fusion-C">
     Ahorcado
@@ -132,7 +132,7 @@
 
     Language: basic
 
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dsk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
 
 11. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Captain-Kirk-Mars-MSX1-MSX2-fusion-C">
     Captain Kirk in Mars (DEMO)
@@ -149,86 +149,86 @@
 12. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/MSXpolice-MSX1-asm">
     MSXPolice (DEMO)
     <br>
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    <img src="MSXpolice-MSX1-asm/images/caratula.jpg" width="200px">
     </a>
 
     Plataforma: MSX1
 
     Language: asm
 
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play MSX MSX police</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dsk&M=MSX2E" taeget="_blanck">Play police scape</a>
 
 13. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Amenaza-MSX2">
     Amenaza (DEMO)
     <br> 
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    <img src="Amenaza-MSX2/assets/caratula.jpg" width="200px">
     </a>
 
     Plataforma: MSX2
 
     Language: basic
 
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=amenaza.dsk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
 
-14. <a href="">
+14. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Crazy-pong-MSX2-fusion-C">
     Crazy pong (DEMO)
     <br> 
-    <img src="Crazy-Basic-MSX1-MSX2/images/caratula.jpg" width="200px">
+    <img src="Crazy-pong-MSX2-fusion-C/assets/caratula.jpg" width="200px">
     </a>
 
     Plataforma: MSX2
 
     Language: basic
 
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=cpong.dsk&M=MSX2E" taeget="_blanck">Play Crazy pong</a>
 
-15. <a href="">
+15. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Matamarciandos-MSX1-fusion-C">
     Matamarcianos (DEMO)
     <br> 
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    <img src="Matamarciandos-MSX1-fusion-C/assets/caratula.jpg" width="200px">
     </a>
 
     Plataforma: MSX2
 
-    Language: basic
+    Language: C
 
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=matamarcianos.dsk&M=MSX2E" taeget="_blanck">Play Mother ship assault</a>
 
-16. <a href="">
+16. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Friends-MSX2-DAAD">
     Friends (DEMO)
     <br> 
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    <img src="\Friends-MSX2-DAAD/docs/caratula.jpg" width="200px">
     </a>
 
     Plataforma: MSX2
 
-    Language: basic
+    Language: asm-DAAD
 
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=friends.dsk&M=MSX2E" taeget="_blanck">Play friends</a>
 
-17. <a href="">
+17. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Starfield-MSX1-MSX2-fusion-C">
     Starfield (DEMO)
     <br> 
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    <img src="Starfield-MSX1-MSX2-fusion-C/assets/caratula.jpg" width="200px">
     </a>
 
     Plataforma: MSX2
 
-    Language: basic
+    Language: C
 
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=starfield.dsk&M=MSX2E" taeget="_blanck">Play Starfield</a>
 
-18. <a href="">
+18. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Birds">
     Birds (DEMO)
     <br> 
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    <img src="Birds/assets/caratula.jpg" width="200px">
     </a>
 
     Plataforma: MSX2
 
     Language: basic
 
-    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
+    <a href="https://kikemadrigal.github.io/MSX-projects/?disk=birds.dsk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
 
 
 
