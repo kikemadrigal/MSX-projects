@@ -1,6 +1,6 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2020.11.11 - 07:43:28]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2026.02.23 - 11:09:08]
 
-src/level0.asm
+src\level0.asm
 Errors: 0
 
        1   00:0000                              output "level0.bin"
@@ -56,7 +56,7 @@ Errors: 0
 00:0000B0D1   FINAL
 
 
- Output: src/level0.out
+ Output: src\level0.out
 -------------------------------------------------
 
  Page: 00
