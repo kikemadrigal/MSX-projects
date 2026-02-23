@@ -2,8 +2,7 @@
 
 1. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Hunter-MSX1-asm-MPAGD" target="_blanck">
     Hunter
-
-
+    <br>
     <img src="Hunter-MSX1-asm-MPAGD\agd\assets\caratula.jpg" width="200px">
     </a>
 
