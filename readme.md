@@ -123,7 +123,7 @@
 <hr><hr>
 
 10. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Crazy-Basic-MSX1-MSX2">
-    Crazy (DEMO)
+    Crazy drop(DEMO)
     <br> 
     <img src="Crazy-Basic-MSX1-MSX2/images/caratula.jpg" width="200px">
     </a>
@@ -137,7 +137,7 @@
 11. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Captain-Kirk-Mars-MSX1-MSX2-fusion-C">
     Captain Kirk in Mars (DEMO)
     <br> 
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    <img src="Captain-Kirk-Mars-MSX1-MSX2-fusion-C/images/caratula.jpg" width="200px">
     </a>
 
     Plaforms: MSX1 y MSX2
