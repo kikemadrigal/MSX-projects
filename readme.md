@@ -122,19 +122,19 @@
 
 <hr><hr>
 
-10. <a href="">
+10. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Crazy-Basic-MSX1-MSX2">
     Crazy (DEMO)
     <br> 
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    <img src="Crazy-Basic-MSX1-MSX2/images/caratula.jpg" width="200px">
     </a>
 
-    Plataforma: MSX2
+    Plataforma: MSX1 y MSX2
 
     Language: basic
 
     <a href="https://kikemadrigal.github.io/MSX-projects/?disk=police.dskk&M=MSX2E" taeget="_blanck">Play Amenaza</a>
 
-11.  <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Captain-Kirk-Mars-MSX1-MSX2-fusion-C">
+11. <a href="https://github.com/kikemadrigal/MSX-projects/tree/main/Captain-Kirk-Mars-MSX1-MSX2-fusion-C">
     Captain Kirk in Mars (DEMO)
     <br> 
     <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
@@ -173,7 +173,7 @@
 14. <a href="">
     Crazy pong (DEMO)
     <br> 
-    <img src="3-en-raya-MSX1-fusion-C/msx/C/assets/caratula.jpg" width="200px">
+    <img src="Crazy-Basic-MSX1-MSX2/images/caratula.jpg" width="200px">
     </a>
 
     Plataforma: MSX2
